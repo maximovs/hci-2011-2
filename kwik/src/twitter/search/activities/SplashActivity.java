@@ -1,5 +1,6 @@
 package twitter.search.activities;
 
+import kwik.user.activities.CategoriesActivity;
 import twitter.search.R;
 import android.app.Activity;
 import android.content.Intent;
@@ -18,7 +19,7 @@ public class SplashActivity extends Activity {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 				case SplashActivity.STOP:
-					Intent intent = new Intent(SplashActivity.this, SearchActivity.class);
+					Intent intent = new Intent(SplashActivity.this, CategoriesActivity.class);
 					startActivity(intent);
 					SplashActivity.this.finish();
 					break;

@@ -9,8 +9,6 @@ characres method to get characters inside tag.
 package kwik.product.model;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;

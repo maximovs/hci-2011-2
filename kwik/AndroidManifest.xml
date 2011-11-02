@@ -18,5 +18,9 @@
 			android:label="@string/search_activity"></activity>
 		<service android:name=".services.TwitterSearchService"></service>
 
+		<activity android:name="kwik.user.activities.CategoriesActivity"
+			android:label="@string/search_activity"></activity>
+		<service android:name="kwik.services.GetCategoriesService"></service>
+		    
 	</application>
 </manifest>
