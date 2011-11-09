@@ -123,24 +123,6 @@ public class GetCategoriesService extends IntentService {
 
 		receiver.send(STATUS_OK, b);
 	}
-	/*
-	private List<Tweet> fromJSONtoTweets(final String jsonToParse) throws JSONException {
-		List<Tweet> tweets = new ArrayList<Tweet>();
-		
-		Log.d(TAG, "Json received: " + jsonToParse);
-		
-		JSONObject parsedJson = new JSONObject(jsonToParse);
-		if ( !parsedJson.has("results")) {
-			throw new JSONException("results not found");
-		}
-		
-		JSONArray results = parsedJson.getJSONArray("results");
-		for ( int i = 0; i < results.length(); i++ ) {
-			JSONObject bornToBeTweet = results.getJSONObject(i);
-			tweets.add(TweetImpl.fromJSON(bornToBeTweet));			
-		}
-		
-		return tweets;
-	}*/
+
 
 }

@@ -2,10 +2,7 @@ package kwik.product.model;
 
 import java.util.Date;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import twitter.search.model.api.Tweet;
 
 public class Category{
 
