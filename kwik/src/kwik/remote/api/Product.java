@@ -1,6 +1,12 @@
 package kwik.remote.api;
 
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import kwik.remote.api.exceptions.HTTPException;
+import kwik.remote.api.exceptions.XMLParseException;
+import kwik.remote.api.exceptions.APIBadResponseException;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
@@ -58,9 +64,11 @@ public class Product {
 	@Element(required = false)
 	public String	isbn_13;
 	
-	public static Product getProduct(int product_id) throws ResponseException {
-		String url = "http://eiffel.itba.edu.ar/hci/service/Catalog.groovy?method=GetProduct&product_id=" + product_id;
-		Response r = Response.get(url);
+	public static Product getProduct(int product_id) throws APIBadResponseException, XMLParseException, HTTPException {
+		Map<String, String> headers = new HashMap<String,String>();
+		headers.put("method", "GetProductById");
+		headers.put("product_id", new Integer(product_id).toString());
+		Response r = Response.get(Response.COMMON, headers);
 		return r.product;
 	}
 }

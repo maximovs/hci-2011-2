@@ -8,7 +8,9 @@ import javax.xml.parsers.SAXParserFactory;
 
 import kwik.product.model.CategoriesXMLHandler;
 import kwik.remote.api.Product;
-import kwik.remote.api.ResponseException;
+import kwik.remote.api.exceptions.APIBadResponseException;
+import kwik.remote.api.exceptions.HTTPException;
+import kwik.remote.api.exceptions.XMLParseException;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
@@ -72,7 +74,13 @@ public class GetCategoriesService extends IntentService {
 		} catch (IOException e) {
 			Log.e(TAG, e.getMessage());
 			receiver.send(STATUS_ERROR, b);
-		} catch (ResponseException e) {
+		} catch (APIBadResponseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (XMLParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (HTTPException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

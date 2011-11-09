@@ -3,6 +3,8 @@ package kwik.remote.api;
 import java.io.IOException;
 import java.util.Map;
 
+import kwik.remote.api.exceptions.HTTPException;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -32,7 +34,7 @@ public class Util {
 	 * 
 	 * Returns the resultant response string.
 	 */
-	public static String postRequest(String url, Map<String, String> headers) {
+	public static String postRequest(String url, Map<String, String> headers) throws HTTPException {
 		HttpPost postRequest = new HttpPost(url);
 		
 		for (String key : headers.keySet()) {
@@ -52,6 +54,7 @@ public class Util {
 		} catch (IOException e) {
 			postRequest.abort();
 			Log.w(Util.class.getSimpleName(), "Error for URL " + url, e);
+			throw new HTTPException();
 		}
 		return null;
 	}
@@ -65,8 +68,12 @@ public class Util {
 	 * 
 	 * Returns the resultant response string.
 	 */
-	public static String getRequest(String url) {
+	public static String getRequest(String url, Map<String, String> headers) throws HTTPException {
 		HttpGet getRequest = new HttpGet(url);
+		
+		for (String key : headers.keySet()) {
+			getRequest.addHeader(key, headers.get(key));
+		}
 		try {
 			HttpResponse getResponse = client.execute(getRequest);
 			final int statusCode = getResponse.getStatusLine().getStatusCode();
@@ -80,6 +87,7 @@ public class Util {
 		} catch (IOException e) {
 			getRequest.abort();
 			Log.w(Util.class.getSimpleName(), "Error for URL " + url, e);
+			throw new HTTPException();
 		}
 		
 		return null;		
