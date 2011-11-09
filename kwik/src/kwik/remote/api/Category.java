@@ -22,6 +22,10 @@ public class Category extends AbstractCategory {
 	@Element
 	String name;
 	
+	/*
+	 * getCategoryList
+	 * @description Returns a list of categories with their names setted to the given language.
+	 */
 	public static List<Category> getCategoryList(int language_id) throws APIBadResponseException, XMLParseException, HTTPException {
 		Map<String, String> headers = new HashMap<String,String>();
 		headers.put("method", "GetCategoryList");
@@ -32,6 +36,10 @@ public class Category extends AbstractCategory {
 		return r.categories;
 	}
 	
+	
+	/*
+	 * @see kwik.remote.api.AbstractCategory#getSubCategoryList(int)
+	 */
 	public List<SubCategory> getSubCategoryList(int language_id) throws APIBadResponseException, XMLParseException, HTTPException {
 		Map<String, String> headers = new HashMap<String,String>();
 		headers.put("method", "GetSubcategoryList");
@@ -44,17 +52,25 @@ public class Category extends AbstractCategory {
 	}
 	
 
-	
+	/*
+	 * @see kwik.remote.api.AbstractCategory#getId()
+	 */
 	@Override
 	public int getId() {
 		return id;
 	}
 	
+	/*
+	 * @see kwik.remote.api.AbstractCategory#getName()
+	 */
 	@Override
 	public String getName() {
 		return name;
 	}
 	
+	/*
+	 * @see kwik.remote.api.AbstractCategory#getProducts(int, java.lang.String, int, int)
+	 */
 	@Override
 	public List<Product> getProducts(int language_id, String order, int items_per_page, int page) throws APIBadResponseException, XMLParseException, HTTPException {
 		Map<String, String> headers = new HashMap<String,String>();
@@ -71,5 +87,10 @@ public class Category extends AbstractCategory {
 		
 		Response response = Response.get(Response.COMMON, headers);
 		return response.products;
+	}
+	
+	@Override
+	public int getParentId() {
+		return AbstractCategory.NO_PARAM;
 	}
 }

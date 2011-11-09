@@ -11,6 +11,11 @@ import kwik.remote.api.exceptions.XMLParseException;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
+/*
+ * SubCategory
+ * @description Represents an API subcategory
+ * 
+ */
 @Element
 public class SubCategory extends AbstractCategory {
 	@Attribute
@@ -25,16 +30,25 @@ public class SubCategory extends AbstractCategory {
 	@Element
 	String name;
 
+	/*
+	 * @see kwik.remote.api.AbstractCategory#getId()
+	 */
 	@Override
 	public int getId() {
 		return id;
 	}
 
+	/*
+	 * @see kwik.remote.api.AbstractCategory#getName()
+	 */
 	@Override
 	public String getName() {
 		return name;
 	}
 
+	/*
+	 * @see kwik.remote.api.AbstractCategory#getProducts(int, java.lang.String, int, int)
+	 */
 	@Override
 	public List<Product> getProducts(int language_id, String order, int items_per_page, int page) throws APIBadResponseException, XMLParseException, HTTPException {
 		Map<String, String> headers = new HashMap<String,String>();
@@ -54,9 +68,17 @@ public class SubCategory extends AbstractCategory {
 		return r.products;
 	}
 	
+	/*
+	 * @see kwik.remote.api.AbstractCategory#getSubCategoryList(int)
+	 */
 	@Override
 	public List<SubCategory> getSubCategoryList(int language_id) throws APIBadResponseException, XMLParseException,
 			HTTPException {
 		return null; // A subcategory doesn't have any subcategories dude.
+	}
+	
+	@Override
+	public int getParentId() {
+		return this.category_id;
 	}
 }
