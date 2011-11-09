@@ -18,6 +18,8 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import android.util.Log;
+
 public class CategoriesXMLHandler extends DefaultHandler {
 
 	Boolean currentElement = false;
@@ -65,6 +67,8 @@ public class CategoriesXMLHandler extends DefaultHandler {
 
 		currentElement = true;
 
+		
+		Log.e("Report","Localname:" + localName + " qname:" + qName);
 		if (localName.equals("response"))
 		{
 			info = new HashMap<String,Category>();
@@ -102,19 +106,6 @@ public class CategoriesXMLHandler extends DefaultHandler {
 			}
 
 		}
-	}
-
-	/** Called to get tag characters ( ex:- <name>AndroidPeople</name>
-	 * -- to get AndroidPeople Character ) */
-	@Override
-	public void characters(char[] ch, int start, int length)
-			throws SAXException {
-
-		if (currentElement) {
-			currentValue = new String(ch, start, length);
-			currentElement = false;
-		}
-
 	}
 
 }

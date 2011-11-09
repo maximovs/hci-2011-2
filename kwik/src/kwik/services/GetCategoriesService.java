@@ -7,6 +7,8 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import kwik.product.model.CategoriesXMLHandler;
+import kwik.remote.api.Product;
+import kwik.remote.api.ResponseException;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
@@ -51,6 +53,9 @@ public class GetCategoriesService extends IntentService {
 		try {
 			if (command.equals(GET_CATEGORIES_CMD)) {
 				getCategories(receiver, b);
+				
+				Product p = Product.getProduct(28);
+				Log.e("Product", p.image_url);
 			} 
 		} catch (SocketTimeoutException e) {
 			Log.e(TAG, e.getMessage());
@@ -67,6 +72,9 @@ public class GetCategoriesService extends IntentService {
 		} catch (IOException e) {
 			Log.e(TAG, e.getMessage());
 			receiver.send(STATUS_ERROR, b);
+		} catch (ResponseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		// Es importante terminar el servicio lo antes posible.

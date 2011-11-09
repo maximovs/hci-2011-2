@@ -12,6 +12,8 @@ public class Category{
 	private String id;
 	private String code;
 	private String name;
+	
+	
 	public Category() {
 		// TODO Auto-generated constructor stub
 	}
