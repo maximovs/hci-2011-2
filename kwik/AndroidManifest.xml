@@ -14,17 +14,14 @@
 			</intent-filter>
 		</activity>
 
-		<activity android:name=".activities.SearchActivity"
-			android:label="@string/search_activity"></activity>
-		<service android:name=".services.TwitterSearchService"></service>
-
-		<activity android:name=".activities.CategoriesActivity"
-			android:label="@string/search_activity"></activity>
 		<service android:name="kwik.services.KwikAPIService"></service>
 		    
-		<activity android:name="kwik.user.activities.SubCategoriesActivity"
+		<activity android:name="kwik.app.activities.CategoriesActivity"
 			android:label="@string/search_activity"></activity>
-		<service android:name="kwik.services.GetSubCategoriesService"></service>
+		
+		    
+		<activity android:name="kwik.app.activities.ProductsActivity"
+			android:label="@string/search_activity"></activity>
 		    
 	</application>
 </manifest>
