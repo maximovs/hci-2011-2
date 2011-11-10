@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="loading">Cargando...</string>
-    <string name="app_name">Busqueda en Twitter</string>
-    <string name="search_activity">Busqueda en Twitter</string>
+    <string name="loading">Cargando</string>
+    <string name="app_name">Kwik-E-Mart Móvil</string>
+    <string name="search_activity">Kwik-E-Mart Móvil</string>
     <string name="no_products_found">No se encontraron productos</string>
 </resources>
