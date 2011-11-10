@@ -67,7 +67,6 @@ public class CategoriesActivity extends ListActivity implements OnItemClickListe
 				if (resultCode == KwikAPIService.STATUS_OK) {
 
 					Log.d(TAG, "OK - se recibieron las categorias");
-
 					
 					if (!subcategory_activity) {
 						@SuppressWarnings("unchecked")
@@ -106,9 +105,7 @@ public class CategoriesActivity extends ListActivity implements OnItemClickListe
 		setListAdapter(adapter);
 	}
 	private void populateCatList(List<Category> categories) {
-	
-		
-		String[] map_fields = { "name", "id", "category_id" };
+		String[] map_fields = { "name", "id" };
 		String[] desired_fields = { "name" };
 		
 		
@@ -129,7 +126,10 @@ public class CategoriesActivity extends ListActivity implements OnItemClickListe
 		Integer category_id = (Integer) map.get("category_id");
 
 		if(category_id != null) {
-			
+			Intent intent = new Intent(arg1.getContext(), ProductsActivity.class);
+			intent.putExtra("subcategory_id", id);
+			intent.putExtra("category_id", id);
+			startActivity(intent);
 		}
 		else {
 			Intent intent = new Intent(arg1.getContext(), CategoriesActivity.class);
