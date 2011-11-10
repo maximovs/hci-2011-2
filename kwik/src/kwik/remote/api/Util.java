@@ -2,6 +2,10 @@ package kwik.remote.api;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import kwik.remote.api.exceptions.HTTPException;
@@ -10,15 +14,18 @@ import kwik.remote.api.exceptions.XMLParseException;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
 import android.util.Log;
-
 
 /*
  * Util
@@ -34,6 +41,7 @@ public class Util {
 	 * @brief Makes a POST
 	 * 
 	 * @param url Url to make post to
+	 * 
 	 * @param headers Map of headers to add to the POST request.
 	 * 
 	 * Returns the resultant response string.
@@ -41,9 +49,23 @@ public class Util {
 	public static String postRequest(String url, Map<String, String> headers) throws HTTPException {
 		HttpPost postRequest = new HttpPost(url);
 		
+		// Solution comes from:
+		// http://stackoverflow.com/questions/4424425/cant-get-httpparams-working-with-postrequest
+		ArrayList<NameValuePair> postParameters = new ArrayList<NameValuePair>();
+		
 		for (String key : headers.keySet()) {
-			postRequest.addHeader(key, headers.get(key));
+			postParameters.add(new BasicNameValuePair(key, headers.get(key)));
 		}
+		
+		UrlEncodedFormEntity formEntity = null;
+		try {
+			formEntity = new UrlEncodedFormEntity(postParameters);
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		postRequest.setEntity(formEntity);
 		
 		try {
 			HttpResponse getResponse = client.execute(postRequest);
@@ -63,6 +85,16 @@ public class Util {
 		return null;
 	}
 	
+	public static String URLEncode(Map<String, String> headers) {
+		List<NameValuePair> params = new LinkedList<NameValuePair>();
+		
+		for (String key : headers.keySet()) {
+			params.add(new BasicNameValuePair(key, headers.get(key)));
+		}
+		
+		return URLEncodedUtils.format(params, "utf-8");
+	}
+	
 	/*
 	 * getRequest
 	 * 
@@ -72,12 +104,9 @@ public class Util {
 	 * 
 	 * Returns the resultant response string.
 	 */
-	public static String getRequest(String url, Map<String, String> headers) throws HTTPException {
-		HttpGet getRequest = new HttpGet(url);
+	public static String getRequest(String url, final Map<String, String> headers) throws HTTPException {
+		HttpGet getRequest = new HttpGet(url + "?" + URLEncode(headers));
 		
-		for (String key : headers.keySet()) {
-			getRequest.addHeader(key, headers.get(key));
-		}
 		try {
 			HttpResponse getResponse = client.execute(getRequest);
 			final int statusCode = getResponse.getStatusLine().getStatusCode();

@@ -65,10 +65,8 @@ public abstract class AbstractCategory {
 	 */
 	public abstract List<Product> getProducts(int language_id, String order, int items_per_page, int page) throws APIBadResponseException, XMLParseException, HTTPException;
 
-	public String getCode() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract String getCode();
+
 	
 	
 }

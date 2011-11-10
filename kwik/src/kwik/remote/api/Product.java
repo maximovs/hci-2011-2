@@ -66,9 +66,9 @@ public class Product {
 	
 	public static Product getProduct(int product_id) throws APIBadResponseException, XMLParseException, HTTPException {
 		Map<String, String> headers = new HashMap<String,String>();
-		headers.put("method", "GetProductById");
+		headers.put("method", "GetProduct");
 		headers.put("product_id", new Integer(product_id).toString());
-		Response r = Response.get(Response.COMMON, headers);
+		Response r = Response.get(Response.CATALOG, headers);
 		return r.product;
 	}
 }

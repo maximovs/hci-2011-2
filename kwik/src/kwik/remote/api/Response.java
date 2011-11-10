@@ -103,14 +103,15 @@ public class Response {
 	private static Response fromString(String s) throws APIBadResponseException, XMLParseException {
 		Serializer serializer = new Persister();
 		Reader reader = new StringReader(s);
+		Response r = null;
 		try {
-			Response r = serializer.read(Response.class, reader, false);
-			if (r.status != "ok") {
-				throw new APIBadResponseException(r.error);
-			}
-			return r;
+			r = serializer.read(Response.class, reader, false);
 		} catch (Exception e) {
 			throw new XMLParseException();
 		}
+		if (!r.status.equals("ok")) {
+			throw new APIBadResponseException(r.error);
+		}
+		return r;
 	}
 }
