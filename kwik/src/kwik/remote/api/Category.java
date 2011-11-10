@@ -1,7 +1,6 @@
 package kwik.remote.api;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,25 +41,7 @@ public class Category extends AbstractCategory implements Serializable{
 		// Optional: Some caching
 		return r.categories;
 	}
-	public static final String[] fields = { "id", "code", "name" };
-
-	public static List<? extends Map<String, ?>> getCategoriesAsMap(List<Category> l) {
 	
-		List<Map<String, String>> transformedCategories = new ArrayList<Map<String, String>>();
-		for (Category c : l) {
-			HashMap<String, String> map = new HashMap<String, String>();
-			map.put(fields[0], String.valueOf(c.getId()));
-			map.put(fields[1], c.getCode());
-			map.put(fields[2], c.getName());
-			transformedCategories.add(map);
-		}
-		return transformedCategories;
-	}
-
-	
-	public static String[] getMapKeys() {
-		return fields;
-	}
 	
 	/*
 	 * @see kwik.remote.api.AbstractCategory#getSubCategoryList(int)

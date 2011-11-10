@@ -34,9 +34,9 @@ public class SplashActivity extends Activity {
 		setContentView(R.layout.main);
 		Message message = new Message();
 		message.what = SplashActivity.STOP;
-		// ¿Por que no se puede hacer simplemente sleep(3000)?
+		
+		
 		splashHandler.sendMessageDelayed(message, MILLIS_TIME_TO_WAIT);
-
 	}
 	
 }

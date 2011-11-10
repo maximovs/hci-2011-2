@@ -3,9 +3,9 @@ package kwik.user.activities;
 
 import java.util.List;
 
+import kwik.Util;
 import kwik.remote.api.Category;
 import kwik.services.GetCategoriesService;
-
 import twitter.search.R;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -62,13 +62,17 @@ public class CategoriesActivity extends ListActivity {
 		startService(intent);
 	}
 	
-	private void populateList(List<Category> l) {
-		ListAdapter adapter = new SimpleAdapter(this,
-				Category.getCategoriesAsMap(l), R.layout.search_item,
-				Category.fields, new int[] { R.id.date,
-			R.id.title, R.id.description });
+	private void populateList(List<Category> categories) {
+	
+		String[] desired_fields = { "name" };
 		
-		setListAdapter(adapter);	
+		
+		ListAdapter adapter = new SimpleAdapter(this,
+				Util.getMapped(categories, desired_fields), R.layout.search_item,
+				desired_fields , new int[] { R.id.title });
+	
+		
+		setListAdapter(adapter);
 	}
 	
 }
