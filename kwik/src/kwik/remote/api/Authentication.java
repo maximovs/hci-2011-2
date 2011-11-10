@@ -5,8 +5,8 @@ import org.simpleframework.xml.Element;
 @Element
 public class Authentication {
 	@Element
-	String 	token;
+	public String 	token;
 	
 	@Element
-	User 	user;
+	public User 	user;
 }

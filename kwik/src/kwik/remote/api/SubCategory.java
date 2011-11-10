@@ -16,7 +16,6 @@ import org.simpleframework.xml.Element;
 /*
  * SubCategory
  * @description Represents an API subcategory
- * 
  */
 @Element
 public class SubCategory extends AbstractCategory implements Serializable{
@@ -26,16 +25,16 @@ public class SubCategory extends AbstractCategory implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Attribute
-	int id;
+	int 	id;
 	
 	@Element
-	int category_id;
+	int 	category_id;
 	
 	@Element
-	String code;
+	String 	code;
 	
 	@Element
-	String name;
+	String 	name;
 
 	/*
 	 * @see kwik.remote.api.AbstractCategory#getId()
@@ -76,7 +75,7 @@ public class SubCategory extends AbstractCategory implements Serializable{
 			headers.put("page", Integer.toString(page));			
 		}
 		
-		Response r = Response.get(Response.COMMON, headers);
+		Response r = Response.get(Response.CATALOG, headers);
 		return r.products;
 	}
 	

@@ -21,13 +21,13 @@ public class Category extends AbstractCategory implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Attribute
-	int id;
+	public int id;
 	
 	@Element
-	String code;
+	public String code;
 	
 	@Element
-	String name;
+	public String name;
 	
 	/*
 	 * getCategoryList
@@ -38,7 +38,7 @@ public class Category extends AbstractCategory implements Serializable{
 		headers.put("method", "GetCategoryList");
 		headers.put("language_id", Integer.toString(language_id));
 		
-		Response r = Response.get(Response.COMMON, headers);
+		Response r = Response.get(Response.CATALOG, headers);
 		// Optional: Some caching
 		return r.categories;
 	}
@@ -71,7 +71,7 @@ public class Category extends AbstractCategory implements Serializable{
 		headers.put("language_id", Integer.toString(language_id));
 		headers.put("category_id", Integer.toString(this.id));
 		
-		Response r = Response.get(Response.COMMON, headers);
+		Response r = Response.get(Response.CATALOG, headers);
 		// Optional: Some caching
 		return r.subCategories;		
 	}
@@ -118,7 +118,7 @@ public class Category extends AbstractCategory implements Serializable{
 			headers.put("page", Integer.toString(page));			
 		}
 		
-		Response response = Response.get(Response.COMMON, headers);
+		Response response = Response.get(Response.CATALOG, headers);
 		return response.products;
 	}
 	

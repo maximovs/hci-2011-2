@@ -25,34 +25,49 @@ public class Response {
 	
 	
 	@Attribute
-	String				status;
+	public String				status;
 	
 	@Element(required = false)
-	Authentication		authentication;
+	public Authentication		authentication;
 	
 	@ElementList(required = false)
-	List<Language>		languages;
+	public List<Language>		languages;
 	
 	@ElementList(required = false)
-	List<Category>		categories;
+	public List<Category>		categories;
 	
 	@ElementList(required = false)
-	List<SubCategory>	subCategories;
+	public List<SubCategory>	subCategories;
 	
 	@ElementList(required = false)
-	List<Country>		countries;
+	public List<Country>		countries;
 	
 	@ElementList(required = false)
-	List<State>			states;
+	public List<State>			states;
+
+	@ElementList(required = false)
+	public List<Order>			orders;
 	
 	@ElementList(required = false)
-	List<Product>		products;
+	public List<Product>		products;
 	
 	@Element(required = false)
-	Product				product;
+	public Product				product;
+	
+	@Element(required = false)
+	public Address				address;
+	
+	@Element(required = false)
+	public List<Address>		addresses;
 	
 	@Element(required = false) // And also not desired :p
-	Error				error;
+	public Error				error;
+	
+	@Element(required = false)
+	public User					account;
+	
+	@Element(required = false)
+	public Order				order;
 	
 	/*
 	 * get

@@ -1,9 +1,11 @@
 package kwik.remote.api;
 
 import java.io.IOException;
+import java.io.StringWriter;
 import java.util.Map;
 
 import kwik.remote.api.exceptions.HTTPException;
+import kwik.remote.api.exceptions.XMLParseException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -12,6 +14,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
 
 import android.util.Log;
 
@@ -91,5 +95,16 @@ public class Util {
 		}
 		
 		return null;		
+	}
+	
+	public static String serializeObjectToXML(Object o) throws XMLParseException {
+		StringWriter writer = new StringWriter();
+		Serializer serializer = new Persister();
+		try {
+			serializer.write(o, writer);
+		} catch (Exception e) {
+			throw new XMLParseException();
+		}
+		return writer.toString();
 	}
 }

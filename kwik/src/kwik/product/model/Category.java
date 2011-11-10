@@ -1,8 +1,6 @@
 package kwik.product.model;
 
 
-
-
 public class Category{
 
 	private String id;
@@ -38,8 +36,4 @@ public class Category{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-
-
-
 }
