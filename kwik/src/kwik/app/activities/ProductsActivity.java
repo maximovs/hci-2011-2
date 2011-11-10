@@ -32,15 +32,15 @@ public class ProductsActivity extends ListActivity implements OnItemClickListene
 		
 		Bundle extras = localIntent.getExtras();
 		
-		final Integer category_id = extras.getInt("category_id");
-		final Integer subcategory_id = extras.getInt("subcategory_id");
+		final Integer category_id = extras.getInt("category_id", -1);
+		final Integer subcategory_id = extras.getInt("subcategory_id", -1);
 		
 		/* Asociamos la vista del search list con la activity */
 		setContentView(R.layout.categories_list);
 		
 		Intent intent = new Intent(Intent.ACTION_SYNC, null, this, KwikAPIService.class);
 		
-		if (subcategory_id != null) {
+		if (subcategory_id != -1) {
 			intent.putExtra("command", KwikAPIService.GET_SUBCAT_PRODUCTS_CMD);
 			intent.putExtra("category_id", category_id);
 			intent.putExtra("subcategory_id", subcategory_id);
@@ -58,9 +58,9 @@ public class ProductsActivity extends ListActivity implements OnItemClickListene
 
 					Log.d(TAG, "OK - se recibieron las categorias");
 					
-						@SuppressWarnings("unchecked")
-						List<Category> prodList = (List<Category>) resultData.getSerializable("return");
-						populateProdList(prodList);
+					@SuppressWarnings("unchecked")
+					List<Category> prodList = (List<Category>) resultData.getSerializable("return");
+					populateProdList(prodList);
 			
 				} else if (resultCode == KwikAPIService.STATUS_CONNECTION_ERROR) {
 					Log.d(TAG, "Connection error.");
@@ -90,14 +90,7 @@ public class ProductsActivity extends ListActivity implements OnItemClickListene
 	
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-		ListView vi = (ListView) arg0;
-		@SuppressWarnings("unchecked")
-		HashMap<String, Object> map = (HashMap<String, Object>) vi.getItemAtPosition(position);
-		
-		Integer id = (Integer) map.get("id");
-		
-		Intent intent = new Intent(arg1.getContext(), CategoriesActivity.class);
-		intent.putExtra("category_id", id);
-		startActivity(intent);
 	}
+	
+	
 }

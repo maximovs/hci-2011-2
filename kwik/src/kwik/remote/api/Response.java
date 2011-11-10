@@ -16,6 +16,8 @@ import org.simpleframework.xml.Root;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
+import android.util.Log;
+
 @Root
 public class Response {
 	public static final String COMMON   = "http://eiffel.itba.edu.ar/hci/service/Common.groovy";
@@ -110,6 +112,7 @@ public class Response {
 			throw new XMLParseException();
 		}
 		if (!r.status.equals("ok")) {
+			Log.d("Response", "GOT ERROR " + r.status);
 			throw new APIBadResponseException(r.error);
 		}
 		return r;

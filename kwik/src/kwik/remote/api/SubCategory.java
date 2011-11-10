@@ -63,7 +63,7 @@ public class SubCategory extends AbstractCategory implements Serializable{
 	@Override
 	public List<Product> getProducts(int language_id, String order, int items_per_page, int page) throws APIBadResponseException, XMLParseException, HTTPException {
 		Map<String, String> headers = new HashMap<String,String>();
-		headers.put("method", "GetSubcategoryList");
+		headers.put("method", "GetProductListBySubcategory");
 		headers.put("language_id", Integer.toString(language_id));
 		headers.put("category_id", Integer.toString(this.category_id));
 		headers.put("subcategory_id", Integer.toString(this.id));

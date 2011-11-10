@@ -9,7 +9,10 @@ import kwik.app.R;
 import kwik.remote.api.Category;
 import kwik.remote.api.SubCategory;
 import kwik.services.KwikAPIService;
+import android.app.AlertDialog.Builder;
 import android.app.ListActivity;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,11 +21,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-public class CategoriesActivity extends ListActivity implements OnItemClickListener {
+public class CategoriesActivity extends ListActivity implements OnItemClickListener, OnItemLongClickListener {
 
 	private String TAG = getClass().getSimpleName();
 	
@@ -90,6 +94,7 @@ public class CategoriesActivity extends ListActivity implements OnItemClickListe
 		ListView vi = getListView();
 		
 		vi.setOnItemClickListener(this);
+		vi.setOnItemLongClickListener(this);
 		startService(intent);
 	}
 	
@@ -117,8 +122,8 @@ public class CategoriesActivity extends ListActivity implements OnItemClickListe
 	}
 	
 	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-		ListView vi = (ListView) arg0;
+	public void onItemClick(AdapterView<?> view, View v, int position, long arg3) {
+		ListView vi = (ListView) view;
 		@SuppressWarnings("unchecked")
 		HashMap<String,Object> map = (HashMap<String,Object>) vi.getItemAtPosition(position);
 		
@@ -126,18 +131,52 @@ public class CategoriesActivity extends ListActivity implements OnItemClickListe
 		Integer category_id = (Integer) map.get("category_id");
 
 		if(category_id != null) {
-			Intent intent = new Intent(arg1.getContext(), ProductsActivity.class);
+			Intent intent = new Intent(v.getContext(), ProductsActivity.class);
 			intent.putExtra("subcategory_id", id);
-			intent.putExtra("category_id", id);
+			intent.putExtra("category_id",	category_id);
 			startActivity(intent);
 		}
 		else {
-			Intent intent = new Intent(arg1.getContext(), CategoriesActivity.class);
+			Intent intent = new Intent(v.getContext(), CategoriesActivity.class);
 			intent.putExtra("category_id", id);
 			startActivity(intent);
 		}
 		
 	}
+	
+	@Override
+	public boolean onItemLongClick(final AdapterView<?> view, final View v, final int position, long arg3) {
+		ListView vi = (ListView) view;
+		@SuppressWarnings("unchecked")
+		HashMap<String,Object> map = (HashMap<String,Object>) vi.getItemAtPosition(position);
+		
+		final Integer id = (Integer) map.get("id");
+		final Integer category_id = (Integer) map.get("category_id");
 
+		if(category_id != null) {
+			return true;
+		}
+		else {
+			Builder b = new Builder(v.getContext());
+			b.setTitle("Category " + map.get("name")); // TODO: Translate this.
+			String[] options = { "Show products" };    // TODO: Translate this.
+			
+			b.setItems(options, new OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface arg0, int arg1) {
+					if (arg1 == 0) {
+						Intent intent = new Intent(v.getContext(), ProductsActivity.class);
+						intent.putExtra("category_id",	id);
+						startActivity(intent);
+					}
+				}
+			});
+			
+			b.create().show();
+			return false;
+		}
+		
+	}
 	
 }
