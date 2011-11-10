@@ -1,12 +1,11 @@
 package kwik.services;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.SocketTimeoutException;
-import java.net.URL;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
+import java.util.List;
 
-import kwik.product.model.CategoriesXMLHandler;
+import kwik.remote.api.Category;
 import kwik.remote.api.Product;
 import kwik.remote.api.exceptions.APIBadResponseException;
 import kwik.remote.api.exceptions.HTTPException;
@@ -14,8 +13,6 @@ import kwik.remote.api.exceptions.XMLParseException;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -96,20 +93,22 @@ public class GetCategoriesService extends IntentService {
 	//		throw new IllegalArgumentException(response.getStatusLine().toString());
 	//	}
 		//----
+		List<Category> l = null;
 		try {
-
+			l = Category.getCategoryList(1);
+			
 			/** Handling XML */
-			SAXParserFactory spf = SAXParserFactory.newInstance();
-			SAXParser sp = spf.newSAXParser();
-			XMLReader xr = sp.getXMLReader();
+//			SAXParserFactory spf = SAXParserFactory.newInstance();
+//			SAXParser sp = spf.newSAXParser();
+//			XMLReader xr = sp.getXMLReader();
 
 			/** Send URL to parse XML Tags */
-			URL sourceUrl = new URL("http://eiffel.itba.edu.ar/hci/service/Catalog.groovy?method=GetCategoryList&language_id=1");
+//			URL sourceUrl = new URL("http://eiffel.itba.edu.ar/hci/service/Catalog.groovy?method=GetCategoryList&language_id=1");
 
 			/** Create handler to handle XML Tags ( extends DefaultHandler ) */
-			CategoriesXMLHandler categoriesXMLHandler = new CategoriesXMLHandler();
-			xr.setContentHandler(categoriesXMLHandler);
-			xr.parse(new InputSource(sourceUrl.openStream()));
+//			CategoriesXMLHandler categoriesXMLHandler = new CategoriesXMLHandler();
+//			xr.setContentHandler(categoriesXMLHandler);
+//			xr.parse(new InputSource(sourceUrl.openStream()));
 
 		} catch (Exception e) {
 			
@@ -119,7 +118,7 @@ public class GetCategoriesService extends IntentService {
 		//----
 		
 		
-		b.putSerializable("return", CategoriesXMLHandler.info);
+		b.putSerializable("return", (Serializable) l);
 
 		receiver.send(STATUS_OK, b);
 	}

@@ -22,5 +22,9 @@
 			android:label="@string/search_activity"></activity>
 		<service android:name="kwik.services.GetCategoriesService"></service>
 		    
+		<activity android:name="kwik.user.activities.SubCategoriesActivity"
+			android:label="@string/search_activity"></activity>
+		<service android:name="kwik.services.GetSubCategoriesService"></service>
+		    
 	</application>
 </manifest>

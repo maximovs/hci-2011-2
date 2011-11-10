@@ -1,6 +1,5 @@
 package kwik.product.model;
 
-import java.util.Date;
 
 
 

@@ -1,5 +1,7 @@
 package kwik.remote.api;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +19,12 @@ import org.simpleframework.xml.Element;
  * 
  */
 @Element
-public class SubCategory extends AbstractCategory {
+public class SubCategory extends AbstractCategory implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Attribute
 	int id;
 	
@@ -36,6 +43,11 @@ public class SubCategory extends AbstractCategory {
 	@Override
 	public int getId() {
 		return id;
+	}
+	
+	@Override
+	public String getCode() {
+		return code;
 	}
 
 	/*
@@ -80,5 +92,25 @@ public class SubCategory extends AbstractCategory {
 	@Override
 	public int getParentId() {
 		return this.category_id;
+	}
+	
+	public static final String[] fields = { "id", "code", "name" };
+
+	public static List<? extends Map<String, ?>> getCategoriesAsMap(List<SubCategory> l) {
+	
+		List<Map<String, String>> transformedCategories = new ArrayList<Map<String, String>>();
+		for (SubCategory c : l) {
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put(fields[0], String.valueOf(c.getId()));
+			map.put(fields[1], c.getCode());
+			map.put(fields[2], c.getName());
+			transformedCategories.add(map);
+		}
+		return transformedCategories;
+	}
+
+	
+	public static String[] getMapKeys() {
+		return fields;
 	}
 }

@@ -1,7 +1,9 @@
 package kwik.user.activities;
 
 
-import kwik.product.model.CategoriesXMLHandler;
+import java.util.List;
+
+import kwik.remote.api.Category;
 import kwik.services.GetCategoriesService;
 
 import twitter.search.R;
@@ -23,7 +25,7 @@ public class CategoriesActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 
 		/* Asociamos la vista del search list con la activity */
-		setContentView(R.layout.search_list);
+		setContentView(R.layout.categories_list);
 
 		Intent intent = new Intent(Intent.ACTION_SYNC, null, this,
 				GetCategoriesService.class);
@@ -44,11 +46,10 @@ public class CategoriesActivity extends ListActivity {
 
 					Log.d(TAG, "OK - se recibieron las categorias");
 
-//					@SuppressWarnings("unchecked")
-//					HashMap<Integer,HashMap<String,String>> categoriesMap = (HashMap<Integer,HashMap<String,String>>) resultData
-//							.getSerializable("return");
-//					
-					populateList();
+					@SuppressWarnings("unchecked")
+					List<Category> catList = (List<Category>) resultData.getSerializable("return");
+					
+					populateList(catList);
 
 				} else if (resultCode == GetCategoriesService.STATUS_CONNECTION_ERROR) {
 					Log.d(TAG, "Connection error.");
@@ -61,10 +62,10 @@ public class CategoriesActivity extends ListActivity {
 		startService(intent);
 	}
 	
-	private void populateList() {
+	private void populateList(List<Category> l) {
 		ListAdapter adapter = new SimpleAdapter(this,
-				CategoriesXMLHandler.getCategoriesAsMap(), R.layout.search_item,
-				CategoriesXMLHandler.getMapKeys(), new int[] { R.id.date,
+				Category.getCategoriesAsMap(l), R.layout.search_item,
+				Category.fields, new int[] { R.id.date,
 			R.id.title, R.id.description });
 		
 		setListAdapter(adapter);	
