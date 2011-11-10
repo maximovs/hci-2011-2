@@ -14,13 +14,13 @@ import org.simpleframework.xml.Element;
 @Element
 public class Country {
 	@Attribute
-	int id;
+	public int id;
 	
 	@Element
-	String code;
+	public String code;
 	
 	@Element
-	String name;
+	public String name;
 	
 	public static List<Country> getCountryList(int language_id) throws APIBadResponseException, XMLParseException, HTTPException {
 		Map<String, String> headers = new HashMap<String,String>();

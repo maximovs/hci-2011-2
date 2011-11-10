@@ -6,8 +6,8 @@ import org.simpleframework.xml.Element;
 @Element
 public class Error {
 	@Attribute
-	int code;
+	public int code;
 	
 	@Attribute
-	String message;
+	public String message;
 }

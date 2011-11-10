@@ -15,13 +15,13 @@ import org.simpleframework.xml.Element;
 public class Language {
 	
 	@Attribute
-	int id;
+	public int id;
 
 	@Element
-	String code;
+	public String code;
 	
 	@Element
-	String name;
+	public String name;
 	
 	public static List<Language> getLanguageList() throws APIBadResponseException, XMLParseException, HTTPException {
 		Map<String, String> headers = new HashMap<String,String>();
