@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="twitter.search" android:versionCode="1" android:versionName="1.0">
+	package="kwik.app" android:versionCode="1" android:versionName="1.0">
 
 	<uses-permission android:name="android.permission.INTERNET" />
 
@@ -18,9 +18,9 @@
 			android:label="@string/search_activity"></activity>
 		<service android:name=".services.TwitterSearchService"></service>
 
-		<activity android:name="kwik.user.activities.CategoriesActivity"
+		<activity android:name=".activities.CategoriesActivity"
 			android:label="@string/search_activity"></activity>
-		<service android:name="kwik.services.GetCategoriesService"></service>
+		<service android:name="kwik.services.KwikAPIService"></service>
 		    
 		<activity android:name="kwik.user.activities.SubCategoriesActivity"
 			android:label="@string/search_activity"></activity>

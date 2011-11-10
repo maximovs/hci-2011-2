@@ -37,7 +37,7 @@ public abstract class AbstractCategory {
 	 * @description Fetches the subcategories for the given category and language, 
 	 * returns null if it's already a subcategory
 	 */
-	public abstract List<SubCategory> getSubCategoryList(int language_id) throws APIBadResponseException, XMLParseException, HTTPException;
+	public abstract List<? extends AbstractCategory> getSubCategoryList(int language_id) throws APIBadResponseException, XMLParseException, HTTPException;
 	
 	/*
 	 * Gets the list of products of the category with the given language

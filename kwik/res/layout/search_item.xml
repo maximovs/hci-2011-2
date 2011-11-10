@@ -5,16 +5,19 @@
 
 	<TextView android:id="@+id/title" android:textSize="24sp"
 		android:textStyle="bold" android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:layout_toRightOf="@+id/imageView1"
-		android:paddingTop="14px" android:paddingBottom="14px"/>
-
-	<!-- <ImageView android:src="@drawable/icon"
-		android:layout_height="wrap_content" android:layout_width="wrap_content"
-		android:id="@+id/image" android:visibility="gone"></ImageView>
-
-	<TextView android:id="@+id/description" android:textSize="16sp"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:layout_below="@+id/title" android:layout_toRightOf="@+id/imageView1" />
+		android:layout_height="wrap_content" android:layout_alignParentLeft="true"
+		android:paddingTop="14px" android:paddingBottom="14px"
+		/>
+	<ImageView android:src="@drawable/right_arrow"
+	  android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_alignParentRight="true"
+		android:layout_centerVertical="true"
+		android:id="@+id/image"></ImageView>
+	
+	
+	<!-- 
+	
+	
 		
 	<TextView android:layout_height="wrap_content"
 		android:layout_width="wrap_content" android:layout_alignParentBottom="true"

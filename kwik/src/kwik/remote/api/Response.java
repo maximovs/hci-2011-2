@@ -36,7 +36,7 @@ public class Response {
 	@ElementList(required = false)
 	public List<Category>		categories;
 	
-	@ElementList(required = false)
+	@ElementList(required = false, name="subcategories")
 	public List<SubCategory>	subCategories;
 	
 	@ElementList(required = false)

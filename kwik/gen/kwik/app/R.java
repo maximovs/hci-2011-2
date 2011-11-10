@@ -5,16 +5,18 @@
  * should not be modified by hand.
  */
 
-package twitter.search;
+package kwik.app;
 
 public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int icon=0x7f020000;
+        public static final int arrow_right_32x32=0x7f020000;
+        public static final int icon=0x7f020001;
+        public static final int right_arrow=0x7f020002;
     }
     public static final class id {
-        public static final int imageView1=0x7f050002;
+        public static final int image=0x7f050002;
         public static final int relativeLayout1=0x7f050000;
         public static final int title=0x7f050001;
     }

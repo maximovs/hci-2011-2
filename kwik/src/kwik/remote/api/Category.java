@@ -46,7 +46,7 @@ public class Category extends AbstractCategory implements Serializable{
 	/*
 	 * @see kwik.remote.api.AbstractCategory#getSubCategoryList(int)
 	 */
-	public List<SubCategory> getSubCategoryList(int language_id) throws APIBadResponseException, XMLParseException, HTTPException {
+	public List<? extends AbstractCategory> getSubCategoryList(int language_id) throws APIBadResponseException, XMLParseException, HTTPException {
 		Map<String, String> headers = new HashMap<String,String>();
 		headers.put("method", "GetSubcategoryList");
 		headers.put("language_id", Integer.toString(language_id));

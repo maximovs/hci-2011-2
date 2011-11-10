@@ -1,7 +1,6 @@
-package twitter.search.activities;
+package kwik.app.activities;
 
-import kwik.user.activities.CategoriesActivity;
-import twitter.search.R;
+import kwik.app.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
