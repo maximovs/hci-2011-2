@@ -9,6 +9,7 @@ import kwik.app.R;
 import kwik.remote.api.Category;
 import kwik.remote.api.SubCategory;
 import kwik.services.KwikAPIService;
+import kwik.services.KwikNotificationService;
 import android.app.AlertDialog.Builder;
 import android.app.ListActivity;
 import android.content.DialogInterface;
@@ -40,7 +41,10 @@ public class CategoriesActivity extends ListActivity implements OnItemClickListe
 		/* Asociamos la vista del search list con la activity */
 		setContentView(R.layout.categories_list);
 
-		
+		Intent NotifIntent = new Intent(Intent.ACTION_SYNC, null, this,
+				KwikNotificationService.class);
+		NotifIntent.putExtra("token", "d69bf21da285f8634533b9f7cc487ed"); //maximovs - maximovs
+		NotifIntent.putExtra("command", KwikNotificationService.NOTIFY_ORDERS_CMD);
 		
 		Intent intent = new Intent(Intent.ACTION_SYNC, null, this,
 				KwikAPIService.class);
@@ -95,7 +99,9 @@ public class CategoriesActivity extends ListActivity implements OnItemClickListe
 		
 		vi.setOnItemClickListener(this);
 		vi.setOnItemLongClickListener(this);
+		startService(NotifIntent);
 		startService(intent);
+		
 	}
 	
 	private void populateSubCatList(List<SubCategory> categories) {
@@ -158,8 +164,8 @@ public class CategoriesActivity extends ListActivity implements OnItemClickListe
 		}
 		else {
 			Builder b = new Builder(v.getContext());
-			b.setTitle("Category " + map.get("name")); // TODO: Translate this.
-			String[] options = { "Show products" };    // TODO: Translate this.
+			b.setTitle(getResources().getString(R.string.Category) + " " + map.get("name")); 
+			String[] options = { getResources().getString(R.string.show_products) };   
 			
 			b.setItems(options, new OnClickListener() {
 				

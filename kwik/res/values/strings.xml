@@ -3,5 +3,12 @@
     <string name="loading">Loading</string>
     <string name="app_name">Kwik-E-Mart Mobile</string>
     <string name="search_activity">Kwik-E-Mart Mobile</string>
-    <string name="no_products_found">No products found</string>
+    <string name="no_products_found">No products found</string> 
+	
+	<!-- order notification -->
+	<string name="new_order_update">Order updated: </string>
+	
+	<!-- categories activity -->
+	<string name="show_products">Show products</string>
+	<string name="Category">Category</string>
 </resources>
