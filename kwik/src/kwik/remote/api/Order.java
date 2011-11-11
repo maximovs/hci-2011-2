@@ -9,7 +9,7 @@ import kwik.remote.api.auxiliar.OrderItem;
 import kwik.remote.api.exceptions.APIBadResponseException;
 import kwik.remote.api.exceptions.HTTPException;
 import kwik.remote.api.exceptions.XMLParseException;
-import kwik.remote.util.Util;
+import kwik.remote.util.HTTPUtils;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
@@ -92,7 +92,7 @@ public class Order {
 		headers.put("username", this.user.username);
 		headers.put("authentication_token", this.user.token);
 		headers.put("order_id", Integer.toString(this.id));
-		headers.put("order_item", Util.serializeObjectToXML(item));
+		headers.put("order_item", HTTPUtils.serializeObjectToXML(item));
 		
 		Response.post(Response.ORDER, headers);		
 
@@ -112,7 +112,7 @@ public class Order {
 		headers.put("username", this.user.username);
 		headers.put("authentication_token", this.user.token);
 		headers.put("order_id", Integer.toString(this.id));
-		headers.put("order_item", Util.serializeObjectToXML(item));
+		headers.put("order_item", HTTPUtils.serializeObjectToXML(item));
 		
 		Response.post(Response.ORDER, headers);		
 

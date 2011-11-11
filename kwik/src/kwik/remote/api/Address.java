@@ -6,7 +6,7 @@ import java.util.Map;
 import kwik.remote.api.exceptions.APIBadResponseException;
 import kwik.remote.api.exceptions.HTTPException;
 import kwik.remote.api.exceptions.XMLParseException;
-import kwik.remote.util.Util;
+import kwik.remote.util.HTTPUtils;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
@@ -56,7 +56,7 @@ public class Address {
 	public boolean update() throws APIBadResponseException, XMLParseException, HTTPException {
 		String selfToXML;
 		try {
-			selfToXML = Util.serializeObjectToXML(this);
+			selfToXML = HTTPUtils.serializeObjectToXML(this);
 			
 		} catch (XMLParseException e) {
 			e.printStackTrace();
@@ -76,7 +76,7 @@ public class Address {
 	public boolean create() throws APIBadResponseException, HTTPException, XMLParseException {
 		String selfToXML;
 		try {
-			selfToXML = Util.serializeObjectToXML(this);
+			selfToXML = HTTPUtils.serializeObjectToXML(this);
 			
 		} catch (XMLParseException e) {
 			e.printStackTrace();

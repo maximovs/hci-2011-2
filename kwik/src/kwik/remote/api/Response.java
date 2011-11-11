@@ -8,7 +8,7 @@ import java.util.Map;
 import kwik.remote.api.exceptions.HTTPException;
 import kwik.remote.api.exceptions.XMLParseException;
 import kwik.remote.api.exceptions.APIBadResponseException;
-import kwik.remote.util.Util;
+import kwik.remote.util.HTTPUtils;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
@@ -82,7 +82,7 @@ public class Response {
 	 * @return Response object containing the data
 	 */
 	public static Response get(String url, Map<String, String> headers) throws APIBadResponseException, XMLParseException, HTTPException {
-		String responseXML = Util.getRequest(url, headers);
+		String responseXML = HTTPUtils.getRequest(url, headers);
 		return fromString(responseXML);
 	}
 	
@@ -96,7 +96,7 @@ public class Response {
 	 * @return Response object containing the answer data.
 	 */
 	public static Response post(String url, Map<String, String> headers) throws APIBadResponseException, XMLParseException, HTTPException {
-		String responseXML = Util.postRequest(url, headers);
+		String responseXML = HTTPUtils.postRequest(url, headers);
 		return fromString(responseXML);
 	}
 	

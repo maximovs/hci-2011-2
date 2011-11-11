@@ -31,7 +31,7 @@ import android.util.Log;
  * Util
  * @description Helper class for manipulating HTTP requests.
  */
-public class Util {
+public class HTTPUtils {
 	
 	private static DefaultHttpClient	client	= new DefaultHttpClient();
 	
@@ -49,6 +49,7 @@ public class Util {
 	public static String postRequest(String url, Map<String, String> headers) throws HTTPException {
 		HttpPost postRequest = new HttpPost(url);
 		
+		DefaultHttpClient client = new DefaultHttpClient();
 		// Solution comes from:
 		// http://stackoverflow.com/questions/4424425/cant-get-httpparams-working-with-postrequest
 		ArrayList<NameValuePair> postParameters = new ArrayList<NameValuePair>();
@@ -79,7 +80,7 @@ public class Util {
 			}
 		} catch (IOException e) {
 			postRequest.abort();
-			Log.w(Util.class.getSimpleName(), "Error for URL " + url, e);
+			Log.w(HTTPUtils.class.getSimpleName(), "Error for URL " + url, e);
 			throw new HTTPException();
 		}
 		return null;
@@ -106,7 +107,7 @@ public class Util {
 	 */
 	public static String getRequest(String url, final Map<String, String> headers) throws HTTPException {
 		HttpGet getRequest = new HttpGet(url + "?" + URLEncode(headers));
-		
+		DefaultHttpClient client = new DefaultHttpClient();
 		try {
 			HttpResponse getResponse = client.execute(getRequest);
 			final int statusCode = getResponse.getStatusLine().getStatusCode();
@@ -119,7 +120,7 @@ public class Util {
 			}
 		} catch (IOException e) {
 			getRequest.abort();
-			Log.w(Util.class.getSimpleName(), "Error for URL " + url, e);
+			Log.w(HTTPUtils.class.getSimpleName(), "Error for URL " + url, e);
 			throw new HTTPException();
 		}
 		

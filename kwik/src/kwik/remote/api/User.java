@@ -9,7 +9,7 @@ import kwik.remote.api.auxiliar.Account;
 import kwik.remote.api.exceptions.APIBadResponseException;
 import kwik.remote.api.exceptions.HTTPException;
 import kwik.remote.api.exceptions.XMLParseException;
-import kwik.remote.util.Util;
+import kwik.remote.util.HTTPUtils;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
@@ -91,7 +91,7 @@ public class User {
 		account.email = email;
 		account.birth_date = birth_date;
 		try {
-			String xmlAccount = Util.serializeObjectToXML(account);
+			String xmlAccount = HTTPUtils.serializeObjectToXML(account);
 			
 			Map<String, String> headers = new HashMap<String, String>();
 			
@@ -130,7 +130,7 @@ public class User {
 		account.birth_date = birth_date;
 		
 		try {
-			String xmlAccount = Util.serializeObjectToXML(account);
+			String xmlAccount = HTTPUtils.serializeObjectToXML(account);
 			
 			Map<String, String> headers = new HashMap<String, String>();
 			
