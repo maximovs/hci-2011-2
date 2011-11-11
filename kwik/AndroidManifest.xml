@@ -21,7 +21,9 @@
 		</activity>
 
 		<service android:name="kwik.services.KwikAPIService"></service>
-		    
+		  
+		<service android:name="kwik.services.KwikNotificationService"></service>
+		      
 		<activity android:name="kwik.app.activities.CategoriesActivity"
 			android:label="@string/search_activity"></activity>
 		
