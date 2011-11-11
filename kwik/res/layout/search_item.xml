@@ -7,6 +7,7 @@
 		android:textStyle="bold" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:layout_alignParentLeft="true"
 		android:paddingTop="14px" android:paddingBottom="14px"
+		android:paddingRight="40px"
 		/>
 	<ImageView android:src="@drawable/right_arrow"
 	  android:layout_width="wrap_content"

@@ -13,8 +13,15 @@
                android:drawSelectorOnTop="false"/>
 
 	<!--  Vista se va a mostrar cuando la lista esté vacía -->
-     <TextView android:id="@android:id/empty"
+     <!-- <TextView android:id="@android:id/empty"
                android:layout_width="fill_parent"
                android:layout_height="fill_parent"
-               android:text="@string/no_products_found"/>
+               android:text="@string/no_products_found"/> -->
+
+     <ProgressBar
+         android:id="@+id/progressBar1"
+         style="?android:attr/progressBarStyleLarge"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+
 </LinearLayout>
