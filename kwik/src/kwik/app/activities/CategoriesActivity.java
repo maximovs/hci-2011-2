@@ -9,11 +9,7 @@ import kwik.app.R;
 import kwik.remote.api.Category;
 import kwik.remote.api.SubCategory;
 import kwik.services.KwikAPIService;
-<<<<<<< HEAD
-
-=======
 import kwik.services.KwikNotificationService;
->>>>>>> 04a301e2409e9dfd1708804aa2af3b194854b5fb
 import android.app.AlertDialog.Builder;
 import android.app.ListActivity;
 import android.content.DialogInterface;
@@ -106,13 +102,13 @@ public class CategoriesActivity extends ListActivity implements OnItemClickListe
 		
 		vi.setOnItemClickListener(this);
 		vi.setOnItemLongClickListener(this);
-<<<<<<< HEAD
+
 		this.startService(intent);
-=======
+
 		startService(NotifIntent);
 		startService(intent);
 		
->>>>>>> 04a301e2409e9dfd1708804aa2af3b194854b5fb
+
 	}
 	
 	private void populateSubCatList(List<SubCategory> categories) {
