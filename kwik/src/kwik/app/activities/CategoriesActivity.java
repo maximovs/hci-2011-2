@@ -9,6 +9,7 @@ import kwik.app.R;
 import kwik.remote.api.Category;
 import kwik.remote.api.SubCategory;
 import kwik.services.KwikAPIService;
+
 import android.app.AlertDialog.Builder;
 import android.app.ListActivity;
 import android.content.DialogInterface;
@@ -26,6 +27,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+
+
 public class CategoriesActivity extends ListActivity implements OnItemClickListener, OnItemLongClickListener {
 
 	private String TAG = getClass().getSimpleName();
@@ -33,14 +36,12 @@ public class CategoriesActivity extends ListActivity implements OnItemClickListe
 	
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-
 		/* Asociamos la vista del search list con la activity */
-		setContentView(R.layout.categories_list);
+		this.setContentView(R.layout.categories_list);
 
-		
 		
 		Intent intent = new Intent(Intent.ACTION_SYNC, null, this,
 				KwikAPIService.class);
@@ -95,7 +96,7 @@ public class CategoriesActivity extends ListActivity implements OnItemClickListe
 		
 		vi.setOnItemClickListener(this);
 		vi.setOnItemLongClickListener(this);
-		startService(intent);
+		this.startService(intent);
 	}
 	
 	private void populateSubCatList(List<SubCategory> categories) {

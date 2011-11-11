@@ -1,12 +1,12 @@
 package kwik.app.activities;
 
-import java.util.HashMap;
 import java.util.List;
 
 import kwik.Util;
 import kwik.app.R;
 import kwik.remote.api.Category;
 import kwik.services.KwikAPIService;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;

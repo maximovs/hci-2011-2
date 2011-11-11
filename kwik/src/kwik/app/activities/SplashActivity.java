@@ -1,5 +1,6 @@
 package kwik.app.activities;
 
+
 import kwik.app.R;
 import android.app.Activity;
 import android.content.Intent;

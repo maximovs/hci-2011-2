@@ -4,4 +4,7 @@
     <string name="app_name">Kwik-E-Mart Móvil</string>
     <string name="search_activity">Kwik-E-Mart Móvil</string>
     <string name="no_products_found">No se encontraron productos</string>
+    <style name="Theme.Sherlock" parent="@android:style/Theme.Black">
+    	<item name="android:paddingLeft">6dp</item>
+    </style>
 </resources>
