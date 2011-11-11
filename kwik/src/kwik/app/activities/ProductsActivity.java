@@ -8,6 +8,7 @@ import kwik.app.R;
 import kwik.remote.api.Category;
 import kwik.services.KwikAPIService;
 import android.app.ListActivity;
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,7 +23,7 @@ import android.widget.SimpleAdapter;
 
 public class ProductsActivity extends ListActivity implements OnItemClickListener {
 	
-	private String TAG = getClass().getSimpleName();
+	private String	TAG	= getClass().getSimpleName();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +41,16 @@ public class ProductsActivity extends ListActivity implements OnItemClickListene
 		
 		Intent intent = new Intent(Intent.ACTION_SYNC, null, this, KwikAPIService.class);
 		
-		if (subcategory_id != -1) {
+		if (Intent.ACTION_SEARCH.equals(localIntent.getAction())) {
+			String query = localIntent.getStringExtra(SearchManager.QUERY);
+			intent.putExtra("command", KwikAPIService.GET_PRODUCTS_CMD);
+			intent.putExtra("criteria", query);
+		}
+		else if (subcategory_id != -1) {
 			intent.putExtra("command", KwikAPIService.GET_SUBCAT_PRODUCTS_CMD);
 			intent.putExtra("category_id", category_id);
 			intent.putExtra("subcategory_id", subcategory_id);
 		} else {
-			// Falta esto.
 			intent.putExtra("command", KwikAPIService.GET_CAT_PRODUCTS_CMD);
 			intent.putExtra("category_id", category_id);
 		}
@@ -59,7 +64,7 @@ public class ProductsActivity extends ListActivity implements OnItemClickListene
 					@SuppressWarnings("unchecked")
 					List<Category> prodList = (List<Category>) resultData.getSerializable("return");
 					populateProdList(prodList);
-			
+					
 				} else if (resultCode == KwikAPIService.STATUS_CONNECTION_ERROR) {
 					Log.d(TAG, "Connection error.");
 				} else {
@@ -73,33 +78,29 @@ public class ProductsActivity extends ListActivity implements OnItemClickListene
 		vi.setOnItemClickListener(this);
 		startService(intent);
 	}
-
+	
 	private void populateProdList(List<Category> products) {
 		String[] map_fields = { "name", "id" };
 		String[] desired_fields = { "name" };
 		
+		ListAdapter adapter = new SimpleAdapter(this, Util.getMapped(products, map_fields), R.layout.item_list_item,
+				desired_fields, new int[] { R.id.title });
 		
-		ListAdapter adapter = new SimpleAdapter(this,
-				Util.getMapped(products, map_fields), R.layout.item_list_item,
-				desired_fields , new int[] { R.id.title });
-		
-		setListAdapter(adapter);		
+		setListAdapter(adapter);
 	}
 	
 	@Override
 	public void onItemClick(AdapterView<?> view, View v, int position, long arg3) {
 		ListView vi = (ListView) view;
 		@SuppressWarnings("unchecked")
-		HashMap<String,Object> map = (HashMap<String,Object>) vi.getItemAtPosition(position);
+		HashMap<String, Object> map = (HashMap<String, Object>) vi.getItemAtPosition(position);
 		
 		final Integer product_id = (Integer) map.get("id");
-
-
+		
 		Intent intent = new Intent(v.getContext(), ProductActivity.class);
-		intent.putExtra("product_id",	product_id);
+		intent.putExtra("product_id", product_id);
 		startActivity(intent);
-					
+		
 	}
-	
 	
 }

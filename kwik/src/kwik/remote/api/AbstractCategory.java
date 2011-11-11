@@ -9,9 +9,9 @@ import kwik.remote.api.exceptions.XMLParseException;
 /*
  * Represents a basic instance of a Category.
  */
-public abstract class AbstractCategory {
+public abstract class AbstractCategory extends AbstractProductFeed {
 	
-	protected static final int NO_PARAM = -1;
+	
 	
 	/*
 	 * getId
@@ -39,31 +39,6 @@ public abstract class AbstractCategory {
 	 */
 	public abstract List<? extends AbstractCategory> getSubCategoryList(int language_id) throws APIBadResponseException, XMLParseException, HTTPException;
 	
-	/*
-	 * Gets the list of products of the category with the given language
-	 */
-	public List<Product> getProducts(int language_id) throws APIBadResponseException, XMLParseException, HTTPException {
-		return getProducts(language_id, "DESC", NO_PARAM, NO_PARAM);
-	}
-	
-	/*
-	 * Gets the list of products of the category with the given language and order
-	 */
-	public List<Product> getProducts(int language_id, String order) throws APIBadResponseException, XMLParseException, HTTPException {
-		return getProducts(language_id, order, NO_PARAM, NO_PARAM);
-	}
-	
-	/*
-	 * Gets the list of products of the category with the given language, items per page and page
-	 */
-	public List<Product> getProducts(int language_id, int items_per_page, int page) throws APIBadResponseException, XMLParseException, HTTPException {
-		return getProducts(language_id, "DESC", items_per_page, page);
-	}
-
-	/*
-	 * Gets the list of products of the category with the given language, order, items per page and page
-	 */
-	public abstract List<Product> getProducts(int language_id, String order, int items_per_page, int page) throws APIBadResponseException, XMLParseException, HTTPException;
 
 	public abstract String getCode();
 

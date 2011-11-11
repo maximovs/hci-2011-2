@@ -25,6 +25,7 @@ public class KwikAPIService extends IntentService {
 	public static final String GET_CAT_PRODUCTS_CMD = "GetProductsByCategories";
 	public static final String GET_SUBCAT_PRODUCTS_CMD = "GetProductsBySubCategories";
 	public static final String GET_PRODUCT_CMD = "GetProductByID";
+	public static final String GET_PRODUCTS_CMD = "GetProducts";
 
 	public static final int STATUS_CONNECTION_ERROR = -1;
 	public static final int STATUS_ERROR = -2;
@@ -50,6 +51,7 @@ public class KwikAPIService extends IntentService {
 		final Integer category_id    = intent.getIntExtra("category_id", -1);
 		final Integer subcategory_id = intent.getIntExtra("subcategory_id", -1);
 		final Integer product_id     = intent.getIntExtra("product_id", -1);
+		final String  criteria       = intent.getStringExtra("criteria");
 
 		final Bundle b = new Bundle();
 		if (command.equals(GET_CATEGORIES_CMD)) {
@@ -62,11 +64,34 @@ public class KwikAPIService extends IntentService {
 			getProductsBySubCategory(receiver, b, category_id, subcategory_id);
 		} else if (command.equals(GET_PRODUCT_CMD)) {
 			getProductByID(receiver, b, product_id);
+		} else if (command.equals(GET_PRODUCTS_CMD)) {
+			getProducts(receiver, b, criteria);
 		}
 
 
 		// Es importante terminar el servicio lo antes posible.
 		this.stopSelf();
+	}
+	
+	private void getProducts(ResultReceiver receiver, Bundle b, String criteria)  {
+
+		List<Product> p = null;
+		
+		try {			
+			p = new Product().getProducts(1, "DESC", criteria);
+		} catch (APIBadResponseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (XMLParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (HTTPException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		b.putSerializable("return", (Serializable) p);
+		receiver.send(STATUS_OK, b);
 	}
 
 	private void getProductByID(ResultReceiver receiver, Bundle b, int product_id)  {

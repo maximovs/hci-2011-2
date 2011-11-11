@@ -86,7 +86,7 @@ public class Category extends AbstractCategory implements Serializable{
 	 * @see kwik.remote.api.AbstractCategory#getProducts(int, java.lang.String, int, int)
 	 */
 	@Override
-	public List<Product> getProducts(int language_id, String order, int items_per_page, int page) throws APIBadResponseException, XMLParseException, HTTPException {
+	public List<Product> getProducts(int language_id, String order, int items_per_page, int page, String criteria) throws APIBadResponseException, XMLParseException, HTTPException {
 		Map<String, String> headers = new HashMap<String,String>();
 		headers.put("method", "GetProductListByCategory");
 		headers.put("language_id", Integer.toString(language_id));

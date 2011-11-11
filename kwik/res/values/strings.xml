@@ -5,7 +5,8 @@
     <string name="search_activity">Kwik-E-Mart Mobile</string>
     <string name="no_products_found">No products found</string>
     <string name="rank">Sales rank:</string>
-    <string name="price">Price:</string> 
+    <string name="price">Price:</string>
+    <string name="search_hint"></string> 
 	
 	<!-- order notification -->
 	<string name="new_order_update">Order updated: </string>

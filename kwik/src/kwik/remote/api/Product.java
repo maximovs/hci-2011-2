@@ -3,6 +3,7 @@ package kwik.remote.api;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import kwik.remote.api.exceptions.APIBadResponseException;
@@ -13,7 +14,7 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
 @Element
-public class Product implements Serializable {
+public class Product extends AbstractProductFeed implements Serializable {
 	
 	private static final long	serialVersionUID	= 5782315891664949385L;
 	
@@ -74,4 +75,16 @@ public class Product implements Serializable {
 		Response r = Response.get(Response.CATALOG, headers);
 		return r.product;
 	}
+
+	@Override
+	public List<Product> getProducts(int language_id, String order, int items_per_page, int page, String criteria)
+			throws APIBadResponseException, XMLParseException, HTTPException {
+		Map<String, String> headers = new HashMap<String,String>();
+		headers.put("method", "GetProductListByName");
+		headers.put("criteria", criteria);
+		Response r = Response.get(Response.CATALOG, headers);
+		return r.products;
+	}
+	
+	
 }
