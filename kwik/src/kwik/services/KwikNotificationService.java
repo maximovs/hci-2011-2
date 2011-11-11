@@ -1,17 +1,7 @@
 package kwik.services;
 
-import java.io.Serializable;
-import java.util.List;
-
 import kwik.app.R;
 import kwik.app.activities.CategoriesActivity;
-import kwik.remote.api.AbstractCategory;
-import kwik.remote.api.Category;
-import kwik.remote.api.Product;
-import kwik.remote.api.SubCategory;
-import kwik.remote.api.exceptions.APIBadResponseException;
-import kwik.remote.api.exceptions.HTTPException;
-import kwik.remote.api.exceptions.XMLParseException;
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -21,7 +11,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.os.SystemClock;
-import android.util.Log;
 
 public class KwikNotificationService extends IntentService {
 	

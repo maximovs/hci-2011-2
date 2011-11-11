@@ -40,7 +40,7 @@ public class CategoriesActivity extends ListActivity implements OnItemClickListe
 		super.onCreate(savedInstanceState);
 		
 		/* Asociamos la vista del search list con la activity */
-		this.setContentView(R.layout.categories_list);
+		this.setContentView(R.layout.item_list);
 
 
 		Intent NotifIntent = new Intent(Intent.ACTION_SYNC, null, this,
@@ -76,8 +76,6 @@ public class CategoriesActivity extends ListActivity implements OnItemClickListe
 			protected void onReceiveResult(int resultCode, Bundle resultData) {
 				super.onReceiveResult(resultCode, resultData);
 				if (resultCode == KwikAPIService.STATUS_OK) {
-
-					Log.d(TAG, "OK - se recibieron las categorias");
 					
 					if (!subcategory_activity) {
 						@SuppressWarnings("unchecked")
@@ -100,6 +98,7 @@ public class CategoriesActivity extends ListActivity implements OnItemClickListe
 		
 		ListView vi = getListView();
 		
+		
 		vi.setOnItemClickListener(this);
 		vi.setOnItemLongClickListener(this);
 
@@ -117,7 +116,7 @@ public class CategoriesActivity extends ListActivity implements OnItemClickListe
 		
 		
 		ListAdapter adapter = new SimpleAdapter(this,
-				Util.getMapped(categories, map_fields), R.layout.search_item,
+				Util.getMapped(categories, map_fields), R.layout.item_list_item,
 				desired_fields , new int[] { R.id.title });
 		
 		setListAdapter(adapter);
@@ -128,7 +127,7 @@ public class CategoriesActivity extends ListActivity implements OnItemClickListe
 		
 		
 		ListAdapter adapter = new SimpleAdapter(this,
-				Util.getMapped(categories, map_fields), R.layout.search_item,
+				Util.getMapped(categories, map_fields), R.layout.item_list_item,
 				desired_fields , new int[] { R.id.title });
 		
 		setListAdapter(adapter);

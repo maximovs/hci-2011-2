@@ -9,6 +9,7 @@ import kwik.remote.api.auxiliar.OrderItem;
 import kwik.remote.api.exceptions.APIBadResponseException;
 import kwik.remote.api.exceptions.HTTPException;
 import kwik.remote.api.exceptions.XMLParseException;
+import kwik.remote.util.Util;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;

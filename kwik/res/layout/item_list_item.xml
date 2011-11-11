@@ -14,15 +14,5 @@
 		android:layout_height="wrap_content" android:layout_alignParentRight="true"
 		android:layout_centerVertical="true"
 		android:id="@+id/image"></ImageView>
-	
-	
-	<!-- 
-	
-	
-		
-	<TextView android:layout_height="wrap_content"
-		android:layout_width="wrap_content" android:layout_alignParentBottom="true"
-		android:id="@+id/date" android:layout_below="@+id/description"
-		android:layout_toRightOf="@+id/image"></TextView> -->
 
 </RelativeLayout>

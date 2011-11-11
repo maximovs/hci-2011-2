@@ -1,12 +1,12 @@
 package kwik.app.activities;
 
+import java.util.HashMap;
 import java.util.List;
 
 import kwik.Util;
 import kwik.app.R;
 import kwik.remote.api.Category;
 import kwik.services.KwikAPIService;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,7 +36,7 @@ public class ProductsActivity extends ListActivity implements OnItemClickListene
 		final Integer subcategory_id = extras.getInt("subcategory_id", -1);
 		
 		/* Asociamos la vista del search list con la activity */
-		setContentView(R.layout.categories_list);
+		setContentView(R.layout.item_list);
 		
 		Intent intent = new Intent(Intent.ACTION_SYNC, null, this, KwikAPIService.class);
 		
@@ -55,8 +55,6 @@ public class ProductsActivity extends ListActivity implements OnItemClickListene
 			protected void onReceiveResult(int resultCode, Bundle resultData) {
 				super.onReceiveResult(resultCode, resultData);
 				if (resultCode == KwikAPIService.STATUS_OK) {
-
-					Log.d(TAG, "OK - se recibieron las categorias");
 					
 					@SuppressWarnings("unchecked")
 					List<Category> prodList = (List<Category>) resultData.getSerializable("return");
@@ -82,14 +80,25 @@ public class ProductsActivity extends ListActivity implements OnItemClickListene
 		
 		
 		ListAdapter adapter = new SimpleAdapter(this,
-				Util.getMapped(products, map_fields), R.layout.search_item,
+				Util.getMapped(products, map_fields), R.layout.item_list_item,
 				desired_fields , new int[] { R.id.title });
 		
 		setListAdapter(adapter);		
 	}
 	
 	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+	public void onItemClick(AdapterView<?> view, View v, int position, long arg3) {
+		ListView vi = (ListView) view;
+		@SuppressWarnings("unchecked")
+		HashMap<String,Object> map = (HashMap<String,Object>) vi.getItemAtPosition(position);
+		
+		final Integer product_id = (Integer) map.get("id");
+
+
+		Intent intent = new Intent(v.getContext(), ProductActivity.class);
+		intent.putExtra("product_id",	product_id);
+		startActivity(intent);
+					
 	}
 	
 	

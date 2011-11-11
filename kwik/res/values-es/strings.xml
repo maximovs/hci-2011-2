@@ -4,7 +4,8 @@
     <string name="app_name">Kwik-E-Mart Móvil</string>
     <string name="search_activity">Kwik-E-Mart Móvil</string>
     <string name="no_products_found">No se encontraron productos</string>
-		
+		<string name="rank">Ranking:</string>
+    <string name="price">Precio:</string>
 	<!-- order notification -->
 	<string name="new_order_update">Orden actualizada: </string>
 	

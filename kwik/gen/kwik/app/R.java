@@ -16,29 +16,35 @@ public final class R {
         public static final int right_arrow=0x7f020002;
     }
     public static final class id {
-        public static final int image=0x7f050002;
-        public static final int relativeLayout1=0x7f050000;
-        public static final int title=0x7f050001;
+        public static final int image=0x7f050001;
+        public static final int product_image=0x7f050006;
+        public static final int product_title=0x7f050005;
+        public static final int product_view=0x7f050004;
+        public static final int progressbar=0x7f050003;
+        public static final int relativeLayout1=0x7f050002;
+        public static final int title=0x7f050000;
     }
     public static final class layout {
-        public static final int categories_list=0x7f030000;
-        public static final int main=0x7f030001;
-        public static final int search_item=0x7f030002;
-        public static final int search_list=0x7f030003;
+        public static final int item_list=0x7f030000;
+        public static final int item_list_item=0x7f030001;
+        public static final int main=0x7f030002;
+        public static final int product=0x7f030003;
     }
     public static final class string {
-        public static final int Category=0x7f040006;
+        public static final int Category=0x7f040008;
         public static final int app_name=0x7f040001;
         public static final int loading=0x7f040000;
         /**  order notification 
  order notification 
          */
-        public static final int new_order_update=0x7f040004;
+        public static final int new_order_update=0x7f040006;
         public static final int no_products_found=0x7f040003;
+        public static final int price=0x7f040005;
+        public static final int rank=0x7f040004;
         public static final int search_activity=0x7f040002;
         /**  categories activity 
  categories activity 
          */
-        public static final int show_products=0x7f040005;
+        public static final int show_products=0x7f040007;
     }
 }

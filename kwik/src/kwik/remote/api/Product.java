@@ -1,18 +1,21 @@
 package kwik.remote.api;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import kwik.remote.api.exceptions.APIBadResponseException;
 import kwik.remote.api.exceptions.HTTPException;
 import kwik.remote.api.exceptions.XMLParseException;
-import kwik.remote.api.exceptions.APIBadResponseException;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
 @Element
-public class Product {
+public class Product implements Serializable {
+	
+	private static final long	serialVersionUID	= 5782315891664949385L;
 	
 	@Attribute
 	public int		id;

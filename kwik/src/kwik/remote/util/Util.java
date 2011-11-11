@@ -1,4 +1,4 @@
-package kwik.remote.api;
+package kwik.remote.util;
 
 import java.io.IOException;
 import java.io.StringWriter;
