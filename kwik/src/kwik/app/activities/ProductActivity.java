@@ -45,7 +45,6 @@ public class ProductActivity extends Activity {
 				super.onReceiveResult(resultCode, resultData);
 				if (resultCode == KwikAPIService.STATUS_OK) {
 					
-					@SuppressWarnings("unchecked")
 					Product prod = (Product) resultData.getSerializable("return");
 					
 					View progressBar = ((View)findViewById(R.id.progressbar));
