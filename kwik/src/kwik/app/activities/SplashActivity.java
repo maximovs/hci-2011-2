@@ -7,10 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentActivity;
 
-public class SplashActivity extends Activity {
+public class SplashActivity extends FragmentActivity {
 
-	public static final int MILLIS_TIME_TO_WAIT = 1000;
 	public static final int STOP = 0;
 
 	private Handler splashHandler = new Handler() {
@@ -20,8 +20,13 @@ public class SplashActivity extends Activity {
 			switch (msg.what) {
 				case SplashActivity.STOP:
 					Intent intent = new Intent(SplashActivity.this, CategoriesActivity.class);
-					startActivity(intent);
-					SplashActivity.this.finish();
+					
+					
+					
+//					startActivity(intent);
+//					SplashActivity.this.finish();
+					
+					
 					break;
 			}
 			super.handleMessage(msg);
@@ -36,7 +41,7 @@ public class SplashActivity extends Activity {
 		message.what = SplashActivity.STOP;
 		
 		
-		splashHandler.sendMessageDelayed(message, MILLIS_TIME_TO_WAIT);
+		splashHandler.sendMessage(message);
 	}
 	
 }

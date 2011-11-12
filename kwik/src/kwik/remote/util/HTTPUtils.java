@@ -33,8 +33,6 @@ import android.util.Log;
  */
 public class HTTPUtils {
 	
-	private static DefaultHttpClient	client	= new DefaultHttpClient();
-	
 	/*
 	 * postRequest
 	 * 

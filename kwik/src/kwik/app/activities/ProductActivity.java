@@ -1,16 +1,10 @@
 package kwik.app.activities;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import kwik.app.R;
 import kwik.remote.api.Product;
 import kwik.remote.util.DrawableManager;
 import kwik.services.KwikAPIService;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,9 +12,6 @@ import android.os.ResultReceiver;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 public class ProductActivity extends Activity {
@@ -37,7 +28,6 @@ public class ProductActivity extends Activity {
 		Bundle extras = localIntent.getExtras();
 
 		
-		final Context myContext = this;
 		final Integer product_id = extras.getInt("product_id", -1);
 		
 		/* Asociamos la vista del search list con la activity */
@@ -64,8 +54,6 @@ public class ProductActivity extends Activity {
 					
 					View p = ((View)findViewById(R.id.product_view));
 					p.setVisibility(View.VISIBLE);
-					
-					
 					
 					TextView title = ((TextView)findViewById(R.id.product_title));
 					
