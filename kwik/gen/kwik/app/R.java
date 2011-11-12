@@ -293,7 +293,8 @@ containing a value of this type.
         public static final int abs__tab_unselected_pressed_holo=0x7f020027;
         public static final int arrow_right_32x32=0x7f020028;
         public static final int icon=0x7f020029;
-        public static final int right_arrow=0x7f02002a;
+        public static final int logo=0x7f02002a;
+        public static final int right_arrow=0x7f02002b;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f05001b;
