@@ -57,11 +57,16 @@ public class SignInActivity extends KwikFragmentActivity {
 							res.send(resultCode, resultData);
 							self.onBackPressed();
 							
-						} else if (resultCode == KwikAPIService.STATUS_CONNECTION_ERROR) {
+						}else if (resultCode == KwikAPIService.STATUS_CONNECTION_ERROR) {
 							Toast.makeText(self, getResources().getString(R.string.API_bad_response), Toast.LENGTH_SHORT).show();
 							Log.d(TAG, "Connection error.");
+						}else if (resultCode == KwikAPIService.STATUS_ERROR) {
+							Log.d(TAG, "Unavailable to connect, please try again.");
+							Toast.makeText(self, getResources().getString(R.string.HTML_error), Toast.LENGTH_SHORT).show();
+						}else if (resultCode == KwikAPIService.STATUS_ILLEGAL_ARGUMENT) {
+							Log.d(TAG, "An error occurs while processing your request.");
+							Toast.makeText(self, getResources().getString(R.string.XML_parser_error), Toast.LENGTH_SHORT).show();					
 						} else {
-							Toast.makeText(self, getResources().getString(R.string.sign_in_toast_error), Toast.LENGTH_SHORT).show();
 							Log.d(TAG, "Unknown error.");
 						}
 					}

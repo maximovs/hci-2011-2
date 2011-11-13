@@ -86,7 +86,7 @@ public class CategoriesActivity extends KwikFragmentActivity implements OnItemCl
 					Toast.makeText(self, getResources().getString(R.string.API_bad_response), Toast.LENGTH_SHORT).show();
 				}
 				else if (resultCode == KwikAPIService.STATUS_ERROR) {
-					Log.d(TAG, "CUnavailable to connect, please try again.");
+					Log.d(TAG, "Unavailable to connect, please try again.");
 					Toast.makeText(self, getResources().getString(R.string.HTML_error), Toast.LENGTH_SHORT).show();
 				}	
 				else if (resultCode == KwikAPIService.STATUS_ILLEGAL_ARGUMENT) {
