@@ -80,8 +80,8 @@ public class ConfigActivity extends KwikFragmentActivity implements OnItemClickL
 		@SuppressWarnings("unchecked")
 		HashMap<String, Object> map = (HashMap<String, Object>) vi.getItemAtPosition(position);
 		
-		final String title_label = (String) map.get("title");
-		final Integer action = (Integer) map.get("action");
+		String title_label = (String) map.get("title");
+		Integer action =     (Integer) map.get("action");
 		
 		Builder b = new Builder(v.getContext());
 		
@@ -100,6 +100,10 @@ public class ConfigActivity extends KwikFragmentActivity implements OnItemClickL
 				b.setOnItemSelectedListener(new OnItemSelectedListener() {
 					@Override
 					public void onItemSelected(AdapterView<?> view, View v, int position, long arg3) {
+						ListView vi = (ListView) view;
+						@SuppressWarnings("unchecked")
+						HashMap<String, Object> map = (HashMap<String, Object>) vi.getItemAtPosition(position);
+						
 						
 					}
 					
