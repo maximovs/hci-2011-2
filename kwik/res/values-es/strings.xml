@@ -29,5 +29,9 @@
 	<string name="show_products">Mostrar productos</string>
 	<string name="Category">Categoría</string>
 
-
+	<!-- errors -->
+	<string name="API_bad_response">Error de conexion</string>
+	<string name="XML_parser">Un error ocurrio, al procesarse el pedido</string>
+	<string name="HTML_error">Imposible conectarse, por favor intentelo nuevamente</string>
+	    
 </resources>

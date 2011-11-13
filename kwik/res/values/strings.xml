@@ -32,6 +32,12 @@
 	<!-- order notification -->
 	<string name="new_order_update">Order updated: </string>
 
+	<!-- errors -->
+	<string name="API_bad_response">Connection Error</string>
+	<string name="XML_parser">An error occurs while processing your request</string>
+	<string name="HTML_error">Unavailable to connect, please try again</string>
+	    
+	    
 	<!-- categories activity -->
 	<string name="show_products">Show products</string>
 	<string name="Category">Category</string>
