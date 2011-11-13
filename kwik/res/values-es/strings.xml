@@ -15,6 +15,8 @@
 	
 	<string name="user_config">Configuración de Usuario</string>
 	
+	<string name="config_timeout_enabled">Activar Notificaciones de Cambio de Orden</string>
+	
 	<string name="sign_in_toast">Ingreso exitoso</string>
 	<string name="sign_out_toast">Salida exitosa</string>
 	

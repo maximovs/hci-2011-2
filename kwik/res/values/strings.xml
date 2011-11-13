@@ -16,7 +16,12 @@
 	<string name="sign_in_text">Sign in</string>
 	
 	<string name="sign_in_toast">Sign in successful</string>
+	
 	<string name="sign_out_toast">Sign out successful</string>
+	
+	<string name="config_timeout_enabled">Activate Order Change Notifications</string>
+	
+	
 	
 	
 	<string name="user_config">User\'s Configuration</string>

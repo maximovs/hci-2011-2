@@ -51,8 +51,10 @@ public class KwikFragmentActivity extends FragmentActivity {
 			item2.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 				@Override
 				public boolean onMenuItemClick(MenuItem item) {
-					Intent intent = new Intent(self, ConfigActivity.class);
-					startActivity(intent);
+					if (!(self instanceof ConfigActivity)) {
+						Intent intent = new Intent(self, ConfigActivity.class);
+						startActivity(intent);
+					}
 					return false;
 				}
 			});
