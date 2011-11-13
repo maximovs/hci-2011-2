@@ -32,7 +32,7 @@
 
 	<!-- errors -->
 	<string name="API_bad_response">Error de conexion</string>
-	<string name="XML_parser">Un error ocurrio, al procesarse el pedido</string>
+	<string name="XML_parser_error">Un error ocurrio, al procesarse el pedido</string>
 	<string name="HTML_error">Imposible conectarse, por favor intentelo nuevamente</string>
 	    
 </resources>
