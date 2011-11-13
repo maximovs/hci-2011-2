@@ -11,6 +11,7 @@
         android:targetSdkVersion="13" />
 
     <application
+        android:name="kwik.app.KwikApp"
         android:debuggable="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"

@@ -291,18 +291,21 @@ containing a value of this type.
         public static final int abs__tab_unselected_holo=0x7f020025;
         public static final int abs__tab_unselected_pressed_focused_holo=0x7f020026;
         public static final int abs__tab_unselected_pressed_holo=0x7f020027;
-        public static final int arrow_right_32x32=0x7f020028;
-        public static final int book=0x7f020029;
-        public static final int book_normal=0x7f02002a;
-        public static final int book_pressed=0x7f02002b;
-        public static final int config=0x7f02002c;
-        public static final int dvd=0x7f02002d;
-        public static final int dvd_normal=0x7f02002e;
-        public static final int dvd_pressed=0x7f02002f;
-        public static final int icon=0x7f020030;
-        public static final int logo=0x7f020031;
-        public static final int right_arrow=0x7f020032;
-        public static final int search=0x7f020033;
+        public static final int actionbar_bg=0x7f020028;
+        public static final int actionbar_sep=0x7f020029;
+        public static final int arrow_right_32x32=0x7f02002a;
+        public static final int book=0x7f02002b;
+        public static final int book_normal=0x7f02002c;
+        public static final int book_pressed=0x7f02002d;
+        public static final int config=0x7f02002e;
+        public static final int dvd=0x7f02002f;
+        public static final int dvd_normal=0x7f020030;
+        public static final int dvd_pressed=0x7f020031;
+        public static final int icon=0x7f020032;
+        public static final int key=0x7f020033;
+        public static final int logo=0x7f020034;
+        public static final int right_arrow=0x7f020035;
+        public static final int search=0x7f020036;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f05001b;
@@ -326,13 +329,15 @@ containing a value of this type.
         public static final int abs__tab_icon=0x7f050015;
         public static final int abs__up=0x7f05000f;
         public static final int homeAsUp=0x7f050006;
+        public static final int home_books=0x7f050020;
+        public static final int home_dvds=0x7f05001f;
         public static final int image=0x7f05001e;
         public static final int listMode=0x7f050002;
         public static final int normal=0x7f050001;
-        public static final int product_image=0x7f050022;
-        public static final int product_title=0x7f050021;
-        public static final int product_view=0x7f050020;
-        public static final int progressbar=0x7f05001f;
+        public static final int product_image=0x7f050024;
+        public static final int product_title=0x7f050023;
+        public static final int product_view=0x7f050022;
+        public static final int progressbar=0x7f050021;
         public static final int showCustom=0x7f050008;
         public static final int showHome=0x7f050005;
         public static final int showTitle=0x7f050007;
@@ -416,6 +421,7 @@ containing a value of this type.
         public static final int Widget_Sherlock_PopupMenu=0x7f09000c;
         public static final int Widget_Sherlock_Spinner=0x7f090005;
         public static final int Widget_Sherlock_TextView_SpinnerItem_ActionBar=0x7f090009;
+        public static final int abTitleStyle=0x7f09001f;
     }
     public static final class xml {
         public static final int productsearch=0x7f040000;

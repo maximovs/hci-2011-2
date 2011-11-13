@@ -3,9 +3,10 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center_horizontal|center_vertical"
-    android:orientation="vertical" >
+    android:orientation="horizontal" >
 
     <Button
+        android:id="@+id/home_dvds"
         android:layout_width="128dp"
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/dvd"
@@ -15,6 +16,7 @@
         android:text="DVDs" />
 
     <Button
+        android:id="@+id/home_books"
         android:layout_width="128dp"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"

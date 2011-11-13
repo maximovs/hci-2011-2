@@ -2,7 +2,15 @@
 <resources>
 
     <style name="Theme.Custom" parent="Theme.Sherlock.Light">
-        
+        <item name="abDisplayOptions">showTitle</item>
+        <item name="abBackground">@drawable/actionbar_bg</item>
+        <item name="abDivider">@drawable/actionbar_sep</item>
+        <item name="abTitleTextStyle">@style/abTitleStyle</item>
+    </style>
+    
+    <style name="abTitleStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>
