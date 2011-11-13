@@ -201,12 +201,18 @@ public class KwikAPIService extends IntentService {
 			
 			products = c.getProducts(1);
 		} catch (APIBadResponseException e) {
+			b.putSerializable("return", (Serializable) products);
+			receiver.send(STATUS_CONNECTION_ERROR, b);
 			// TODO Auto-generated catch block
 			Log.d(TAG, e.toString());
 		} catch (XMLParseException e) {
+			b.putSerializable("return", (Serializable) products);
+			receiver.send(STATUS_ILLEGAL_ARGUMENT, b);
 			// TODO Auto-generated catch block
 			Log.d(TAG, e.toString());
 		} catch (HTTPException e) {
+			b.putSerializable("return", (Serializable) products);
+			receiver.send(STATUS_ERROR, b);
 			// TODO Auto-generated catch block
 			Log.d(TAG, e.toString());
 		}
@@ -225,12 +231,18 @@ public class KwikAPIService extends IntentService {
 			
 			subCategories = c.getSubCategoryList(1);
 		} catch (APIBadResponseException e) {
+			b.putSerializable("return", (Serializable) subCategories);
+			receiver.send(STATUS_CONNECTION_ERROR, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (XMLParseException e) {
+			b.putSerializable("return", (Serializable) subCategories);
+			receiver.send(STATUS_ILLEGAL_ARGUMENT, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (HTTPException e) {
+			b.putSerializable("return", (Serializable) subCategories);
+			receiver.send(STATUS_ERROR, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -246,12 +258,18 @@ public class KwikAPIService extends IntentService {
 		try {
 			categories = Category.getCategoryList(1);
 		} catch (APIBadResponseException e) {
+			b.putSerializable("return", (Serializable) categories);
+			receiver.send(STATUS_CONNECTION_ERROR, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (XMLParseException e) {
+			b.putSerializable("return", (Serializable) categories);
+			receiver.send(STATUS_ILLEGAL_ARGUMENT, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (HTTPException e) {
+			b.putSerializable("return", (Serializable) categories);
+			receiver.send(STATUS_ERROR, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
