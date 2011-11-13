@@ -12,7 +12,18 @@
 	
 	<string name="username">Username</string>
 	<string name="password">Password</string>
-	<string name="sign_in_text">Sign In</string>
+	
+	<string name="sign_in_text">Sign in</string>
+	
+	<string name="sign_in_toast">Sign in successful</string>
+	<string name="sign_out_toast">Sign out successful</string>
+	
+	
+	<string name="user_config">User\'s Configuration</string>
+	
+	<string name="sign_out_text">Sign out</string>
+	
+	<string name="search_result">Search Results</string>
 	
 	<string name="products_title">%1$s\'s products</string>
 	

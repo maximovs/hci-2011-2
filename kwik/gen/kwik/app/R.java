@@ -306,6 +306,7 @@ containing a value of this type.
         public static final int logo=0x7f020034;
         public static final int right_arrow=0x7f020035;
         public static final int search=0x7f020036;
+        public static final int sign_out=0x7f020037;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f05001b;
@@ -328,7 +329,6 @@ containing a value of this type.
         public static final int abs__tab_custom=0x7f050017;
         public static final int abs__tab_icon=0x7f050015;
         public static final int abs__up=0x7f05000f;
-        public static final int button1=0x7f050027;
         public static final int editText1=0x7f050025;
         public static final int editText2=0x7f050026;
         public static final int homeAsUp=0x7f050006;
@@ -344,6 +344,8 @@ containing a value of this type.
         public static final int showCustom=0x7f050008;
         public static final int showHome=0x7f050005;
         public static final int showTitle=0x7f050007;
+        public static final int sign_in_button=0x7f050027;
+        public static final int sign_out=0x7f050028;
         public static final int tabMode=0x7f050003;
         public static final int title=0x7f05001e;
         public static final int useLogo=0x7f050004;
@@ -365,17 +367,19 @@ containing a value of this type.
         public static final int abs__screen_action_bar_overlay=0x7f030009;
         public static final int abs__screen_simple=0x7f03000a;
         public static final int abs__simple_spinner_item=0x7f03000b;
-        public static final int item_list=0x7f03000c;
-        public static final int item_list_item=0x7f03000d;
-        public static final int main=0x7f03000e;
-        public static final int product=0x7f03000f;
-        public static final int sign_in=0x7f030010;
+        public static final int config=0x7f03000c;
+        public static final int item_list=0x7f03000d;
+        public static final int item_list_item=0x7f03000e;
+        public static final int main=0x7f03000f;
+        public static final int product=0x7f030010;
+        public static final int sign_in=0x7f030011;
     }
     public static final class menu {
         public static final int actions=0x7f0a0000;
+        public static final int home_menu=0x7f0a0001;
     }
     public static final class string {
-        public static final int Category=0x7f080011;
+        public static final int Category=0x7f080016;
         public static final int abs__tab_under_ab_tag=0x7f080000;
         public static final int app_name=0x7f080002;
         public static final int books=0x7f080008;
@@ -384,20 +388,25 @@ containing a value of this type.
         /**  order notification 
  order notification 
          */
-        public static final int new_order_update=0x7f08000f;
+        public static final int new_order_update=0x7f080014;
         public static final int no_products_found=0x7f080004;
         public static final int password=0x7f08000b;
         public static final int price=0x7f080006;
-        public static final int products_title=0x7f08000d;
+        public static final int products_title=0x7f080012;
         public static final int rank=0x7f080005;
         public static final int search_activity=0x7f080003;
         public static final int search_hint=0x7f080007;
+        public static final int search_result=0x7f080011;
         /**  categories activity 
  categories activity 
          */
-        public static final int show_products=0x7f080010;
+        public static final int show_products=0x7f080015;
         public static final int sign_in_text=0x7f08000c;
-        public static final int user_signin=0x7f08000e;
+        public static final int sign_in_toast=0x7f08000d;
+        public static final int sign_out_text=0x7f080010;
+        public static final int sign_out_toast=0x7f08000e;
+        public static final int user_config=0x7f08000f;
+        public static final int user_signin=0x7f080013;
         public static final int username=0x7f08000a;
     }
     public static final class style {

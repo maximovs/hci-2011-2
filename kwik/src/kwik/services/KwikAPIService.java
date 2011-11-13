@@ -7,6 +7,7 @@ import kwik.remote.api.AbstractCategory;
 import kwik.remote.api.Category;
 import kwik.remote.api.Product;
 import kwik.remote.api.SubCategory;
+import kwik.remote.api.User;
 import kwik.remote.api.exceptions.APIBadResponseException;
 import kwik.remote.api.exceptions.HTTPException;
 import kwik.remote.api.exceptions.XMLParseException;
@@ -26,6 +27,7 @@ public class KwikAPIService extends IntentService {
 	public static final String GET_SUBCAT_PRODUCTS_CMD = "GetProductsBySubCategories";
 	public static final String GET_PRODUCT_CMD = "GetProductByID";
 	public static final String GET_PRODUCTS_CMD = "GetProducts";
+	public static final String SIGN_IN_CMD = "UserSignIn";
 
 	public static final int STATUS_CONNECTION_ERROR = -1;
 	public static final int STATUS_ERROR = -2;
@@ -52,6 +54,8 @@ public class KwikAPIService extends IntentService {
 		final Integer subcategory_id = intent.getIntExtra("subcategory_id", -1);
 		final Integer product_id     = intent.getIntExtra("product_id", -1);
 		final String  criteria       = intent.getStringExtra("criteria");
+		final String  username       = intent.getStringExtra("username");
+		final String  password       = intent.getStringExtra("password");
 
 		final Bundle b = new Bundle();
 		if (command.equals(GET_CATEGORIES_CMD)) {
@@ -66,11 +70,34 @@ public class KwikAPIService extends IntentService {
 			getProductByID(receiver, b, product_id);
 		} else if (command.equals(GET_PRODUCTS_CMD)) {
 			getProducts(receiver, b, criteria);
+		} else if (command.equals(SIGN_IN_CMD)) {
+			makeLogin(receiver, b, username, password);
 		}
 
 
 		// Es importante terminar el servicio lo antes posible.
 		this.stopSelf();
+	}
+	
+	private void makeLogin(ResultReceiver receiver, Bundle b, String username, String password)  {
+
+		User u = null;
+		
+		try {			
+			u = User.signIn(username, password);
+		} catch (APIBadResponseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (XMLParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (HTTPException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		b.putSerializable("return", (Serializable) u);
+		receiver.send(STATUS_OK, b);
 	}
 	
 	private void getProducts(ResultReceiver receiver, Bundle b, String criteria)  {

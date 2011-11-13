@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 public class ProductActivity extends KwikFragmentActivity {
-	private String TAG = getClass().getSimpleName();
+	
 	
 	private static DrawableManager imageManager = new DrawableManager();
 	
@@ -32,7 +32,6 @@ public class ProductActivity extends KwikFragmentActivity {
 		
 		setTitle(product_name);
 		
-		/* Asociamos la vista del search list con la activity */
 		setContentView(R.layout.product);
 		
 		Intent intent = new Intent(Intent.ACTION_SYNC, null, this, KwikAPIService.class);

@@ -37,7 +37,14 @@ public class ProductsActivity extends KwikFragmentActivity implements OnItemClic
 		final Integer subcategory_id = extras.getInt("subcategory_id", -1);
 		final String  category_name = extras.getString("category_name");
 		
-		this.setTitle(String.format(getResources().getString(R.string.products_title), category_name));
+		
+		
+		if (category_name != null) {
+			this.setTitle(String.format(getResources().getString(R.string.products_title), category_name));
+		} else {
+			this.setTitle(String.format(getResources().getString(R.string.search_result), category_name));
+		}
+		
 		
 		/* Asociamos la vista del search list con la activity */
 		setContentView(R.layout.item_list);

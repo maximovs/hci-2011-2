@@ -28,7 +28,6 @@ import android.widget.SimpleAdapter;
 
 public class CategoriesActivity extends KwikFragmentActivity implements OnItemClickListener, OnItemLongClickListener {
 	
-	private String	TAG	= getClass().getSimpleName();
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

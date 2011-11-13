@@ -1,5 +1,8 @@
 package kwik.remote.api;
 
+import java.io.Reader;
+import java.io.Serializable;
+import java.io.StringReader;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -13,10 +16,18 @@ import kwik.remote.util.HTTPUtils;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
 
 @Element(name = "account")
-public class User {
+public class User implements Serializable {
 	
+	
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= -1566957530120984763L;
+
 	String	token;
 	
 	@Attribute(required = false)
@@ -47,6 +58,18 @@ public class User {
 	@Element(required = false)
 	Date	last_login_date;
 	
+	public static User fromXML(String xml) {
+		User u = new User();
+		Serializer serializer = new Persister();
+		Reader reader = new StringReader(xml);
+		try {
+			u = serializer.read(User.class, reader, false);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return u;
+	}
 	public boolean signOut() {
 		try {
 			Map<String, String> headers = new HashMap<String, String>();
@@ -152,18 +175,34 @@ public class User {
 	}
 	
 	public static User signIn(String username, String password) throws APIBadResponseException, XMLParseException, HTTPException {
-		Map<String, String> headers = new HashMap<String, String>();
 		
-		headers.put("method", "SignIn");
-		headers.put("username", username);
-		headers.put("password", password);
-		
-		Response r = Response.get(Response.SECURITY, headers);
-		// Optional: Some caching
-		
-		r.authentication.user.token = r.authentication.token;
-		
-		return r.authentication.user;
+		if (!Response.FAKE_RESPONSE) {
+			Map<String, String> headers = new HashMap<String, String>();
+			
+			headers.put("method", "SignIn");
+			headers.put("username", username);
+			headers.put("password", password);
+			
+			Response r = Response.get(Response.SECURITY, headers);
+			// Optional: Some caching
+			
+			r.authentication.user.token = r.authentication.token;
+			
+			return r.authentication.user;
+		} else {
+			User u = new User();
+			u.username = "cristian";
+			if (!password.equals("cristian")) {
+				Error e = new Error();
+				e.code = 1;
+				e.message = "Invalid login";
+				throw new APIBadResponseException(e);
+			}
+			u.id = 1;
+			u.token = "abcd";
+			u.name = "Cristian Pereyra";
+			return u;
+		}
 	}
 	
 	public List<Address> getAddressList() throws APIBadResponseException, XMLParseException, HTTPException {
