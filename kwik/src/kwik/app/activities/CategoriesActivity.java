@@ -38,9 +38,7 @@ public class CategoriesActivity extends KwikFragmentActivity implements OnItemCl
 		this.setContentView(R.layout.item_list);
 		
 		Intent NotifIntent = new Intent(Intent.ACTION_SYNC, null, this, KwikNotificationService.class);
-		NotifIntent.putExtra("token", "d69bf21da285f8634533b9f7cc487ed"); // maximovs
-																			// -
-																			// maximovs
+		NotifIntent.putExtra("token", "d69bf21da285f8634533b9f7cc487ed");
 		NotifIntent.putExtra("command", KwikNotificationService.NOTIFY_ORDERS_CMD);
 		
 		Intent intent = new Intent(Intent.ACTION_SYNC, null, this, KwikAPIService.class);

@@ -9,31 +9,43 @@
 	<string name="search_hint"></string>
 	<string name="books">Books</string>
 	<string name="dvds">DVDs</string>
-	
+
 	<string name="username">Username</string>
 	<string name="password">Password</string>
-	
+
 	<string name="sign_in_text">Sign in</string>
-	
+
 	<string name="sign_in_toast">Sign in successful</string>
 
 	<string name="sign_in_toast_error">Wrong username or password</string>
 
 	<string name="sign_out_toast">Sign out successful</string>
+
+	<string name="config_timeout_mode">Activate Order Change Notifications</string>
+
+	<string name="config_timeout_mode_multiple">Multiple orders</string>
+
+	<string name="config_timeout_mode_single">Single order</string>
+
+	<string name="config_timeout_mode_disabled">Notifications disabled</string>
+
+	<string name="config_timeout_value_set">Set Order Change Timeout</string>
+
+	<string name="config_color_set">Set Interface Theme</string>
 	
-	<string name="config_timeout_enabled">Activate Order Change Notifications</string>
-	
-	
-	
-	
+	<string name="config_color_blue">Blue</string>
+	<string name="config_color_red">Red</string>
+	<string name="config_color_green">Green</string>
+	<string name="config_color_orange">Orange</string>
+
 	<string name="user_config">User\'s Configuration</string>
-	
+
 	<string name="sign_out_text">Sign out</string>
-	
+
 	<string name="search_result">Search Results</string>
-	
+
 	<string name="products_title">%1$s\'s products</string>
-	
+
 	<string name="user_signin">User sign in</string>
 
 	<!-- order notification -->
@@ -41,10 +53,11 @@
 
 	<!-- errors -->
 	<string name="API_bad_response">Connection Error</string>
-	<string name="XML_parser_error">An error occurs while processing your request</string>
+	<string name="XML_parser_error">An error occurs while processing your request
+	</string>
 	<string name="HTML_error">Unavailable to connect, please try again</string>
-	    
-	    
+
+
 	<!-- categories activity -->
 	<string name="show_products">Show products</string>
 	<string name="Category">Category</string>

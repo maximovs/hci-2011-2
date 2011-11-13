@@ -49,11 +49,11 @@ public class KwikNotificationService extends IntentService {
 
 		final Bundle b = new Bundle();
 		if (command.equals(NOTIFY_ORDERS_CMD)) {
-			int notif_id=1;
-			for(notif_id=1;notif_id<3;notif_id++){
-			sendNotification(getResources().getString(R.string.new_order_update) + notif_id, "My notification", "Hello World!1", CategoriesActivity.class,notif_id);
-			
-			SystemClock.sleep(5000); //TODO: look for new orders :)
+			int notif_id = 1;
+			for (notif_id = 1; notif_id < 3; notif_id++) {
+				sendNotification(getResources().getString(R.string.new_order_update) + notif_id, "My notification",
+						"Hello World!1", CategoriesActivity.class, notif_id);
+				SystemClock.sleep(5000); // TODO: look for new orders :)
 			}
 			
 		}

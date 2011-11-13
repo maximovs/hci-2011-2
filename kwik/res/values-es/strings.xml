@@ -15,7 +15,22 @@
 	
 	<string name="user_config">Configuración de Usuario</string>
 	
-	<string name="config_timeout_enabled">Activar Notificaciones de Cambio de Orden</string>
+	<string name="config_timeout_mode">Cambiar estilo de notificación</string>
+	
+	<string name="config_timeout_mode_multiple">Multiples ordenes</string>
+	
+	<string name="config_timeout_mode_single">Orden simple</string>
+	
+	<string name="config_timeout_mode_disabled">Notificaciones deshabilitadas</string>
+	
+	<string name="config_timeout_value_set">Cambiar demora de notificación</string>
+	
+	<string name="config_color_set">Cambiar color de interfaz</string>
+	
+	<string name="config_color_blue">Azul</string>
+	<string name="config_color_red">Rojo</string>
+	<string name="config_color_green">Verde</string>
+	<string name="config_color_orange">Naranja</string>
 	
 	<string name="sign_in_toast">Ingreso exitoso</string>
 	<string name="sign_in_toast_error">Usuario o contraseña incorrectos</string>
