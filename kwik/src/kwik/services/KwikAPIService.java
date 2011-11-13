@@ -86,12 +86,18 @@ public class KwikAPIService extends IntentService {
 		try {			
 			u = User.signIn(username, password);
 		} catch (APIBadResponseException e) {
+			b.putSerializable("return", (Serializable) u);
+			receiver.send(STATUS_CONNECTION_ERROR, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (XMLParseException e) {
+			b.putSerializable("return", (Serializable) u);
+			receiver.send(STATUS_ILLEGAL_ARGUMENT, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (HTTPException e) {
+			b.putSerializable("return", (Serializable) u);
+			receiver.send(STATUS_ERROR, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -107,12 +113,18 @@ public class KwikAPIService extends IntentService {
 		try {			
 			p = new Product().getProducts(1, "DESC", criteria);
 		} catch (APIBadResponseException e) {
+			b.putSerializable("return", (Serializable) p);
+			receiver.send(STATUS_CONNECTION_ERROR, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (XMLParseException e) {
+			b.putSerializable("return", (Serializable) p);
+			receiver.send(STATUS_ILLEGAL_ARGUMENT, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (HTTPException e) {
+			b.putSerializable("return", (Serializable) p);
+			receiver.send(STATUS_ERROR, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -128,12 +140,18 @@ public class KwikAPIService extends IntentService {
 		try {			
 			p = Product.getProduct(product_id);
 		} catch (APIBadResponseException e) {
+			b.putSerializable("return", (Serializable) p);
+			receiver.send(STATUS_CONNECTION_ERROR, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (XMLParseException e) {
+			b.putSerializable("return", (Serializable) p);
+			receiver.send(STATUS_ILLEGAL_ARGUMENT, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (HTTPException e) {
+			b.putSerializable("return", (Serializable) p);
+			receiver.send(STATUS_ERROR, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -152,12 +170,18 @@ public class KwikAPIService extends IntentService {
 			
 			products = c.getProducts(1);
 		} catch (APIBadResponseException e) {
+			b.putSerializable("return", (Serializable) products);
+			receiver.send(STATUS_CONNECTION_ERROR, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (XMLParseException e) {
+			b.putSerializable("return", (Serializable) products);
+			receiver.send(STATUS_ILLEGAL_ARGUMENT, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (HTTPException e) {
+			b.putSerializable("return", (Serializable) products);
+			receiver.send(STATUS_ERROR, b);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
