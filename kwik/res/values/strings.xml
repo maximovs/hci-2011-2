@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="loading">Loading</string>
-    <string name="app_name">Kwik-E-Mart Mobile</string>
-    <string name="search_activity">Kwik-E-Mart Mobile</string>
-    <string name="no_products_found">No products found</string>
-    <string name="rank">Sales rank:</string>
-    <string name="price">Price:</string>
-    <string name="search_hint"></string> 
+	<string name="loading">Loading</string>
+	<string name="app_name">Kwik-E-Mart Mobile</string>
+	<string name="search_activity">Kwik-E-Mart Mobile</string>
+	<string name="no_products_found">No products found</string>
+	<string name="rank">Sales rank:</string>
+	<string name="price">Price:</string>
+	<string name="search_hint"></string>
+	<string name="books">Books</string>
+	<string name="dvds">DVDs</string>
 	
+	<string name="username">Username</string>
+	<string name="password">Password</string>
+	<string name="sign_in_text">Sign In</string>
+	
+	<string name="products_title">%1$s\'s products</string>
+	
+	<string name="user_signin">User sign in</string>
+
 	<!-- order notification -->
 	<string name="new_order_update">Order updated: </string>
-	
+
 	<!-- categories activity -->
 	<string name="show_products">Show products</string>
 	<string name="Category">Category</string>

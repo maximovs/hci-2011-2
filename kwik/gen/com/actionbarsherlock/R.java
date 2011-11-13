@@ -328,21 +328,24 @@ containing a value of this type.
         public static final int abs__tab_custom=0x7f050017;
         public static final int abs__tab_icon=0x7f050015;
         public static final int abs__up=0x7f05000f;
+        public static final int button1=0x7f050027;
+        public static final int editText1=0x7f050025;
+        public static final int editText2=0x7f050026;
         public static final int homeAsUp=0x7f050006;
-        public static final int home_books=0x7f050020;
-        public static final int home_dvds=0x7f05001f;
-        public static final int image=0x7f05001e;
+        public static final int home_books=0x7f050021;
+        public static final int home_dvds=0x7f050020;
+        public static final int image=0x7f05001f;
         public static final int listMode=0x7f050002;
+        public static final int listview=0x7f05001d;
         public static final int normal=0x7f050001;
         public static final int product_image=0x7f050024;
-        public static final int product_title=0x7f050023;
-        public static final int product_view=0x7f050022;
-        public static final int progressbar=0x7f050021;
+        public static final int product_view=0x7f050023;
+        public static final int progressbar=0x7f050022;
         public static final int showCustom=0x7f050008;
         public static final int showHome=0x7f050005;
         public static final int showTitle=0x7f050007;
         public static final int tabMode=0x7f050003;
-        public static final int title=0x7f05001d;
+        public static final int title=0x7f05001e;
         public static final int useLogo=0x7f050004;
         public static final int wrap_content=0x7f050000;
     }
@@ -366,28 +369,36 @@ containing a value of this type.
         public static final int item_list_item=0x7f03000d;
         public static final int main=0x7f03000e;
         public static final int product=0x7f03000f;
+        public static final int sign_in=0x7f030010;
     }
     public static final class menu {
         public static final int actions=0x7f0a0000;
     }
     public static final class string {
-        public static final int Category=0x7f08000a;
+        public static final int Category=0x7f080011;
         public static final int abs__tab_under_ab_tag=0x7f080000;
         public static final int app_name=0x7f080002;
+        public static final int books=0x7f080008;
+        public static final int dvds=0x7f080009;
         public static final int loading=0x7f080001;
         /**  order notification 
  order notification 
          */
-        public static final int new_order_update=0x7f080008;
+        public static final int new_order_update=0x7f08000f;
         public static final int no_products_found=0x7f080004;
+        public static final int password=0x7f08000b;
         public static final int price=0x7f080006;
+        public static final int products_title=0x7f08000d;
         public static final int rank=0x7f080005;
         public static final int search_activity=0x7f080003;
         public static final int search_hint=0x7f080007;
         /**  categories activity 
  categories activity 
          */
-        public static final int show_products=0x7f080009;
+        public static final int show_products=0x7f080010;
+        public static final int sign_in_text=0x7f08000c;
+        public static final int user_signin=0x7f08000e;
+        public static final int username=0x7f08000a;
     }
     public static final class style {
         public static final int Internal_Widget_Sherlock_ActionBar=0x7f09001c;

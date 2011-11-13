@@ -5,9 +5,9 @@ import java.util.List;
 
 import kwik.Util;
 import kwik.app.R;
+import kwik.app.activities.custom.KwikFragmentActivity;
 import kwik.remote.api.Category;
 import kwik.services.KwikAPIService;
-import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +21,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-public class ProductsActivity extends ListActivity implements OnItemClickListener {
+public class ProductsActivity extends KwikFragmentActivity implements OnItemClickListener {
 	
 	private String	TAG	= getClass().getSimpleName();
 	
@@ -35,6 +35,9 @@ public class ProductsActivity extends ListActivity implements OnItemClickListene
 		
 		final Integer category_id = extras.getInt("category_id", -1);
 		final Integer subcategory_id = extras.getInt("subcategory_id", -1);
+		final String  category_name = extras.getString("category_name");
+		
+		this.setTitle(String.format(getResources().getString(R.string.products_title), category_name));
 		
 		/* Asociamos la vista del search list con la activity */
 		setContentView(R.layout.item_list);
@@ -73,7 +76,7 @@ public class ProductsActivity extends ListActivity implements OnItemClickListene
 			}
 		});
 		
-		ListView vi = getListView();
+		ListView vi = (ListView) findViewById(R.id.listview);
 		
 		vi.setOnItemClickListener(this);
 		startService(intent);
@@ -85,8 +88,8 @@ public class ProductsActivity extends ListActivity implements OnItemClickListene
 		
 		ListAdapter adapter = new SimpleAdapter(this, Util.getMapped(products, map_fields), R.layout.item_list_item,
 				desired_fields, new int[] { R.id.title });
-		
-		setListAdapter(adapter);
+		ListView vi = (ListView) findViewById(R.id.listview);
+		vi.setAdapter(adapter);
 	}
 	
 	@Override
@@ -95,10 +98,12 @@ public class ProductsActivity extends ListActivity implements OnItemClickListene
 		@SuppressWarnings("unchecked")
 		HashMap<String, Object> map = (HashMap<String, Object>) vi.getItemAtPosition(position);
 		
-		final Integer product_id = (Integer) map.get("id");
+		final Integer product_id   = (Integer) map.get("id");
+		final String  product_name = (String)  map.get("name");
 		
 		Intent intent = new Intent(v.getContext(), ProductActivity.class);
 		intent.putExtra("product_id", product_id);
+		intent.putExtra("product_name", product_name);
 		startActivity(intent);
 		
 	}

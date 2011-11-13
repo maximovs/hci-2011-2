@@ -42,6 +42,11 @@
             android:label="@string/search_activity"
             android:name="kwik.app.activities.ProductActivity" >
         </activity>
+        
+				<activity
+            android:label="@string/user_signin"
+            android:name="kwik.app.activities.SignInActivity" >
+        </activity>
         <activity
             android:label="@string/search_activity"
             android:name="kwik.app.activities.ProductsActivity" >

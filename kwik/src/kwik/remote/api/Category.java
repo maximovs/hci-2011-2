@@ -1,6 +1,7 @@
 package kwik.remote.api;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,14 +48,25 @@ public class Category extends AbstractCategory implements Serializable{
 	 * @see kwik.remote.api.AbstractCategory#getSubCategoryList(int)
 	 */
 	public List<? extends AbstractCategory> getSubCategoryList(int language_id) throws APIBadResponseException, XMLParseException, HTTPException {
-		Map<String, String> headers = new HashMap<String,String>();
-		headers.put("method", "GetSubcategoryList");
-		headers.put("language_id", Integer.toString(language_id));
-		headers.put("category_id", Integer.toString(this.id));
 		
-		Response r = Response.get(Response.CATALOG, headers);
-		// Optional: Some caching
-		return r.subCategories;		
+		if (!Response.FAKE_RESPONSE) {
+			Map<String, String> headers = new HashMap<String,String>();
+			headers.put("method", "GetSubcategoryList");
+			headers.put("language_id", Integer.toString(language_id));
+			headers.put("category_id", Integer.toString(this.id));
+			
+			Response r = Response.get(Response.CATALOG, headers);
+			// Optional: Some caching
+			return r.subCategories;
+		} else {
+			List<SubCategory> subcats = new ArrayList<SubCategory>();
+			SubCategory basic = new SubCategory();
+			basic.id = 1;
+			basic.category_id = this.id;
+			basic.name = "Basic Subcategory";
+			subcats.add(basic);
+			return subcats;
+		}
 	}
 	
 

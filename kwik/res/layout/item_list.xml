@@ -8,16 +8,10 @@
     
     
 	<!--  Vista cuando haya elementos en la lista -->
-		 <ListView android:id="@android:id/list"
+		 <ListView android:id="@+id/listview"
                android:layout_width="fill_parent"
                android:layout_height="fill_parent"
                android:drawSelectorOnTop="false"/>
 
-     <ProgressBar
-         android:id="@android:id/empty"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content" 
-         android:gravity = "center_vertical|center_horizontal"
-         />
 
 </LinearLayout>

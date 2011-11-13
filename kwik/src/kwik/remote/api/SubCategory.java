@@ -17,25 +17,25 @@ import org.simpleframework.xml.Element;
  * SubCategory
  * @description Represents an API subcategory
  */
-@Element(name="subcategory")
-public class SubCategory extends AbstractCategory implements Serializable{
+@Element(name = "subcategory")
+public class SubCategory extends AbstractCategory implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-
+	private static final long	serialVersionUID	= 1L;
+	
 	@Attribute
-	public int 	id;
+	public int					id;
 	
 	@Element
-	public int 	category_id;
+	public int					category_id;
 	
 	@Element
-	public String 	code;
+	public String				code;
 	
 	@Element
-	public String 	name;
-
+	public String				name;
+	
 	/*
 	 * @see kwik.remote.api.AbstractCategory#getId()
 	 */
@@ -48,7 +48,7 @@ public class SubCategory extends AbstractCategory implements Serializable{
 	public String getCode() {
 		return code;
 	}
-
+	
 	/*
 	 * @see kwik.remote.api.AbstractCategory#getName()
 	 */
@@ -56,27 +56,44 @@ public class SubCategory extends AbstractCategory implements Serializable{
 	public String getName() {
 		return name;
 	}
-
+	
 	/*
-	 * @see kwik.remote.api.AbstractCategory#getProducts(int, java.lang.String, int, int)
+	 * @see kwik.remote.api.AbstractCategory#getProducts(int, java.lang.String,
+	 * int, int)
 	 */
 	@Override
-	public List<Product> getProducts(int language_id, String order, int items_per_page, int page, String criteria) throws APIBadResponseException, XMLParseException, HTTPException {
-		Map<String, String> headers = new HashMap<String,String>();
-		headers.put("method", "GetProductListBySubcategory");
-		headers.put("language_id", Integer.toString(language_id));
-		headers.put("category_id", Integer.toString(this.category_id));
-		headers.put("subcategory_id", Integer.toString(this.id));
-
-		headers.put("order", order);
+	public List<Product> getProducts(int language_id, String order, int items_per_page, int page, String criteria)
+			throws APIBadResponseException, XMLParseException, HTTPException {
 		
-		if (items_per_page != AbstractCategory.NO_PARAM && page != AbstractCategory.NO_PARAM) {
-			headers.put("items_per_page", Integer.toString(items_per_page));
-			headers.put("page", Integer.toString(page));			
+		if (!Response.FAKE_RESPONSE) {
+			Map<String, String> headers = new HashMap<String, String>();
+			headers.put("method", "GetProductListBySubcategory");
+			headers.put("language_id", Integer.toString(language_id));
+			headers.put("category_id", Integer.toString(this.category_id));
+			headers.put("subcategory_id", Integer.toString(this.id));
+			
+			headers.put("order", order);
+			
+			if (items_per_page != AbstractCategory.NO_PARAM && page != AbstractCategory.NO_PARAM) {
+				headers.put("items_per_page", Integer.toString(items_per_page));
+				headers.put("page", Integer.toString(page));
+			}
+			
+			Response r = Response.get(Response.CATALOG, headers);
+			return r.products;
+		} else {
+			List<Product> prods = new ArrayList<Product>();
+			
+			Product p = new Product();
+			p.name = "Harabara";
+			p.id = 1;
+			p.price = 14.99;
+			p.sales_rank = 1;
+			
+			prods.add(p);
+			
+			return prods;
 		}
-		
-		Response r = Response.get(Response.CATALOG, headers);
-		return r.products;
 	}
 	
 	/*
@@ -93,10 +110,10 @@ public class SubCategory extends AbstractCategory implements Serializable{
 		return this.category_id;
 	}
 	
-	public static final String[] fields = { "id", "code", "name" };
-
-	public static List<? extends Map<String, ?>> getCategoriesAsMap(List<SubCategory> l) {
+	public static final String[]	fields	= { "id", "code", "name" };
 	
+	public static List<? extends Map<String, ?>> getCategoriesAsMap(List<SubCategory> l) {
+		
 		List<Map<String, String>> transformedCategories = new ArrayList<Map<String, String>>();
 		for (SubCategory c : l) {
 			HashMap<String, String> map = new HashMap<String, String>();
@@ -107,7 +124,6 @@ public class SubCategory extends AbstractCategory implements Serializable{
 		}
 		return transformedCategories;
 	}
-
 	
 	public static String[] getMapKeys() {
 		return fields;

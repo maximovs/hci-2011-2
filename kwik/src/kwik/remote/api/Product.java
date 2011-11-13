@@ -2,6 +2,7 @@ package kwik.remote.api;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,72 +20,96 @@ public class Product extends AbstractProductFeed implements Serializable {
 	private static final long	serialVersionUID	= 5782315891664949385L;
 	
 	@Attribute
-	public int		id;
+	public int					id;
 	@Element
-	public int		category_id;
+	public int					category_id;
 	@Element
-	public int		subcategory_id;
+	public int					subcategory_id;
 	@Element
-	public String	name;
+	public String				name;
 	@Element
-	public int		sales_rank;
+	public int					sales_rank;
 	@Element
-	public Double	price;
+	public Double				price;
 	@Element
-	public String	image_url;
+	public String				image_url;
 	
 	@Element(required = false)
-	public String	type;
+	public String				type;
 	
 	@Element(required = false)
-	public String	actors;
+	public String				actors;
 	@Element(required = false)
-	public String	format;
+	public String				format;
 	@Element(required = false)
-	public String	language;
+	public String				language;
 	@Element(required = false)
-	public String	subtitles;
+	public String				subtitles;
 	@Element(required = false)
-	public String	region;
+	public String				region;
 	@Element(required = false)
-	public String	aspect_ratio;
+	public String				aspect_ratio;
 	@Element(required = false)
-	public String	number_discs;
+	public String				number_discs;
 	@Element(required = false)
-	public Date		release_date;
+	public Date					release_date;
 	@Element(required = false)
-	public String	run_time;
+	public String				run_time;
 	@Element(required = false)
-	public String	ASIN;
+	public String				ASIN;
 	
 	@Element(required = false)
-	public String	authors;
+	public String				authors;
 	@Element(required = false)
-	public String	publisher;
+	public String				publisher;
 	@Element(required = false)
-	public Date		published_date;
+	public Date					published_date;
 	@Element(required = false)
-	public String	isbn_10;
+	public String				isbn_10;
 	@Element(required = false)
-	public String	isbn_13;
+	public String				isbn_13;
 	
 	public static Product getProduct(int product_id) throws APIBadResponseException, XMLParseException, HTTPException {
-		Map<String, String> headers = new HashMap<String,String>();
-		headers.put("method", "GetProduct");
-		headers.put("product_id", new Integer(product_id).toString());
-		Response r = Response.get(Response.CATALOG, headers);
-		return r.product;
+		if (!Response.FAKE_RESPONSE) {
+			Map<String, String> headers = new HashMap<String, String>();
+			headers.put("method", "GetProduct");
+			headers.put("product_id", new Integer(product_id).toString());
+			Response r = Response.get(Response.CATALOG, headers);
+			return r.product;
+		} else {
+			Product p = new Product();
+			p.name = "Harabara";
+			p.id = 1;
+			p.price = 14.99;
+			p.sales_rank = 1;
+			p.image_url = "http://2.bp.blogspot.com/_a_kfggseBks/TNEnSu7kT-I/AAAAAAAAA4I/DOLr4FWLcm8/s1600/Pink_Floyd_The_Wall_Scream.jpg";
+			return p;
+		}
+		
 	}
-
+	
 	@Override
 	public List<Product> getProducts(int language_id, String order, int items_per_page, int page, String criteria)
 			throws APIBadResponseException, XMLParseException, HTTPException {
-		Map<String, String> headers = new HashMap<String,String>();
-		headers.put("method", "GetProductListByName");
-		headers.put("criteria", criteria);
-		Response r = Response.get(Response.CATALOG, headers);
-		return r.products;
+		if (!Response.FAKE_RESPONSE) {
+			Map<String, String> headers = new HashMap<String, String>();
+			headers.put("method", "GetProductListByName");
+			headers.put("criteria", criteria);
+			Response r = Response.get(Response.CATALOG, headers);
+			return r.products;
+		} else {
+			List<Product> prods = new ArrayList<Product>();
+			
+			Product p = new Product();
+			p.name = "Harabara";
+			p.id = 1;
+			p.price = 14.99;
+			p.sales_rank = 1;
+			
+			prods.add(p);
+			
+			return prods;
+		}
 	}
-	
 	
 }
