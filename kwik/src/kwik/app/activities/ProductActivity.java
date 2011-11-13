@@ -5,6 +5,7 @@ import kwik.app.activities.custom.KwikFragmentActivity;
 import kwik.remote.api.Product;
 import kwik.remote.util.DrawableManager;
 import kwik.services.KwikAPIService;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +13,7 @@ import android.os.ResultReceiver;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class ProductActivity extends KwikFragmentActivity {
 	
@@ -21,11 +23,11 @@ public class ProductActivity extends KwikFragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		final Activity self=this;
 		Intent localIntent = this.getIntent();
 		
 		Bundle extras = localIntent.getExtras();
-
+		
 		
 		final Integer product_id = extras.getInt("product_id", -1);
 		final String  product_name = extras.getString("product_name");
@@ -63,8 +65,10 @@ public class ProductActivity extends KwikFragmentActivity {
 			
 				} else if (resultCode == KwikAPIService.STATUS_CONNECTION_ERROR) {
 					Log.d(TAG, "Connection error.");
+					Toast.makeText(self, getResources().getString(R.string.HTML_error), Toast.LENGTH_SHORT).show();
 				} else {
 					Log.d(TAG, "Unknown error.");
+					Toast.makeText(self, getResources().getString(R.string.API_bad_response), Toast.LENGTH_SHORT).show();
 				}
 			}
 		});

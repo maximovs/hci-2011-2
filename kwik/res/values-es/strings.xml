@@ -16,6 +16,7 @@
 	<string name="user_config">Configuración de Usuario</string>
 	
 	<string name="sign_in_toast">Ingreso exitoso</string>
+	<string name="sign_in_toast_error">Usuario o contraseña incorrectos</string>
 	<string name="sign_out_toast">Salida exitosa</string>
 	
 	<string name="search_result">Resultados de la búsqueda</string>

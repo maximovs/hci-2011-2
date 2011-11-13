@@ -16,6 +16,7 @@
 	<string name="sign_in_text">Sign in</string>
 	
 	<string name="sign_in_toast">Sign in successful</string>
+	<string name="sign_in_toast_error">Wrong username or password</string>
 	<string name="sign_out_toast">Sign out successful</string>
 	
 	

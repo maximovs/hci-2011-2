@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class SignInActivity extends KwikFragmentActivity {
 	
@@ -57,8 +58,10 @@ public class SignInActivity extends KwikFragmentActivity {
 							self.onBackPressed();
 							
 						} else if (resultCode == KwikAPIService.STATUS_CONNECTION_ERROR) {
+							Toast.makeText(self, getResources().getString(R.string.API_bad_response), Toast.LENGTH_SHORT).show();
 							Log.d(TAG, "Connection error.");
 						} else {
+							Toast.makeText(self, getResources().getString(R.string.sign_in_toast_error), Toast.LENGTH_SHORT).show();
 							Log.d(TAG, "Unknown error.");
 						}
 					}
