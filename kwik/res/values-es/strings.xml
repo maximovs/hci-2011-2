@@ -18,6 +18,7 @@
 	<string name="config_timeout_enabled">Activar Notificaciones de Cambio de Orden</string>
 	
 	<string name="sign_in_toast">Ingreso exitoso</string>
+	<string name="sign_in_toast_error">Usuario o contraseña incorrectos</string>
 	<string name="sign_out_toast">Salida exitosa</string>
 	
 	<string name="search_result">Resultados de la búsqueda</string>
@@ -31,5 +32,9 @@
 	<string name="show_products">Mostrar productos</string>
 	<string name="Category">Categoría</string>
 
-
+	<!-- errors -->
+	<string name="API_bad_response">Error de conexion</string>
+	<string name="XML_parser_error">Un error ocurrio, al procesarse el pedido</string>
+	<string name="HTML_error">Imposible conectarse, por favor intentelo nuevamente</string>
+	    
 </resources>

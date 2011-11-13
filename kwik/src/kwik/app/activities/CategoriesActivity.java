@@ -25,6 +25,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 public class CategoriesActivity extends KwikFragmentActivity implements OnItemClickListener, OnItemLongClickListener {
 	
@@ -32,7 +33,7 @@ public class CategoriesActivity extends KwikFragmentActivity implements OnItemCl
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		final CategoriesActivity self = this;
 		/* Asociamos la vista del search list con la activity */
 		this.setContentView(R.layout.item_list);
 		
@@ -82,7 +83,18 @@ public class CategoriesActivity extends KwikFragmentActivity implements OnItemCl
 					
 				} else if (resultCode == KwikAPIService.STATUS_CONNECTION_ERROR) {
 					Log.d(TAG, "Connection error.");
-				} else {
+					Toast.makeText(self, getResources().getString(R.string.API_bad_response), Toast.LENGTH_SHORT).show();
+				}
+				else if (resultCode == KwikAPIService.STATUS_ERROR) {
+					Log.d(TAG, "Unavailable to connect, please try again.");
+					Toast.makeText(self, getResources().getString(R.string.HTML_error), Toast.LENGTH_SHORT).show();
+				}	
+				else if (resultCode == KwikAPIService.STATUS_ILLEGAL_ARGUMENT) {
+					Log.d(TAG, "An error occurs while processing your request.");
+					Toast.makeText(self, getResources().getString(R.string.XML_parser_error), Toast.LENGTH_SHORT).show();					
+					}
+	
+				else {
 					Log.d(TAG, "Unknown error.");
 				}
 			}

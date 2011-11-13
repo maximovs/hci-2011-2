@@ -380,35 +380,42 @@ containing a value of this type.
         public static final int home_menu=0x7f0a0001;
     }
     public static final class string {
-        public static final int Category=0x7f080017;
+        /**  errors 
+ errors 
+         */
+        public static final int API_bad_response=0x7f080017;
+        public static final int Category=0x7f08001b;
+        public static final int HTML_error=0x7f080019;
+        public static final int XML_parser_error=0x7f080018;
         public static final int abs__tab_under_ab_tag=0x7f080000;
         public static final int app_name=0x7f080002;
         public static final int books=0x7f080008;
-        public static final int config_timeout_enabled=0x7f08000f;
+        public static final int config_timeout_enabled=0x7f080010;
         public static final int dvds=0x7f080009;
         public static final int loading=0x7f080001;
         /**  order notification 
  order notification 
          */
-        public static final int new_order_update=0x7f080015;
+        public static final int new_order_update=0x7f080016;
         public static final int no_products_found=0x7f080004;
         public static final int password=0x7f08000b;
         public static final int price=0x7f080006;
-        public static final int products_title=0x7f080013;
+        public static final int products_title=0x7f080014;
         public static final int rank=0x7f080005;
         public static final int search_activity=0x7f080003;
         public static final int search_hint=0x7f080007;
-        public static final int search_result=0x7f080012;
+        public static final int search_result=0x7f080013;
         /**  categories activity 
  categories activity 
          */
-        public static final int show_products=0x7f080016;
+        public static final int show_products=0x7f08001a;
         public static final int sign_in_text=0x7f08000c;
         public static final int sign_in_toast=0x7f08000d;
-        public static final int sign_out_text=0x7f080011;
-        public static final int sign_out_toast=0x7f08000e;
-        public static final int user_config=0x7f080010;
-        public static final int user_signin=0x7f080014;
+        public static final int sign_in_toast_error=0x7f08000e;
+        public static final int sign_out_text=0x7f080012;
+        public static final int sign_out_toast=0x7f08000f;
+        public static final int user_config=0x7f080011;
+        public static final int user_signin=0x7f080015;
         public static final int username=0x7f08000a;
     }
     public static final class style {

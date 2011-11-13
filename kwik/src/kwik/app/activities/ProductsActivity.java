@@ -8,6 +8,7 @@ import kwik.app.R;
 import kwik.app.activities.custom.KwikFragmentActivity;
 import kwik.remote.api.Category;
 import kwik.services.KwikAPIService;
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 public class ProductsActivity extends KwikFragmentActivity implements OnItemClickListener {
 	
@@ -32,7 +34,7 @@ public class ProductsActivity extends KwikFragmentActivity implements OnItemClic
 		Intent localIntent = this.getIntent();
 		
 		Bundle extras = localIntent.getExtras();
-		
+		final Activity self =this;
 		final Integer category_id = extras.getInt("category_id", -1);
 		final Integer subcategory_id = extras.getInt("subcategory_id", -1);
 		final String  category_name = extras.getString("category_name");
@@ -77,6 +79,13 @@ public class ProductsActivity extends KwikFragmentActivity implements OnItemClic
 					
 				} else if (resultCode == KwikAPIService.STATUS_CONNECTION_ERROR) {
 					Log.d(TAG, "Connection error.");
+					Toast.makeText(self, getResources().getString(R.string.API_bad_response), Toast.LENGTH_SHORT).show();
+				}else if (resultCode == KwikAPIService.STATUS_ERROR) {
+					Log.d(TAG, "Unavailable to connect, please try again.");
+					Toast.makeText(self, getResources().getString(R.string.HTML_error), Toast.LENGTH_SHORT).show();
+				}else if (resultCode == KwikAPIService.STATUS_ILLEGAL_ARGUMENT) {
+					Log.d(TAG, "An error occurs while processing your request.");
+					Toast.makeText(self, getResources().getString(R.string.XML_parser_error), Toast.LENGTH_SHORT).show();					
 				} else {
 					Log.d(TAG, "Unknown error.");
 				}
