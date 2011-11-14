@@ -35,6 +35,10 @@
             android:value="kwik.app.activities.ProductsActivity" />
 
         <activity
+            android:label="@string/order_activity"
+            android:name="kwik.app.activities.OrdersActivity" />
+        
+        <activity
             android:label="@string/search_activity"
             android:name="kwik.app.activities.CategoriesActivity" >
         </activity>

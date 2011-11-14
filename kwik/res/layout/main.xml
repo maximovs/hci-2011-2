@@ -13,7 +13,7 @@
         android:background="@android:color/transparent"
         android:gravity="center|center_vertical"
         android:textSize="20sp" 
-        android:text="DVDs" />
+        android:text="@string/dvds" />
 
     <Button
         android:id="@+id/home_books"
@@ -23,6 +23,6 @@
         android:drawableTop="@drawable/book"
         android:gravity="center|center_vertical"
 				android:textSize="20sp"        
-        android:text="Books" />
+        android:text="@string/books" />
 
 </LinearLayout>

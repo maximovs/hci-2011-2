@@ -3,8 +3,10 @@ package kwik.services;
 import java.io.Serializable;
 import java.util.List;
 
+import kwik.app.KwikApp;
 import kwik.remote.api.AbstractCategory;
 import kwik.remote.api.Category;
+import kwik.remote.api.Order;
 import kwik.remote.api.Product;
 import kwik.remote.api.SubCategory;
 import kwik.remote.api.User;
@@ -24,6 +26,7 @@ public class KwikAPIService extends IntentService {
 	public static final String	GET_SUBCAT_PRODUCTS_CMD	= "GetProductsBySubCategories";
 	public static final String	GET_PRODUCT_CMD			= "GetProductByID";
 	public static final String	GET_PRODUCTS_CMD		= "GetProducts";
+	public static final String	GET_ORDERS_CMD		    = "GetOrders";
 	public static final String	SIGN_IN_CMD				= "UserSignIn";
 	
 	public static final int		API_BAD_RESPONSE_ERROR	= -1;
@@ -71,6 +74,8 @@ public class KwikAPIService extends IntentService {
 				getProducts(receiver, b, criteria);
 			} else if (command.equals(SIGN_IN_CMD)) {
 				makeLogin(receiver, b, username, password);
+			} else if (command.equals(GET_ORDERS_CMD)) {
+				getOrders(receiver, b);
 			}
 		} catch (APIBadResponseException e) {
 			b.putSerializable("return", (Serializable) e.error);
@@ -90,6 +95,14 @@ public class KwikAPIService extends IntentService {
 		this.stopSelf();
 	}
 	
+	private void getOrders(ResultReceiver receiver, Bundle b) throws APIBadResponseException, XMLParseException, HTTPException {
+		User u = ((KwikApp)getApplication()).getCurrentUser();
+		List<Order> orders = u.getOrderList();
+		
+		b.putSerializable("return", (Serializable) orders);
+		receiver.send(STATUS_OK, b);
+	}
+
 	private void makeLogin(ResultReceiver receiver, Bundle b, String username, String password)
 			throws APIBadResponseException, XMLParseException, HTTPException {
 		
@@ -106,7 +119,7 @@ public class KwikAPIService extends IntentService {
 		
 		List<Product> p = null;
 		
-		p = new Product().getProducts(1, "DESC", criteria);
+		p = new Product().getProducts("DESC", criteria);
 		
 		b.putSerializable("return", (Serializable) p);
 		receiver.send(STATUS_OK, b);
@@ -131,7 +144,7 @@ public class KwikAPIService extends IntentService {
 		Category c = new Category();
 		c.id = category_id;
 		
-		products = c.getProducts(1);
+		products = c.getProducts();
 		
 		b.putSerializable("return", (Serializable) products);
 		receiver.send(STATUS_OK, b);
@@ -146,7 +159,7 @@ public class KwikAPIService extends IntentService {
 		c.id = subcategory_id;
 		c.category_id = category_id;
 		
-		products = c.getProducts(1);
+		products = c.getProducts();
 		
 		b.putSerializable("return", (Serializable) products);
 		receiver.send(STATUS_OK, b);
@@ -160,7 +173,7 @@ public class KwikAPIService extends IntentService {
 		Category c = new Category();
 		c.id = category_id;
 		
-		subCategories = c.getSubCategoryList(1);
+		subCategories = c.getSubCategoryList();
 		
 		b.putSerializable("return", (Serializable) subCategories);
 		receiver.send(STATUS_OK, b);
@@ -171,7 +184,7 @@ public class KwikAPIService extends IntentService {
 		
 		List<Category> categories = null;
 		
-		categories = Category.getCategoryList(1);
+		categories = Category.getCategoryList();
 		
 		b.putSerializable("return", (Serializable) categories);
 		receiver.send(STATUS_OK, b);

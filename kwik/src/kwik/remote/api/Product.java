@@ -89,7 +89,7 @@ public class Product extends AbstractProductFeed implements Serializable {
 	}
 	
 	@Override
-	public List<Product> getProducts(int language_id, String order, int items_per_page, int page, String criteria)
+	public List<Product> getProducts(String order, int items_per_page, int page, String criteria)
 			throws APIBadResponseException, XMLParseException, HTTPException {
 		if (!Response.FAKE_RESPONSE) {
 			Map<String, String> headers = new HashMap<String, String>();

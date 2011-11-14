@@ -63,11 +63,21 @@ public class ProductsActivity extends KwikFragmentActivity implements OnItemClic
 			protected void onReceiveResult(int resultCode, Bundle resultData) {
 				super.onReceiveResult(resultCode, resultData);
 				if (resultCode == KwikAPIService.STATUS_OK) {
+					boolean no_data_fetched = false;
 					
 					@SuppressWarnings("unchecked")
 					List<Category> prodList = (List<Category>) resultData.getSerializable("return");
 					populateProdList(prodList);
-					
+					no_data_fetched = prodList.size() == 0;
+					if (!no_data_fetched) {
+						ListView vi = (ListView) findViewById(R.id.listview);
+						vi.setVisibility(View.VISIBLE);
+					} else {
+						View vi = (View) findViewById(R.id.textview);
+						vi.setVisibility(View.VISIBLE);
+					}
+					View pg = (View) findViewById(R.id.progressbar);
+					pg.setVisibility(View.GONE);
 				}
 			}
 		});

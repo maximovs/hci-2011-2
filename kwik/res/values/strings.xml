@@ -3,15 +3,23 @@
 	<string name="loading">Loading</string>
 	<string name="app_name">Kwik-E-Mart Mobile</string>
 	<string name="search_activity">Kwik-E-Mart Mobile</string>
-	<string name="no_products_found">No products found</string>
+	<string name="no_elements_found">No elements found</string>
 	<string name="rank">Sales rank:</string>
 	<string name="price">Price:</string>
 	<string name="search_hint"></string>
 	<string name="books">Books</string>
 	<string name="dvds">DVDs</string>
+	
+	<string name="order_activity">My following orders</string>
 
 	<string name="username">Username</string>
 	<string name="password">Password</string>
+	
+	<string name="on">On</string>
+	<string name="off">Off</string>
+	
+	<string name="order">Order</string>
+	
 
 	<string name="sign_in_text">Sign in</string>
 
@@ -19,24 +27,33 @@
 
 	<string name="sign_in_toast_error">Wrong username or password</string>
 
+	<string name="config_color_change_toast">Colors will change on the next screen change</string>
+
 	<string name="sign_out_toast">Sign out successful</string>
 
-	<string name="config_timeout_mode">Activate Order Change Notifications</string>
+	<string name="config_timeout_mode">Choose Orders to Follow</string>
 
-	<string name="config_timeout_mode_multiple">Multiple orders</string>
-
-	<string name="config_timeout_mode_single">Single order</string>
-
-	<string name="config_timeout_mode_disabled">Notifications disabled</string>
-
-	<string name="config_timeout_value_set">Set Order Change Timeout</string>
+	<string name="config_timeout_value_set">Set Update Interval Timeout</string>
+	
+	<string name="config_timeout_value_set_toast">Update Interval Changed</string>
 
 	<string name="config_color_set">Set Interface Theme</string>
+	
+	<string name="notification_service_start_top">Checking orders...</string>
+	
+	<string name="notification_service_start">Kwik E Mart</string>
+	
+	
+	<string name="order_changed_notification">Order # %1$d changed status</string>
+	<string name="order_changed_notification">Order # %1$d changed location</string>
 	
 	<string name="config_color_blue">Blue</string>
 	<string name="config_color_red">Red</string>
 	<string name="config_color_green">Green</string>
 	<string name="config_color_orange">Orange</string>
+	
+	<string name="a_minute">1 minute</string>
+	<string name="n_minutes">%1$d minutes</string>
 
 	<string name="user_config">User\'s Configuration</string>
 
@@ -61,4 +78,51 @@
 	<!-- categories activity -->
 	<string name="show_products">Show products</string>
 	<string name="Category">Category</string>
+	
+	  <string name='error_1'>The method this application requires has not been provided.</string>
+		<string name='error_2'>The language identifier this application requires has not been provided.</string>
+		<string name='error_3'>The country identifier this application requires has not been provided.</string>
+		<string name='error_4'>The user identifier this application requires has not been provided.</string>
+		<string name='error_5'>The password this application requires has not been provided.</string>
+		<string name='error_6'>The authentication token this application requires has not been provided.</string>
+		<string name='error_7'>The user account information this application requires has not been provided.</string>
+		<string name='error_8'>The new password this application requires has not been provided.</string>
+		<string name='error_9'>The category identifier this application requires has not been provided.</string>
+		<string name='error_10'>The subcategory identifier this application requires has not been provided.</string>
+		<string name='error_11'>The search criteria this application requires has not been provided.</string>
+		<string name='error_12'>The product identifier this application requires has not been provided.</string>
+		<string name='error_13'>The order identifier this application requires has not been provided.</string>
+		<string name='error_14'>The address identifier this application requires has not been provided.</string>
+		<string name='error_15'>The item information this application requires has not been provided.</string>
+		<string name='error_16'>The address information this application requires has not been provided.</string>
+		<string name='error_17'>The storage value this application requires has not been provided.</string>
+		<string name='error_101'>The submit provided method this application requires is invalid.</string>
+		<string name='error_102'>The Language identifier is invalid.</string>
+		<string name='error_103'>The country identifier is invalid.</string>
+		<string name='error_104'>The user is invalid.</string>
+		<string name='error_105'>The authentication token is invalid.</string>
+		<string name='error_106'> </string>
+		<string name='error_107'>The username is invalid (it must have between 1 and 15 characters).</string>
+		<string name='error_108'>The password is invalid (it must have between 8 and 15 characters).</string>
+		<string name='error_109'>The name is invalid (it must have between 1 and 80 characters).</string>
+		<string name='error_110'>The email is invalid (it must have between 1 and 128 characters).</string>
+		<string name='error_111'>The date of birth is invalid.</string>
+		<string name='error_112'>The submitted category identifier is invalid.</string>
+		<string name='error_113'>The submitted subcategory identifier is invalid.</string>
+		<string name='error_114'>The submitted product identifier is invalid.</string>
+		<string name='error_115'>The submitted order identifier is invalid.</string>
+		<string name='error_116'>The operation request is invalid for that order status.</string>
+		<string name='error_117'>The submitted address identifier is invalid.</string>
+		<string name='error_118'>The submitted reference name is invalid (it must have between 1 and 80 characters).</string>
+		<string name='error_119'>The submitted first address is invalid (it must have between 1 and 80 characters).</string>
+		<string name='error_120'>The submitted second address is invalid (it must have between 1 and 80 characters).</string>
+		<string name='error_121'>The submitted status identifier is invalid.</string>
+		<string name='error_122'>The submitted city is invalid (it must have between 1 and 80 characters).</string>
+		<string name='error_123'>The submitted zip code is invalid (it must have between 1 and 8 characters).</string>
+		<string name='error_124'>The submitted telephone number is invalid (it must have between 1 and 25 characters).</string>
+		<string name='error_125'> </string>
+		<string name='error_201'>The username already exists.</string>
+		<string name='error_202'>The address already exists.</string>
+		<string name='error_999'>An error occurs while processing your application.</string>
+	
 </resources>

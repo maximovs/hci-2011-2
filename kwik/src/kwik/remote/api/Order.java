@@ -38,15 +38,12 @@ public class Order {
 		headers.put("authentication_token", user.token);
 		
 		Response r = Response.post(Response.ORDER, headers);
-		
 		r.order.user = user;
-		
 		
 		return r.order;
 	}
 	
 	
-	@Element
 	@Attribute
 	public int id;
 
@@ -56,16 +53,12 @@ public class Order {
 	@Element
 	public int status;
 	
-	@Element
 	public Date created_date;
 	
-	@Element
 	public Date confirmed_date;
 	
-	@Element
 	public Date shipped_date;
 	
-	@Element
 	public Date delivered_date;
 	
 	@Element
@@ -74,7 +67,7 @@ public class Order {
 	@Element
 	public double longitude;
 	
-	@ElementList
+	@ElementList(required=false)
 	List<Item> items;
 	
 	User user;

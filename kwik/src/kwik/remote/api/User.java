@@ -24,35 +24,33 @@ public class User implements Serializable {
 	 */
 	private static final long	serialVersionUID	= -1566957530120984763L;
 
-	String	token;
+	@Attribute(required = false)
+	public String	token;
+	
+	@Attribute(required = false)
+	public int		id;
+	
+	@Attribute(required = false)
+	public String	name;
+	
+	@Attribute(required = false)
+	public String	username;
+	
+	@Element(required = false)
+	public Date	created_date;
+	
+	@Element(required = false)
+	public Date	birth_date;
+	
+	@Element(required = false)
+	public String	email;
+	
+	@Element(required = false)
+	public Date	last_password_change;
 	
 	@Attribute(required = false)
 	@Element(required = false)
-	int		id;
-	
-	@Attribute(required = false)
-	@Element(required = false)
-	String	name;
-	
-	@Attribute(required = false)
-	@Element(required = false)
-	String	username;
-	
-	@Element(required = false)
-	Date	created_date;
-	
-	@Element(required = false)
-	Date	birth_date;
-	
-	@Element(required = false)
-	String	email;
-	
-	@Element(required = false)
-	Date	last_password_change;
-	
-	@Attribute(required = false)
-	@Element(required = false)
-	Date	last_login_date;
+	public Date	last_login_date;
 	
 
 	public boolean signOut() {
@@ -208,11 +206,11 @@ public class User implements Serializable {
 	public List<Order> getOrderList() throws APIBadResponseException, XMLParseException, HTTPException {
 		Map<String, String> headers = new HashMap<String, String>();
 		
-		headers.put("method", "GetAddressList");
+		headers.put("method", "GetOrderList");
 		headers.put("username", username);
 		headers.put("authentication_token", token);
 		
-		Response r = Response.get(Response.SECURITY, headers);
+		Response r = Response.get(Response.ORDER, headers);
 		// Optional: Some caching
 		for (Order order : r.orders) {
 			order.user = this;

@@ -6,12 +6,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import kwik.app.KwikApp;
 import kwik.remote.api.exceptions.APIBadResponseException;
 import kwik.remote.api.exceptions.HTTPException;
 import kwik.remote.api.exceptions.XMLParseException;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+
+import android.text.Html;
+
+
 
 @Element
 public class Category extends AbstractCategory implements Serializable{
@@ -33,10 +38,10 @@ public class Category extends AbstractCategory implements Serializable{
 	 * getCategoryList
 	 * @description Returns a list of categories with their names setted to the given language.
 	 */
-	public static List<Category> getCategoryList(int language_id) throws APIBadResponseException, XMLParseException, HTTPException {
+	public static List<Category> getCategoryList() throws APIBadResponseException, XMLParseException, HTTPException {
 		Map<String, String> headers = new HashMap<String,String>();
 		headers.put("method", "GetCategoryList");
-		headers.put("language_id", Integer.toString(language_id));
+		headers.put("language_id", Integer.toString(KwikApp.instance.getCurrentLanguage()));
 		
 		Response r = Response.get(Response.CATALOG, headers);
 		// Optional: Some caching
@@ -47,15 +52,19 @@ public class Category extends AbstractCategory implements Serializable{
 	/*
 	 * @see kwik.remote.api.AbstractCategory#getSubCategoryList(int)
 	 */
-	public List<? extends AbstractCategory> getSubCategoryList(int language_id) throws APIBadResponseException, XMLParseException, HTTPException {
+	public List<? extends AbstractCategory> getSubCategoryList() throws APIBadResponseException, XMLParseException, HTTPException {
 		
 		if (!Response.FAKE_RESPONSE) {
 			Map<String, String> headers = new HashMap<String,String>();
 			headers.put("method", "GetSubcategoryList");
-			headers.put("language_id", Integer.toString(language_id));
+			headers.put("language_id", Integer.toString(KwikApp.instance.getCurrentLanguage()));
 			headers.put("category_id", Integer.toString(this.id));
 			
 			Response r = Response.get(Response.CATALOG, headers);
+			
+			for (SubCategory cat : r.subCategories) {
+				cat.name = Html.fromHtml(cat.name).toString();
+			}
 			// Optional: Some caching
 			return r.subCategories;
 		} else {
@@ -98,10 +107,10 @@ public class Category extends AbstractCategory implements Serializable{
 	 * @see kwik.remote.api.AbstractCategory#getProducts(int, java.lang.String, int, int)
 	 */
 	@Override
-	public List<Product> getProducts(int language_id, String order, int items_per_page, int page, String criteria) throws APIBadResponseException, XMLParseException, HTTPException {
+	public List<Product> getProducts(String order, int items_per_page, int page, String criteria) throws APIBadResponseException, XMLParseException, HTTPException {
 		Map<String, String> headers = new HashMap<String,String>();
 		headers.put("method", "GetProductListByCategory");
-		headers.put("language_id", Integer.toString(language_id));
+		headers.put("language_id", Integer.toString(KwikApp.instance.getCurrentLanguage()));
 		headers.put("category_id", Integer.toString(this.id));
 
 		headers.put("order", order);

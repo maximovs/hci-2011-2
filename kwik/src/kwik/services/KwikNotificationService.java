@@ -1,27 +1,38 @@
 package kwik.services;
 
+import java.util.List;
+
+import kwik.app.KwikApp;
+import kwik.app.KwikApp.KwikAppData.KwikOrder;
 import kwik.app.R;
-import kwik.app.activities.CategoriesActivity;
+import kwik.app.activities.SplashActivity;
+import kwik.remote.api.Order;
+import kwik.remote.api.exceptions.APIBadResponseException;
+import kwik.remote.api.exceptions.HTTPException;
+import kwik.remote.api.exceptions.XMLParseException;
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.ResultReceiver;
 import android.os.SystemClock;
+import android.util.Log;
 
 public class KwikNotificationService extends IntentService {
 	
-
 	public static final String NOTIFY_ORDERS_CMD = "Start_Polling_Orders";
-	public static boolean singleton = false;
 	
 	public static final int STATUS_CONNECTION_ERROR = -1;
 	public static final int STATUS_ERROR = -2;
 	public static final int STATUS_ILLEGAL_ARGUMENT = -3;
 	public static final int STATUS_OK = 0;
+	
+	private static KwikNotificationService instance;
+	
+	
+	private static boolean checking = false;
+	private KwikApp app;
 
 	/*
 	 * Se debe crear un constructor sin parametros y asignarle un nombre al
@@ -37,40 +48,106 @@ public class KwikNotificationService extends IntentService {
 	 */
 	@Override
 	protected void onHandleIntent(final Intent intent) {
-		if(singleton){
-			this.stopSelf();
+		if (instance != null) {
 			return;
 		}
-		singleton=true;
-		final ResultReceiver receiver = intent.getParcelableExtra("receiver");
-		final String command = intent.getStringExtra("command");
-		final String token    = intent.getStringExtra("token");
-
-		final Bundle b = new Bundle();
-		if (command.equals(NOTIFY_ORDERS_CMD)) {
-			int notif_id = 1;
-			for (notif_id = 1; notif_id < 3; notif_id++) {
-				sendNotification(getResources().getString(R.string.new_order_update) + notif_id, "My notification",
-						"Hello World!1", CategoriesActivity.class, notif_id);
-				SystemClock.sleep(5000); // TODO: look for new orders :)
+		checking = true;
+		app = (KwikApp) getApplication();
+		instance = this;
+		Log.d("Notifications", "Starting service...");
+		
+		
+		
+		onCheckingNotification();
+		try {
+			while (true) {
+				
+				
+				List<Order> last = app.getCurrentUser().getOrderList();
+				SystemClock.sleep(1000 * 60 * app.getCurrentUpdateInterval());
+				
+				while (last.size() == 0) {
+					last = app.getCurrentUser().getOrderList();
+					SystemClock.sleep(5000);
+				}
+				
+				
+				List<Order> _new = app.getCurrentUser().getOrderList();
+				
+				for (Order order : last) {
+					for (KwikOrder korder : app.getSelectedOrders()) {
+						if (korder.id == order.id) {
+							for (Order n : _new) {
+								if (n.latitude != order.latitude || n.longitude != order.longitude) {
+									onOrderLocationChangeNotification(order.id);
+								}
+								if (n.status != order.status) {
+									onOrderStatusChangeNotification(order.id);
+								}
+							}
+						}
+					}
+				}
+				
+				last.clear();
+				for (Order order : _new) {
+					last.add(order);
+				}
+				
+				app.saveAppData();
+				
+				Log.d("Notifications", "Checking service");
 			}
 			
+			
+		} catch (APIBadResponseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (XMLParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (HTTPException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+		
+		
+	}
+	
+	private void onOrderStatusChangeNotification(int orderId) {
+		String order_changed = String.format(
+					getResources().getString(R.string.order_changed_notification),
+					orderId);
+		String app_title = getResources().getString(R.string.notification_service_start);
+		sendNotification(order_changed,  app_title,order_changed,  SplashActivity.class, 0);
+	}
+	
+	private void onOrderLocationChangeNotification(int orderId) {
+		String order_changed = String.format(
+					getResources().getString(R.string.order_changed_notification),
+					orderId);
+		String app_title = getResources().getString(R.string.notification_service_start);
+		sendNotification(order_changed,  app_title,order_changed,  SplashActivity.class, 0);
+	}
 
-
-		// Es importante terminar el servicio lo antes posible.
-		this.stopSelf();
+	private void onCheckingNotification() {
+		String order_checks = getResources().getString(R.string.notification_service_start_top);
+		String app_title = getResources().getString(R.string.notification_service_start);
+		sendNotification(order_checks,  app_title,order_checks,  SplashActivity.class, 0);
 	}
 
 	private void sendNotification(String tickText, String contTitle, String contText,Class<?> retActivity, int notifID){
 		String ns = Context.NOTIFICATION_SERVICE;
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
+		
 //		Instantiate the Notification:
-		int icon = R.drawable.icon;
+		int icon = R.drawable.logo;
 		CharSequence tickerText = tickText;
 		long when = System.currentTimeMillis();
 
 		Notification notification = new Notification(icon, tickerText, when);
+		
 //		Define the notification's message and PendingIntent:
 		Context context = getApplicationContext();
 		CharSequence contentTitle = contTitle;
@@ -83,9 +160,7 @@ public class KwikNotificationService extends IntentService {
 		notification.flags|=Notification.FLAG_INSISTENT;
 	
 //		Pass the Notification to the NotificationManager:
-		
 		mNotificationManager.notify(notifID, notification);
-		
 	}
 
 }

@@ -3,29 +3,45 @@
 	<string name="loading">Cargando</string>
 	<string name="app_name">Kwik-E-Mart Móvil</string>
 	<string name="search_activity">Kwik-E-Mart Móvil</string>
-	<string name="no_products_found">No se encontraron productos</string>
+	<string name="no_elements_found">No se encontraron elementos</string>
 	<string name="rank">Ranking:</string>
 	<string name="price">Precio:</string>
 	<string name="books">Libros</string>
+	
+	<string name="order_activity">Seguimiento de Ordenes</string>
 	
 	<string name="username">Usuario</string>
 	<string name="password">Contraseña</string>
 	<string name="sign_in_text">Ingresar</string>
 	<string name="sign_out_text">Salir</string>
 	
+	<string name="on">Prendido</string>
+	<string name="off">Apagado</string>
+	
+	<string name="order">Orden</string>
+	
 	<string name="user_config">Configuración de Usuario</string>
 	
-	<string name="config_timeout_mode">Cambiar estilo de notificación</string>
+	<string name="config_color_change_toast">Los colores van a cambiar en el próximo cambio de pantalla</string>
 	
-	<string name="config_timeout_mode_multiple">Multiples ordenes</string>
+	<string name="config_timeout_mode">Elegir ordenes a seguir</string>
 	
-	<string name="config_timeout_mode_single">Orden simple</string>
+	<string name="notification_service_start_top">Chequeando ordenes</string>
 	
-	<string name="config_timeout_mode_disabled">Notificaciones deshabilitadas</string>
+	<string name="notification_service_start">Kwik E Mart</string>
 	
-	<string name="config_timeout_value_set">Cambiar demora de notificación</string>
+	
+	<string name="order_changed_notification">La Orden # %1$d cambió su ubicación</string>
+	<string name="order_changed_notification">La Orden # %1$d cambió su ubicación</string>
+	
+	<string name="config_timeout_value_set">Cambiar Intervalo de Actualización</string>
+	
+	<string name="config_timeout_value_set_toast">Intervalo de actualización cambiado</string>
 	
 	<string name="config_color_set">Cambiar color de interfaz</string>
+	
+	<string name="a_minute">1 minuto</string>
+	<string name="n_minutes">%1$d minutos</string>
 	
 	<string name="config_color_blue">Azul</string>
 	<string name="config_color_red">Rojo</string>
@@ -51,5 +67,51 @@
 	<string name="API_bad_response">Error de conexion</string>
 	<string name="XML_parser_error">Un error ocurrio, al procesarse el pedido</string>
 	<string name="HTML_error">Imposible conectarse, por favor intentelo nuevamente</string>
+	
+	   <string name='error_1'>La solicitud requiere de un metodo el cual no fue provisto.</string>
+    <string name='error_2'>La solicitud requiere de un identificador de lenguaje el cual no fue provisto.</string>
+    <string name='error_3'>La solicitud requiere de un identificador de pais el cual no fue provisto.</string>
+    <string name='error_4'>La solicitud requiere de usuario el cual no fue provisto.</string>
+    <string name='error_5'>La solicitud requiere la Contraseña la cual no fue provista.</string>
+    <string name='error_6'>La solicitud requiere el token de autenticacion el cual no fue provisto.</string>
+    <string name='error_7'>La solicitud requiere la informacion de la cuenta de usuario la cual no fue provista.</string>
+    <string name='error_8'>La solicitud requiere la nueva Contraseña la cual no fue provista.</string>
+    <string name='error_9'>La solicitud requiere de un identificador de categoria el cual no fue provisto.</string>
+    <string name='error_10'>La solicitud requiere de un identificador de sub-categoria el cual no fue provisto.</string>
+    <string name='error_11'>La solicitud requiere de un criterio de busqueda el cual no fue provisto.</string>
+    <string name='error_12'>La solicitud requiere de un identificador de producto el cual no fue provisto.</string>
+    <string name='error_13'>La solicitud requiere de un identificador de orden el cual no fue provisto.</string>
+    <string name='error_14'>La solicitud requiere de un identificador de direccion el cual no fue provisto.</string>
+    <string name='error_15'>La solicitud requiere la informacion del Item el cual no fue provisto.</string>
+    <string name='error_16'>La solicitud requiere la informacion de la direccion la cual no fue provista.</string>
+    <string name='error_17'>La solicitud requiere de un valor a almacenar que no fue provisto.</string>
+    <string name='error_101'>El metodo solicitado suministrado es invalido.</string>
+    <string name='error_102'>El identificador de lenguaje suministrado es invalido.</string>
+    <string name='error_103'>El identificador de pais suministrado es invalido.</string>
+    <string name='error_104'>El usuario es invalido.</string>
+    <string name='error_105'>El token de autenticacion es invalido.</string>
+    <string name='error_106'> </string>
+    <string name='error_107'>El nombre de usuario es inválido (longitud mínima 1 y máxima 15 caracteres).</string>
+    <string name='error_108'>La contraseña es inválida (longitud mínima 8 y máxima 15 caracteres).</string>
+    <string name='error_109'>El nombre es inválido (longitud mínima 1 y máxima 80 caracteres).</string>
+    <string name='error_110'>La dirección de email es inválida (longitud mínima 1 y máxima 128 caracteres).</string>
+    <string name='error_111'>La fecha de nacimiento es inválida.</string>
+    <string name='error_112'>El identificador de categoría suministrado es inválido.</string>
+    <string name='error_113'>El identificador de sub-categoría suministrado es inválido.</string>
+    <string name='error_114'>El identificador de producto suministrado es inválido.</string>
+    <string name='error_115'>El identificador de orden suministrado es inválido.</string>
+    <string name='error_116'>La operación solicitada es inválida para el estado de la orden.</string>
+    <string name='error_117'>El identificador de la dirección suministrado es inválido.</string>
+    <string name='error_118'>El nombre de referencia suministrado es inválido (longitud mínima 1 y máxima 80 caracteres).</string>
+    <string name='error_119'>La dirección principal suministrada es inválida (longitud mínima 1 y máxima 80 caracteres).</string>
+    <string name='error_120'>La dirección secundaria suministrada es inválida (longitud mínima 1 y máxima 80 caracteres).</string>
+    <string name='error_121'>El identificador de estado suministrado es inválido.</string>
+    <string name='error_122'>La ciudad suministrada es inválida (longitud mínima 1 y máxima 80 caracteres).</string>
+    <string name='error_123'>El código postal suministrado es inválido (longitud mínima 1 y máxima 8 caracteres).</string>
+    <string name='error_124'>El número de teléfono suministrado es inválido (longitud mínima 1 y máxima 25 caracteres).</string>
+    <string name='error_125'> </string>
+    <string name='error_201'>El nombre de usuario ya se encuentra en uso.</string>
+    <string name='error_202'>La dirección ya se encuentra en uso.</string>
+    <string name='error_999'>Se produjo un error inesperado procesando la solicitud.</string>
 	    
 </resources>

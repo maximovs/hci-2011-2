@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import kwik.app.KwikApp;
 import kwik.remote.api.exceptions.APIBadResponseException;
 import kwik.remote.api.exceptions.HTTPException;
 import kwik.remote.api.exceptions.XMLParseException;
@@ -62,13 +63,13 @@ public class SubCategory extends AbstractCategory implements Serializable {
 	 * int, int)
 	 */
 	@Override
-	public List<Product> getProducts(int language_id, String order, int items_per_page, int page, String criteria)
+	public List<Product> getProducts(String order, int items_per_page, int page, String criteria)
 			throws APIBadResponseException, XMLParseException, HTTPException {
 		
 		if (!Response.FAKE_RESPONSE) {
 			Map<String, String> headers = new HashMap<String, String>();
 			headers.put("method", "GetProductListBySubcategory");
-			headers.put("language_id", Integer.toString(language_id));
+			headers.put("language_id", Integer.toString(KwikApp.instance.getCurrentLanguage()));
 			headers.put("category_id", Integer.toString(this.category_id));
 			headers.put("subcategory_id", Integer.toString(this.id));
 			
@@ -100,7 +101,7 @@ public class SubCategory extends AbstractCategory implements Serializable {
 	 * @see kwik.remote.api.AbstractCategory#getSubCategoryList(int)
 	 */
 	@Override
-	public List<SubCategory> getSubCategoryList(int language_id) throws APIBadResponseException, XMLParseException,
+	public List<SubCategory> getSubCategoryList() throws APIBadResponseException, XMLParseException,
 			HTTPException {
 		return null; // A subcategory doesn't have any subcategories dude.
 	}

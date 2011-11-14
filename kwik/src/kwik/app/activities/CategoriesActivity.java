@@ -8,7 +8,6 @@ import kwik.app.activities.custom.KwikFragmentActivity;
 import kwik.remote.api.Category;
 import kwik.remote.api.SubCategory;
 import kwik.services.KwikAPIService;
-import kwik.services.KwikNotificationService;
 import kwik.util.KwikResultReceiver;
 import kwik.util.Util;
 import android.app.AlertDialog.Builder;
@@ -33,10 +32,6 @@ public class CategoriesActivity extends KwikFragmentActivity implements OnItemCl
 		
 		/* Asociamos la vista del search list con la activity */
 		this.setContentView(R.layout.item_list);
-		
-		Intent NotifIntent = new Intent(Intent.ACTION_SYNC, null, this, KwikNotificationService.class);
-		NotifIntent.putExtra("token", "d69bf21da285f8634533b9f7cc487ed");
-		NotifIntent.putExtra("command", KwikNotificationService.NOTIFY_ORDERS_CMD);
 		
 		Intent intent = new Intent(Intent.ACTION_SYNC, null, this, KwikAPIService.class);
 		final boolean subcategory_activity;
@@ -65,17 +60,28 @@ public class CategoriesActivity extends KwikFragmentActivity implements OnItemCl
 			protected void onReceiveResult(int resultCode, Bundle resultData) {
 				super.onReceiveResult(resultCode, resultData);
 				if (resultCode == KwikAPIService.STATUS_OK) {
+					boolean no_data_fetched = false;
 					
 					if (!subcategory_activity) {
 						@SuppressWarnings("unchecked")
 						List<Category> catList = (List<Category>) resultData.getSerializable("return");
 						populateCatList(catList);
+						no_data_fetched = catList.size() == 0;
 					} else {
 						@SuppressWarnings("unchecked")
 						List<SubCategory> catList = (List<SubCategory>) resultData.getSerializable("return");
 						populateSubCatList(catList);
+						no_data_fetched = catList.size() == 0;
 					}
-					
+					if (!no_data_fetched) {
+						ListView vi = (ListView) findViewById(R.id.listview);
+						vi.setVisibility(View.VISIBLE);
+					} else {
+						View vi = (View) findViewById(R.id.textview);
+						vi.setVisibility(View.VISIBLE);
+					}
+					View pg = (View) findViewById(R.id.progressbar);
+					pg.setVisibility(View.GONE);
 				}
 			}
 			
@@ -86,9 +92,6 @@ public class CategoriesActivity extends KwikFragmentActivity implements OnItemCl
 		vi.setOnItemClickListener(this);
 		vi.setOnItemLongClickListener(this);
 		
-		this.startService(intent);
-		
-		startService(NotifIntent);
 		startService(intent);
 		
 	}

@@ -3,6 +3,8 @@ package kwik.app.activities;
 import kwik.app.KwikApp;
 import kwik.app.R;
 import kwik.app.activities.custom.KwikFragmentActivity;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.Menu;
@@ -11,6 +13,7 @@ import android.support.v4.view.MenuItem;
 import android.support.v4.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -33,6 +36,30 @@ public class SplashActivity extends KwikFragmentActivity {
 				startActivityForResult(intent, 0);
 			}
 		});
+		dvds.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(final View v) {
+				Builder b = new Builder(v.getContext());
+				b.setTitle(getResources().getString(R.string.dvds));
+				String[] options = { getResources().getString(R.string.show_products) };
+				
+				b.setItems(options, new android.content.DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface arg0, int arg1) {
+						if (arg1 == 0) {
+							Intent intent = new Intent(v.getContext(), ProductsActivity.class);
+							intent.putExtra("category_id", 1);
+							intent.putExtra("category_name", R.string.dvds);
+							startActivityForResult(intent, 0);
+						}
+					}
+				});
+				
+				b.create().show();
+				return false;
+			}
+		});
 		
 		Button books = (Button) findViewById(R.id.home_books);
 		books.setOnClickListener(new OnClickListener() {
@@ -42,6 +69,30 @@ public class SplashActivity extends KwikFragmentActivity {
 				intent.putExtra("category_id", 2);
 				intent.putExtra("category_name", R.string.books);
 				startActivityForResult(intent, 0);
+			}
+		});
+		books.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(final View v) {
+				Builder b = new Builder(v.getContext());
+				b.setTitle(getResources().getString(R.string.books));
+				String[] options = { getResources().getString(R.string.show_products) };
+				
+				b.setItems(options, new android.content.DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface arg0, int arg1) {
+						if (arg1 == 0) {
+							Intent intent = new Intent(v.getContext(), ProductsActivity.class);
+							intent.putExtra("category_id", 2);
+							intent.putExtra("category_name", R.string.books);
+							startActivityForResult(intent, 0);
+						}
+					}
+				});
+				
+				b.create().show();
+				return false;
 			}
 		});
 		
