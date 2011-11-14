@@ -3,21 +3,20 @@ package kwik.app.activities;
 import java.util.HashMap;
 import java.util.List;
 
-import kwik.Util;
 import kwik.app.R;
 import kwik.app.activities.custom.KwikFragmentActivity;
 import kwik.remote.api.Category;
 import kwik.remote.api.SubCategory;
 import kwik.services.KwikAPIService;
 import kwik.services.KwikNotificationService;
+import kwik.util.KwikResultReceiver;
+import kwik.util.Util;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.ResultReceiver;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -25,15 +24,13 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 public class CategoriesActivity extends KwikFragmentActivity implements OnItemClickListener, OnItemLongClickListener {
-	
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		final CategoriesActivity self = this;
+		
 		/* Asociamos la vista del search list con la activity */
 		this.setContentView(R.layout.item_list);
 		
@@ -63,7 +60,7 @@ public class CategoriesActivity extends KwikFragmentActivity implements OnItemCl
 		 * instancia con un objeto Handler (usando el el thread de UI para
 		 * ejecutarlo).
 		 */
-		intent.putExtra("receiver", new ResultReceiver(new Handler()) {
+		intent.putExtra("receiver", new KwikResultReceiver(new Handler(), this) {
 			@Override
 			protected void onReceiveResult(int resultCode, Bundle resultData) {
 				super.onReceiveResult(resultCode, resultData);
@@ -79,21 +76,6 @@ public class CategoriesActivity extends KwikFragmentActivity implements OnItemCl
 						populateSubCatList(catList);
 					}
 					
-				} else if (resultCode == KwikAPIService.STATUS_CONNECTION_ERROR) {
-					Log.d(TAG, "Connection error.");
-					Toast.makeText(self, getResources().getString(R.string.API_bad_response), Toast.LENGTH_SHORT).show();
-				}
-				else if (resultCode == KwikAPIService.STATUS_ERROR) {
-					Log.d(TAG, "Unavailable to connect, please try again.");
-					Toast.makeText(self, getResources().getString(R.string.HTML_error), Toast.LENGTH_SHORT).show();
-				}	
-				else if (resultCode == KwikAPIService.STATUS_ILLEGAL_ARGUMENT) {
-					Log.d(TAG, "An error occurs while processing your request.");
-					Toast.makeText(self, getResources().getString(R.string.XML_parser_error), Toast.LENGTH_SHORT).show();					
-					}
-	
-				else {
-					Log.d(TAG, "Unknown error.");
 				}
 			}
 			

@@ -26,7 +26,7 @@ public class Response {
 	public static final String CATALOG  = "http://eiffel.itba.edu.ar/hci/service/Catalog.groovy";
 	public static final String ORDER    = "http://eiffel.itba.edu.ar/hci/service/Order.groovy";
 	
-	public static final boolean FAKE_RESPONSE = true;
+	public static final boolean FAKE_RESPONSE = false;
 	
 	@Attribute
 	public String				status;

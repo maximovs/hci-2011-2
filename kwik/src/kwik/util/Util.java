@@ -1,4 +1,4 @@
-package kwik;
+package kwik.util;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;

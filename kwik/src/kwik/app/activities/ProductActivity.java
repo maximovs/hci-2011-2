@@ -5,15 +5,12 @@ import kwik.app.activities.custom.KwikFragmentActivity;
 import kwik.remote.api.Product;
 import kwik.remote.util.DrawableManager;
 import kwik.services.KwikAPIService;
-import android.app.Activity;
+import kwik.util.KwikResultReceiver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.ResultReceiver;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class ProductActivity extends KwikFragmentActivity {
 	
@@ -23,7 +20,6 @@ public class ProductActivity extends KwikFragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		final Activity self=this;
 		Intent localIntent = this.getIntent();
 		
 		Bundle extras = localIntent.getExtras();
@@ -42,12 +38,11 @@ public class ProductActivity extends KwikFragmentActivity {
 		intent.putExtra("product_id", product_id);
 		
 		
-		intent.putExtra("receiver", new ResultReceiver(new Handler()) {
+		intent.putExtra("receiver", new KwikResultReceiver(new Handler(), this) {
 			@Override
 			protected void onReceiveResult(int resultCode, Bundle resultData) {
 				super.onReceiveResult(resultCode, resultData);
 				if (resultCode == KwikAPIService.STATUS_OK) {
-					
 					Product prod = (Product) resultData.getSerializable("return");
 					
 					View progressBar = ((View)findViewById(R.id.progressbar));
@@ -60,20 +55,6 @@ public class ProductActivity extends KwikFragmentActivity {
 					ImageView image = ((ImageView)findViewById(R.id.product_image));
 					
 					imageManager.fetchDrawableOnThread(prod.image_url, image);
-					
-				
-			
-				} else if (resultCode == KwikAPIService.STATUS_CONNECTION_ERROR) {
-					Log.d(TAG, "Connection error.");
-					Toast.makeText(self, getResources().getString(R.string.API_bad_response), Toast.LENGTH_SHORT).show();
-				}else if (resultCode == KwikAPIService.STATUS_ERROR) {
-					Log.d(TAG, "Unavailable to connect, please try again.");
-					Toast.makeText(self, getResources().getString(R.string.HTML_error), Toast.LENGTH_SHORT).show();
-				}else if (resultCode == KwikAPIService.STATUS_ILLEGAL_ARGUMENT) {
-					Log.d(TAG, "An error occurs while processing your request.");
-					Toast.makeText(self, getResources().getString(R.string.XML_parser_error), Toast.LENGTH_SHORT).show();					
-				} else {
-					Log.d(TAG, "Unknown error.");
 				}
 			}
 		});

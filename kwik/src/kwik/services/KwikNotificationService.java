@@ -14,7 +14,6 @@ import android.os.SystemClock;
 
 public class KwikNotificationService extends IntentService {
 	
-	private String TAG = getClass().getSimpleName();
 
 	public static final String NOTIFY_ORDERS_CMD = "Start_Polling_Orders";
 	public static boolean singleton = false;

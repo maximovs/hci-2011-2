@@ -3,29 +3,25 @@ package kwik.app.activities;
 import java.util.HashMap;
 import java.util.List;
 
-import kwik.Util;
 import kwik.app.R;
 import kwik.app.activities.custom.KwikFragmentActivity;
 import kwik.remote.api.Category;
 import kwik.services.KwikAPIService;
-import android.app.Activity;
+import kwik.util.Util;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 public class ProductsActivity extends KwikFragmentActivity implements OnItemClickListener {
 	
-	private String	TAG	= getClass().getSimpleName();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +30,15 @@ public class ProductsActivity extends KwikFragmentActivity implements OnItemClic
 		Intent localIntent = this.getIntent();
 		
 		Bundle extras = localIntent.getExtras();
-		final Activity self =this;
 		final Integer category_id = extras.getInt("category_id", -1);
 		final Integer subcategory_id = extras.getInt("subcategory_id", -1);
-		final String  category_name = extras.getString("category_name");
-		
-		
+		final String category_name = extras.getString("category_name");
 		
 		if (category_name != null) {
 			this.setTitle(String.format(getResources().getString(R.string.products_title), category_name));
 		} else {
 			this.setTitle(String.format(getResources().getString(R.string.search_result), category_name));
 		}
-		
 		
 		/* Asociamos la vista del search list con la activity */
 		setContentView(R.layout.item_list);
@@ -57,8 +49,7 @@ public class ProductsActivity extends KwikFragmentActivity implements OnItemClic
 			String query = localIntent.getStringExtra(SearchManager.QUERY);
 			intent.putExtra("command", KwikAPIService.GET_PRODUCTS_CMD);
 			intent.putExtra("criteria", query);
-		}
-		else if (subcategory_id != -1) {
+		} else if (subcategory_id != -1) {
 			intent.putExtra("command", KwikAPIService.GET_SUBCAT_PRODUCTS_CMD);
 			intent.putExtra("category_id", category_id);
 			intent.putExtra("subcategory_id", subcategory_id);
@@ -77,17 +68,6 @@ public class ProductsActivity extends KwikFragmentActivity implements OnItemClic
 					List<Category> prodList = (List<Category>) resultData.getSerializable("return");
 					populateProdList(prodList);
 					
-				} else if (resultCode == KwikAPIService.STATUS_CONNECTION_ERROR) {
-					Log.d(TAG, "Connection error.");
-					Toast.makeText(self, getResources().getString(R.string.API_bad_response), Toast.LENGTH_SHORT).show();
-				}else if (resultCode == KwikAPIService.STATUS_ERROR) {
-					Log.d(TAG, "Unavailable to connect, please try again.");
-					Toast.makeText(self, getResources().getString(R.string.HTML_error), Toast.LENGTH_SHORT).show();
-				}else if (resultCode == KwikAPIService.STATUS_ILLEGAL_ARGUMENT) {
-					Log.d(TAG, "An error occurs while processing your request.");
-					Toast.makeText(self, getResources().getString(R.string.XML_parser_error), Toast.LENGTH_SHORT).show();					
-				} else {
-					Log.d(TAG, "Unknown error.");
 				}
 			}
 		});
@@ -114,8 +94,8 @@ public class ProductsActivity extends KwikFragmentActivity implements OnItemClic
 		@SuppressWarnings("unchecked")
 		HashMap<String, Object> map = (HashMap<String, Object>) vi.getItemAtPosition(position);
 		
-		final Integer product_id   = (Integer) map.get("id");
-		final String  product_name = (String)  map.get("name");
+		final Integer product_id = (Integer) map.get("id");
+		final String product_name = (String) map.get("name");
 		
 		Intent intent = new Intent(v.getContext(), ProductActivity.class);
 		intent.putExtra("product_id", product_id);

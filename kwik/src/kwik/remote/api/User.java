@@ -1,8 +1,6 @@
 package kwik.remote.api;
 
-import java.io.Reader;
 import java.io.Serializable;
-import java.io.StringReader;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -16,8 +14,6 @@ import kwik.remote.util.HTTPUtils;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Serializer;
-import org.simpleframework.xml.core.Persister;
 
 @Element(name = "account")
 public class User implements Serializable {
