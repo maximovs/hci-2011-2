@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -94,6 +95,8 @@ public class HTTPUtils {
 		return URLEncodedUtils.format(params, "utf-8");
 	}
 	
+	private static Map<String, String>	http_requests	= new HashMap<String, String>();
+	
 	/*
 	 * getRequest
 	 * 
@@ -104,25 +107,36 @@ public class HTTPUtils {
 	 * Returns the resultant response string.
 	 */
 	public static String getRequest(String url, final Map<String, String> headers) throws HTTPException {
-		HttpGet getRequest = new HttpGet(url + "?" + URLEncode(headers));
-		DefaultHttpClient client = new DefaultHttpClient();
-		try {
-			HttpResponse getResponse = client.execute(getRequest);
-			final int statusCode = getResponse.getStatusLine().getStatusCode();
-			if (statusCode != HttpStatus.SC_OK) {
-				return null;
+		
+		
+		String finalurl = url + "?" + URLEncode(headers);
+		if (!http_requests.containsKey(finalurl)) {
+			
+			HttpGet getRequest = new HttpGet(finalurl);
+			DefaultHttpClient client = new DefaultHttpClient();
+			try {
+				HttpResponse getResponse = client.execute(getRequest);
+				final int statusCode = getResponse.getStatusLine().getStatusCode();
+				if (statusCode != HttpStatus.SC_OK) {
+					return null;
+				}
+				HttpEntity getResponseEntity = getResponse.getEntity();
+				if (getResponseEntity != null) {
+					String resp = EntityUtils.toString(getResponseEntity);
+					http_requests.put(finalurl, resp);
+					return resp;
+				}
+			} catch (IOException e) {
+				getRequest.abort();
+				Log.w(HTTPUtils.class.getSimpleName(), "Error for URL " + url, e);
+				throw new HTTPException();
 			}
-			HttpEntity getResponseEntity = getResponse.getEntity();
-			if (getResponseEntity != null) {
-				return EntityUtils.toString(getResponseEntity);
-			}
-		} catch (IOException e) {
-			getRequest.abort();
-			Log.w(HTTPUtils.class.getSimpleName(), "Error for URL " + url, e);
-			throw new HTTPException();
+			return null;
+			
+		} else {
+			return http_requests.get(finalurl);
 		}
 		
-		return null;		
 	}
 	
 	public static String serializeObjectToXML(Object o) throws XMLParseException {

@@ -71,7 +71,6 @@ public class KwikNotificationService extends IntentService {
 					SystemClock.sleep(5000);
 				}
 				
-				
 				List<Order> _new = app.getCurrentUser().getOrderList();
 				
 				for (Order order : last) {
