@@ -120,7 +120,7 @@ public class ProductsActivity extends KwikFragmentActivity implements OnItemClic
 		Intent intent = new Intent(v.getContext(), ProductActivity.class);
 		intent.putExtra("product_id", product_id);
 		intent.putExtra("product_name", product_name);
-		startActivity(intent);
+		startActivityForResult(intent, 0);
 		
 	}
 	

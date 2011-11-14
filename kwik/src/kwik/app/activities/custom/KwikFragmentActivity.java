@@ -6,7 +6,7 @@ import kwik.app.activities.ConfigActivity;
 import kwik.app.activities.SignInActivity;
 import kwik.remote.api.User;
 import kwik.services.KwikAPIService;
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,46 +18,44 @@ import android.support.v4.view.MenuItem;
 import android.support.v4.view.MenuItem.OnMenuItemClickListener;
 import android.widget.Toast;
 
-
-
 public class KwikFragmentActivity extends FragmentActivity {
 	
 	protected String	TAG	= getClass().getSimpleName();
 	
-	protected KwikApp app = (KwikApp) getApplication();
+	protected KwikApp	app	= (KwikApp) getApplication();
 	
+	protected int		color;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Context cont = getApplicationContext();
 		app = (KwikApp) getApplication();
 		
-		if (app != null) {
-			switch (app.getCurrentColor()) {
-				case Color.RED:
-					this.setTheme(R.style.Theme_Custom_Red);
-					break;
-				case Color.GREEN:
-					this.setTheme(R.style.Theme_Custom_Green);
-					break;
-				case Color.YELLOW:
-					this.setTheme(R.style.Theme_Custom_Orange);
-					break;
-				case Color.BLUE:
-				default:
-					this.setTheme(R.style.Theme_Custom_Blue);
-					break;
-			}
+		switch (app.getCurrentColor()) {
+			case Color.RED:
+				this.setTheme(R.style.Theme_Custom_Red);
+				break;
+			case Color.GREEN:
+				this.setTheme(R.style.Theme_Custom_Green);
+				break;
+			case Color.YELLOW:
+				this.setTheme(R.style.Theme_Custom_Orange);
+				break;
+			case Color.BLUE:
+			default:
+				this.setTheme(R.style.Theme_Custom_Blue);
+				break;
 		}
-
+		
+		color = app.getCurrentColor();
+		
 		super.onCreate(savedInstanceState);
 	}
-	
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (app != null) {
+		if (color != app.getCurrentColor()) {
+			color = app.getCurrentColor();
 			switch (app.getCurrentColor()) {
 				case Color.RED:
 					this.setTheme(R.style.Theme_Custom_Red);
@@ -73,8 +71,9 @@ public class KwikFragmentActivity extends FragmentActivity {
 					this.setTheme(R.style.Theme_Custom_Blue);
 					break;
 			}
+			this.reload();
 		}
-		this.reload();
+		
 	}
 	
 	@Override
@@ -124,7 +123,8 @@ public class KwikFragmentActivity extends FragmentActivity {
 									User u = (User) resultData.getSerializable("return");
 									KwikApp app = (KwikApp) getApplication();
 									app.setCurrentUser(u);
-									Toast.makeText(self, getResources().getString(R.string.sign_in_toast), Toast.LENGTH_SHORT).show();
+									Toast.makeText(self, getResources().getString(R.string.sign_in_toast),
+											Toast.LENGTH_SHORT).show();
 									self.reload();
 								}
 							};
@@ -148,7 +148,11 @@ public class KwikFragmentActivity extends FragmentActivity {
 		overridePendingTransition(0, 0);
 		startActivity(intent);
 	}
-
 	
-	
+	@Override
+	public void finish() {
+		Intent resultIntent = new Intent();
+		setResult(Activity.RESULT_OK, resultIntent);
+		super.finish();
+	}
 }

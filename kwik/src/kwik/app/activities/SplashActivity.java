@@ -30,7 +30,7 @@ public class SplashActivity extends KwikFragmentActivity {
 				Intent intent = new Intent(v.getContext(), CategoriesActivity.class);
 				intent.putExtra("category_id", 1);
 				intent.putExtra("category_name", R.string.dvds);
-				startActivity(intent);
+				startActivityForResult(intent, 0);
 			}
 		});
 		
@@ -41,7 +41,7 @@ public class SplashActivity extends KwikFragmentActivity {
 				Intent intent = new Intent(v.getContext(), CategoriesActivity.class);
 				intent.putExtra("category_id", 2);
 				intent.putExtra("category_name", R.string.books);
-				startActivity(intent);
+				startActivityForResult(intent, 0);
 			}
 		});
 		

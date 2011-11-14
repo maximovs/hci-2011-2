@@ -7,11 +7,9 @@ import java.util.Map;
 
 import kwik.app.R;
 import kwik.app.activities.custom.KwikFragmentActivity;
-import android.app.Activity;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -142,10 +140,5 @@ public class ConfigActivity extends KwikFragmentActivity implements OnItemClickL
 		b.create().show();
 	}
 	
-	@Override
-	public void finish() {
-		Intent resultIntent = new Intent();
-		setResult(Activity.RESULT_OK, resultIntent);
-		super.finish();
-	}
+	
 }

@@ -148,12 +148,12 @@ public class CategoriesActivity extends KwikFragmentActivity implements OnItemCl
 			intent.putExtra("subcategory_id", id);
 			intent.putExtra("category_id", category_id);
 			intent.putExtra("category_name", category_name);
-			startActivity(intent);
+			startActivityForResult(intent, 0);
 		} else {
 			Intent intent = new Intent(v.getContext(), CategoriesActivity.class);
 			intent.putExtra("category_id", id);
 			intent.putExtra("category_name", category_name);
-			startActivity(intent);
+			startActivityForResult(intent, 0);
 		}
 		
 	}
@@ -183,7 +183,7 @@ public class CategoriesActivity extends KwikFragmentActivity implements OnItemCl
 						Intent intent = new Intent(v.getContext(), ProductsActivity.class);
 						intent.putExtra("category_id", id);
 						intent.putExtra("category_name", category_name);
-						startActivity(intent);
+						startActivityForResult(intent, 0);
 					}
 				}
 			});
