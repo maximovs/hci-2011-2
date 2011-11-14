@@ -58,18 +58,7 @@ public class User implements Serializable {
 	@Element(required = false)
 	Date	last_login_date;
 	
-	public static User fromXML(String xml) {
-		User u = new User();
-		Serializer serializer = new Persister();
-		Reader reader = new StringReader(xml);
-		try {
-			u = serializer.read(User.class, reader, false);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return u;
-	}
+
 	public boolean signOut() {
 		try {
 			Map<String, String> headers = new HashMap<String, String>();

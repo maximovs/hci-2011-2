@@ -6,7 +6,9 @@ import kwik.app.activities.ConfigActivity;
 import kwik.app.activities.SignInActivity;
 import kwik.remote.api.User;
 import kwik.services.KwikAPIService;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
@@ -16,14 +18,63 @@ import android.support.v4.view.MenuItem;
 import android.support.v4.view.MenuItem.OnMenuItemClickListener;
 import android.widget.Toast;
 
+
+
 public class KwikFragmentActivity extends FragmentActivity {
 	
 	protected String	TAG	= getClass().getSimpleName();
 	
+	protected KwikApp app = (KwikApp) getApplication();
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		Context cont = getApplicationContext();
+		app = (KwikApp) getApplication();
+		
+		if (app != null) {
+			switch (app.getCurrentColor()) {
+				case Color.RED:
+					this.setTheme(R.style.Theme_Custom_Red);
+					break;
+				case Color.GREEN:
+					this.setTheme(R.style.Theme_Custom_Green);
+					break;
+				case Color.YELLOW:
+					this.setTheme(R.style.Theme_Custom_Orange);
+					break;
+				case Color.BLUE:
+				default:
+					this.setTheme(R.style.Theme_Custom_Blue);
+					break;
+			}
+		}
 
+		super.onCreate(savedInstanceState);
+	}
+	
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (app != null) {
+			switch (app.getCurrentColor()) {
+				case Color.RED:
+					this.setTheme(R.style.Theme_Custom_Red);
+					break;
+				case Color.GREEN:
+					this.setTheme(R.style.Theme_Custom_Green);
+					break;
+				case Color.YELLOW:
+					this.setTheme(R.style.Theme_Custom_Orange);
+					break;
+				case Color.BLUE:
+				default:
+					this.setTheme(R.style.Theme_Custom_Blue);
+					break;
+			}
+		}
+		this.reload();
 	}
 	
 	@Override
@@ -53,7 +104,7 @@ public class KwikFragmentActivity extends FragmentActivity {
 				public boolean onMenuItemClick(MenuItem item) {
 					if (!(self instanceof ConfigActivity)) {
 						Intent intent = new Intent(self, ConfigActivity.class);
-						startActivity(intent);
+						startActivityForResult(intent, 0);
 					}
 					return false;
 				}

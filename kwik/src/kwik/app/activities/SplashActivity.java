@@ -66,7 +66,7 @@ public class SplashActivity extends KwikFragmentActivity {
 				@Override
 				public boolean onMenuItemClick(MenuItem item) {
 					KwikApp app = (KwikApp) getApplication();
-					app.setCurrentUser(null);
+					app.discardSettings();
 					Toast.makeText(self, getResources().getString(R.string.sign_out_toast), Toast.LENGTH_SHORT).show();
 					self.reload();
 					return false;

@@ -291,23 +291,26 @@ containing a value of this type.
         public static final int abs__tab_unselected_holo=0x7f020025;
         public static final int abs__tab_unselected_pressed_focused_holo=0x7f020026;
         public static final int abs__tab_unselected_pressed_holo=0x7f020027;
-        public static final int actionbar_bg=0x7f020028;
-        public static final int actionbar_sep=0x7f020029;
-        public static final int arrow_right_32x32=0x7f02002a;
-        public static final int book=0x7f02002b;
-        public static final int book_normal=0x7f02002c;
-        public static final int book_pressed=0x7f02002d;
-        public static final int config=0x7f02002e;
-        public static final int dvd=0x7f02002f;
-        public static final int dvd_normal=0x7f020030;
-        public static final int dvd_pressed=0x7f020031;
-        public static final int icon=0x7f020032;
-        public static final int key=0x7f020033;
-        public static final int logo=0x7f020034;
-        public static final int right_arrow=0x7f020035;
-        public static final int search=0x7f020036;
-        public static final int setting_gray=0x7f020037;
-        public static final int sign_out=0x7f020038;
+        public static final int actionbar_bg_blue=0x7f020028;
+        public static final int actionbar_bg_green=0x7f020029;
+        public static final int actionbar_bg_orange=0x7f02002a;
+        public static final int actionbar_bg_red=0x7f02002b;
+        public static final int actionbar_sep=0x7f02002c;
+        public static final int arrow_right_32x32=0x7f02002d;
+        public static final int book=0x7f02002e;
+        public static final int book_normal=0x7f02002f;
+        public static final int book_pressed=0x7f020030;
+        public static final int config=0x7f020031;
+        public static final int dvd=0x7f020032;
+        public static final int dvd_normal=0x7f020033;
+        public static final int dvd_pressed=0x7f020034;
+        public static final int icon=0x7f020035;
+        public static final int key=0x7f020036;
+        public static final int logo=0x7f020037;
+        public static final int right_arrow=0x7f020038;
+        public static final int search=0x7f020039;
+        public static final int setting_gray=0x7f02003a;
+        public static final int sign_out=0x7f02003b;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f05001b;
@@ -432,7 +435,10 @@ containing a value of this type.
         public static final int Internal_Widget_Sherlock_Light_ActionBar=0x7f09001d;
         public static final int TextAppearance_Widget_Subtitle=0x7f09001b;
         public static final int TextAppearance_Widget_Title=0x7f09001a;
-        public static final int Theme_Custom=0x7f09001e;
+        public static final int Theme_Custom_Blue=0x7f09001e;
+        public static final int Theme_Custom_Green=0x7f090021;
+        public static final int Theme_Custom_Orange=0x7f090020;
+        public static final int Theme_Custom_Red=0x7f09001f;
         public static final int Theme_Sherlock=0x7f090000;
         public static final int Theme_Sherlock_Light=0x7f09000d;
         public static final int Widget_Sherlock_ActionBar_TabBar=0x7f090001;
@@ -459,7 +465,7 @@ containing a value of this type.
         public static final int Widget_Sherlock_PopupMenu=0x7f09000c;
         public static final int Widget_Sherlock_Spinner=0x7f090005;
         public static final int Widget_Sherlock_TextView_SpinnerItem_ActionBar=0x7f090009;
-        public static final int abTitleStyle=0x7f09001f;
+        public static final int abTitleStyle=0x7f090022;
     }
     public static final class xml {
         public static final int productsearch=0x7f040000;

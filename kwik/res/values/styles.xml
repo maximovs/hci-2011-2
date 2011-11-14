@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Custom" parent="Theme.Sherlock.Light">
+    <style name="Theme.Custom.Blue" parent="Theme.Sherlock.Light">
         <item name="abDisplayOptions">showTitle</item>
-        <item name="abBackground">@drawable/actionbar_bg</item>
+        <item name="abBackground">@drawable/actionbar_bg_blue</item>
         <item name="abTitleTextStyle">@style/abTitleStyle</item>
     </style>
+    <style name="Theme.Custom.Red" parent="Theme.Sherlock.Light">
+        <item name="abDisplayOptions">showTitle</item>
+        <item name="abBackground">@drawable/actionbar_bg_red</item>
+        <item name="abTitleTextStyle">@style/abTitleStyle</item>
+    </style>
+    <style name="Theme.Custom.Orange" parent="Theme.Sherlock.Light">
+        <item name="abDisplayOptions">showTitle</item>
+        <item name="abBackground">@drawable/actionbar_bg_orange</item>
+        <item name="abTitleTextStyle">@style/abTitleStyle</item>
+    </style>
+    <style name="Theme.Custom.Green" parent="Theme.Sherlock.Light">
+        <item name="abDisplayOptions">showTitle</item>
+        <item name="abBackground">@drawable/actionbar_bg_green</item>
+        <item name="abTitleTextStyle">@style/abTitleStyle</item>
+    </style>
+        
     <style name="abTitleStyle">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
