@@ -21,19 +21,17 @@ import android.util.Log;
 
 public class KwikNotificationService extends IntentService {
 	
-	public static final String NOTIFY_ORDERS_CMD = "Start_Polling_Orders";
+	public static final String				NOTIFY_ORDERS_CMD		= "Start_Polling_Orders";
 	
-	public static final int STATUS_CONNECTION_ERROR = -1;
-	public static final int STATUS_ERROR = -2;
-	public static final int STATUS_ILLEGAL_ARGUMENT = -3;
-	public static final int STATUS_OK = 0;
+	public static final int					STATUS_CONNECTION_ERROR	= -1;
+	public static final int					STATUS_ERROR			= -2;
+	public static final int					STATUS_ILLEGAL_ARGUMENT	= -3;
+	public static final int					STATUS_OK				= 0;
 	
-	private static KwikNotificationService instance;
+	private static KwikNotificationService	instance;
 	
+	private KwikApp							app;
 	
-	private static boolean checking = false;
-	private KwikApp app;
-
 	/*
 	 * Se debe crear un constructor sin parametros y asignarle un nombre al
 	 * servicio.
@@ -41,7 +39,7 @@ public class KwikNotificationService extends IntentService {
 	public KwikNotificationService() {
 		super("KwikNotificationService");
 	}
-
+	
 	/*
 	 * Evento que se ejecuta cuando se invocó el servicio por medio de un
 	 * Intent.
@@ -51,17 +49,13 @@ public class KwikNotificationService extends IntentService {
 		if (instance != null) {
 			return;
 		}
-		checking = true;
 		app = (KwikApp) getApplication();
 		instance = this;
 		Log.d("Notifications", "Starting service...");
 		
-		
-		
 		onCheckingNotification();
-		try {
-			while (true) {
-				
+		while (true) {
+			try {
 				
 				List<Order> last = app.getCurrentUser().getOrderList();
 				SystemClock.sleep(1000 * 60 * app.getCurrentUpdateInterval());
@@ -96,70 +90,63 @@ public class KwikNotificationService extends IntentService {
 				app.saveAppData();
 				
 				Log.d("Notifications", "Checking service");
+				
+			} catch (APIBadResponseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (XMLParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (HTTPException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
-			
-		} catch (APIBadResponseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (XMLParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (HTTPException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		
-		
 		
 	}
 	
 	private void onOrderStatusChangeNotification(int orderId) {
-		String order_changed = String.format(
-					getResources().getString(R.string.order_changed_notification),
-					orderId);
+		String order_changed = String.format(getResources().getString(R.string.order_changed_notification), orderId);
 		String app_title = getResources().getString(R.string.notification_service_start);
-		sendNotification(order_changed,  app_title,order_changed,  SplashActivity.class, 0);
+		sendNotification(order_changed, app_title, order_changed, SplashActivity.class, 0);
 	}
 	
 	private void onOrderLocationChangeNotification(int orderId) {
-		String order_changed = String.format(
-					getResources().getString(R.string.order_changed_notification),
-					orderId);
+		String order_changed = String.format(getResources().getString(R.string.order_changed_notification), orderId);
 		String app_title = getResources().getString(R.string.notification_service_start);
-		sendNotification(order_changed,  app_title,order_changed,  SplashActivity.class, 0);
+		sendNotification(order_changed, app_title, order_changed, SplashActivity.class, 0);
 	}
-
+	
 	private void onCheckingNotification() {
 		String order_checks = getResources().getString(R.string.notification_service_start_top);
 		String app_title = getResources().getString(R.string.notification_service_start);
-		sendNotification(order_checks,  app_title,order_checks,  SplashActivity.class, 0);
+		sendNotification(order_checks, app_title, order_checks, SplashActivity.class, 0);
 	}
-
-	private void sendNotification(String tickText, String contTitle, String contText,Class<?> retActivity, int notifID){
+	
+	private void sendNotification(String tickText, String contTitle, String contText, Class<?> retActivity, int notifID) {
 		String ns = Context.NOTIFICATION_SERVICE;
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
 		
-//		Instantiate the Notification:
+		// Instantiate the Notification:
 		int icon = R.drawable.logo;
 		CharSequence tickerText = tickText;
 		long when = System.currentTimeMillis();
-
+		
 		Notification notification = new Notification(icon, tickerText, when);
 		
-//		Define the notification's message and PendingIntent:
+		// Define the notification's message and PendingIntent:
 		Context context = getApplicationContext();
 		CharSequence contentTitle = contTitle;
 		CharSequence contentText = contText;
 		Intent notificationIntent = new Intent(this, retActivity);
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-
+		
 		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
-		notification.flags|=Notification.FLAG_AUTO_CANCEL;
-		notification.flags|=Notification.FLAG_INSISTENT;
-	
-//		Pass the Notification to the NotificationManager:
+		notification.flags |= Notification.FLAG_AUTO_CANCEL;
+		notification.flags |= Notification.FLAG_INSISTENT;
+		
+		// Pass the Notification to the NotificationManager:
 		mNotificationManager.notify(notifID, notification);
 	}
-
+	
 }

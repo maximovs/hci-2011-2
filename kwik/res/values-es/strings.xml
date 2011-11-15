@@ -31,6 +31,26 @@
 	<string name="notification_service_start">Kwik E Mart</string>
 	
 	
+	
+	<string name="label_name">Nombre</string>
+	<string name="label_sales_rank">Ranking de ventas</string>
+	<string name="label_price">Precio</string>
+	<string name="label_actors">Actores</string>
+	<string name="label_format">Formato</string>
+	<string name="label_language">Lenguaje</string>
+	<string name="label_subtitles">Subtitulos</string>
+	<string name="label_region">Región</string>
+	<string name="label_aspect_ratio">Radio de Aspecto</string>
+	<string name="label_number_discs">Número de discos</string>
+	<string name="label_release_date">Fecha de lanzamiento</string>
+	<string name="label_run_time">Duración</string>
+	<string name="label_ASIN">ASIN</string>
+	<string name="label_authors">Autores</string>
+	<string name="label_publisher">Publicado por</string>
+	<string name="label_published_date">Fecha de publicación</string>
+	<string name="label_ISBN_10">ISBN 10</string>
+	<string name="label_ISBN_13">ISBN 13</string>
+	
 	<string name="order_changed_notification">La Orden # %1$d cambió su ubicación</string>
 	<string name="order_changed_notification">La Orden # %1$d cambió su ubicación</string>
 	

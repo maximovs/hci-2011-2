@@ -43,7 +43,7 @@
             android:name="kwik.app.activities.CategoriesActivity" >
         </activity>
         <activity
-            android:label="@string/search_activity"
+            android:label="@string/search_activity" 
             android:name="kwik.app.activities.ProductActivity" >
         </activity>
         

@@ -65,9 +65,9 @@ public class Product extends AbstractProductFeed implements Serializable {
 	@Element(required = false)
 	public Date					published_date;
 	@Element(required = false)
-	public String				isbn_10;
+	public String				ISBN_10;
 	@Element(required = false)
-	public String				isbn_13;
+	public String				ISBN_13;
 	
 	public static Product getProduct(int product_id) throws APIBadResponseException, XMLParseException, HTTPException {
 		if (!Response.FAKE_RESPONSE) {

@@ -63,6 +63,27 @@
 
 	<string name="products_title">%1$s\'s products</string>
 
+
+	<string name="label_name">Name</string>
+	<string name="label_sales_rank">Sales Rank</string>
+	<string name="label_price">Price</string>
+	<string name="label_actors">Actors</string>
+	<string name="label_format">Format</string>
+	<string name="label_language">Language</string>
+	<string name="label_subtitles">Subtitles</string>
+	<string name="label_region">Region</string>
+	<string name="label_aspect_ratio">Aspect Ratio</string>
+	<string name="label_number_discs">Number of Discs</string>
+	<string name="label_release_date">Release Date</string>
+	<string name="label_run_time">Run Time</string>
+	<string name="label_ASIN">ASIN</string>
+	<string name="label_authors">Authors</string>
+	<string name="label_publisher">Publisher</string>
+	<string name="label_published_date">Published date</string>
+	<string name="label_ISBN_10">ISBN 10</string>
+	<string name="label_ISBN_13">ISBN 13</string>
+	
+
 	<string name="user_signin">User sign in</string>
 
 	<!-- order notification -->
